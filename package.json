@@ -11,7 +11,7 @@
     "essence"
   ],
   "author": "Sshwy",
-  "license": "MIT",
+  "license": "GNU GPLv3",
   "devDependencies": {
     "cz-conventional-changelog": "^3.3.0"
   },
