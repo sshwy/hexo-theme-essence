@@ -1,5 +1,7 @@
 # Essence
 
+[![GitHub license](https://img.shields.io/github/license/sshwy/hexo-theme-essence)](https://github.com/sshwy/hexo-theme-essence)
+
 Theme for Hexo.
 
 ## Features
