@@ -1,0 +1,28 @@
+<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+<%- js('js/script.bundle.js') %>
+<!--
+    <%- js('js/crypt.js') %>
+    <%- js('js/rtc.js') %>
+    <%- js('js/browser-type.js') %>
+    <%- js('js/search.js') %>
+    <%- js('js/ssimple.js') %>
+-->
+
+<% if(theme.valine.enable){ %>
+  <script src="https://cdn.jsdelivr.net/npm/valine"></script>
+  <script>
+    var valine_path = window.location.pathname;
+    if(valine_path[valine_path.length-1]!='\/')valine_path=valine_path+'\/';
+    new Valine({
+      el: '#vcomments',
+      appId: '<%= theme.valine.appid %>',
+      appKey: '<%= theme.valine.appkey %>',
+      placeholder: '<%= theme.valine.placeholder %>',
+      visitor: true,
+      recordIP: true,
+      requiredFields: ['nick','mail'],
+      avatar: 'retro',
+      path: valine_path
+    })
+  </script>
+<% } %>

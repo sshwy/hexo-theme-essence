@@ -1,0 +1,140 @@
+@import "_partial/variable";
+
+div {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1rem;
+  margin: 0;
+  font-family: "PT Serif", Georgia, Times, "Times New Roman", serif;
+  tab-size: 4;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+@media only screen and (max-width: 1000px) {
+  body{
+    /* margin: 2em 1.5em 0 1.5em */
+  }
+}
+@media only screen and (max-width: 600px){
+  body {
+    /* margin: 1.7em 1em 0 1em; */
+  }
+}
+
+hr{
+  border: none;
+  border-top: #a7a7a7 dashed 3px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.page-title{
+  font-size: 3em;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px){
+  .page-title{
+    font-size: 2.2em
+  }
+}
+@media only screen and (max-width: 500px){
+  .page-title{
+    font-size: 2em
+  }
+}
+
+.post-title{
+  font-size: 2em;
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.post-meta{
+  color: gray
+}
+
+img {
+  max-width: 100%;
+}
+
+blockquote {
+  color: var(--blockquote-color);
+  margin: 1em;
+}
+
+a{
+  color: var(--text-color);
+  transition: color 0.3s;
+  &:hover{
+    text-decoration: underline;
+    color: var(--link-hover-color);
+  }
+}
+
+.visitor{
+  text-align: center;
+}
+
+#footer{
+  margin: 3em 0 2em 0;
+  text-align: center;
+}
+
+span.codeforces{
+  font-family: verdana,arial,sans-serif
+}
+
+details{
+  border: 1px solid var(--text-color);
+  padding: 8px 12px;
+  margin: 0.5em 0;
+  border-radius: 5px;
+  summary {
+    outline: none;
+  }
+}
+
+#menu-button{
+  font-size: 1em;
+  color: var(--navbar-color);
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+span.katex-inline:before {
+  content: " ";
+}
+span.katex-inline:after {
+  content: " ";
+}
+
+figure {
+  margin: 0.5em;
+}
+
+@import "_partial/header";
+@import "_partial/post";
+@import "_partial/index";
+@import "_partial/articles";
+@import "_partial/highlight";
+@import "_partial/toc";
+@import "_partial/side-button";
+@import "_partial/paginator";
+@import "_partial/valine";
+@import "_partial/directory";
+@import "_partial/print";
+@import "_partial/label";
+@import "_partial/table";
+@import "_partial/encrypt";
+@import "_partial/codeforces";
+@import "_partial/search";
+@import "_partial/history";
+
+@import "_partial/darkmode";

@@ -1,0 +1,34 @@
+<% if(theme.directory.enable){ %>
+  <div class="articles-list">
+    <header>
+      <h1 class="page-title"><span class="iconfont icon-folder"></span>
+        <% if(page.par_path){ %>
+          <%=theme.directory.wordmap[page.dir]%>
+        <% }else { %>
+          <%=theme.directory.title%>
+        <% } %>
+      </h1>
+    </header>
+    <% if(page.par_path){ %>
+      <div class="parent-dir">
+        <span class="iconfont icon-Back"></span>
+        <a href='<%=url_for(page.par_path)%>'><span>
+          <%=theme.directory.parent_directory%>
+        </span></a>
+      </div>
+    <% } %>
+    <div class="article-list-inner">
+      <div class="dir-list">
+        <% page.dirs.forEach(function(dir){ %>
+          <div class="dir-list-item">
+            <span class="iconfont icon-folder"></span>
+            <a href='<%=url_for(page.dir_path+"/"+dir)%>'><span><%=
+              theme.directory.wordmap[dir]?theme.directory.wordmap[dir]:dir
+            %></span></a>
+          </div>
+        <% }) %>
+      </div>
+      <%- partial('_partial/post-list', {listPosts: page.posts,Year:false,Month:false}) %>
+    </div>
+  </div>
+<% } %>

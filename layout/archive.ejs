@@ -1,0 +1,9 @@
+<div class="articles-list">
+  <header>
+    <h1 class="page-title">Articles</h1>
+  </header>
+  <div class="article-count">
+    <p>A total of <%=site.posts.length%> <%=site.posts.length>1? "articles":"article"%></p>
+  </div>
+  <%- partial('_partial/post-list', {listPosts: site.posts.data,Year:true,Month:true}) %>
+</div>

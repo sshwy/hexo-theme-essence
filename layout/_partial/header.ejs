@@ -1,0 +1,40 @@
+<header>
+  <div class="header">
+    <div class="header-inner">
+      <div class="header-content">
+        <div class="blog-title">
+          <span class="iconfont icon-menu" id="menu-button" style="display: none"></span>
+          <a href="<%- url_for() %>" class="logo">
+            <%= config.title %>
+          </a>
+        </div>
+        <div class="navbar" id="menu-list">
+          <ul class="menu">
+            <% for (name in theme.menu) { %>
+              <li class="menu-item">
+                <a href="<%- url_for(theme.menu[name].link) %>" class="menu-item-link">
+                  <% if(theme.menu[name].icon){ %>  
+                    <span class="<%= theme.menu[name].icon %>"></span>
+                  <% } if(!(theme.menu[name].icon_only)){ %>  
+                    <%= name %>
+                  <% } %>
+                </a>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+        <div class="search">
+          <form onsubmit="searchSubmit(); return false;" class="search-form">
+            <input type="text" />
+          </form>
+          <span class="iconfont icon-search search-icon"></span>
+          <span class="iconfont icon-baseline-close-px search-close-icon"></span>
+        </div>
+      </div>
+    </div>
+    <div class="search-shadow"> </div>
+    <div class="search-box">
+      <%- partial('_partial/search-container',null,{cache: true}) %>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,140 @@
+.post {
+  margin: 1em auto;
+  padding: 30px 50px;
+  max-width: 860px;
+  line-height: 1.8em;
+
+  .title {
+    font-weight: normal;
+  }
+
+  .post-meta{
+    a.tag{
+      margin: 0 3px;
+    }
+    a.directory {
+      text-decoration: none;
+    }
+  }
+  .post-content {
+    counter-reset: h2
+    h2 {
+      counter-reset: h3
+    }
+    h3 {
+      counter-reset: h4
+    }
+    h4 {
+      counter-reset: h5
+    }
+    h5 {
+      counter-reset: h6
+    }
+
+    h2{
+      font-size:2rem;
+      &:before{
+        counter-increment: h2;
+        content: counter(h2);
+      }
+    }
+    h3{
+      font-size:1.6rem;
+      &:before{
+        counter-increment: h3;
+        content: counter(h2) "." counter(h3)
+      }
+    }
+    h4{
+      font-size:1.3rem;
+      &:before{
+        counter-increment: h4;
+        content: counter(h2) "." counter(h3) "." counter(h4)
+      }
+    }
+    h5{
+      font-size: 1.05em;
+    }
+    h5:before{
+      counter-increment: h5;
+      content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5)
+    }
+    h6:before{
+      counter-increment: h6;
+      content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6)
+    }
+    h2:before,
+    h3:before,
+    h4:before,
+    h5:before,
+    h6:before{
+      font-size: 80%;
+      color: #afafaf;
+      margin-right: 0.6rem;
+    }
+    a {
+      text-decoration: underline;
+      transition:color 0.3s;
+      &:hover{
+        color: var(--link-hover-color);
+      }
+    }
+    a.headerlink {
+      position: relative;
+      top: -70px;
+    }
+  }
+  .post-footer{
+    margin-top:2em;
+    .next-post{
+      display: inline-block;
+    }
+    .prev-post{
+      display: inline-block;
+      float: right;
+    }
+  }
+  .post-meta span{
+    margin: 0.2em;
+  }
+  code {
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+    padding: 4px 4px 1px 4px;
+    font-size: 90%;
+    color: var(--inline-code-color);
+    background-color: var(--inline-code-background);
+    border-radius: 4px;
+    margin: 0 1px;
+  }
+  pre {
+    span {
+      white-space: pre-wrap;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .post {
+    padding: 15px;
+    .post-title{
+      font-size: 1.7em;
+    }
+  }
+  .title{
+    line-height: normal;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .post {
+    .post-title{
+      font-size: 1.5em;
+    }
+  }
+}
+@media only screen and (max-width: 500px) {
+  .post {
+    .post-title{
+      font-size: 1.3em;
+    }
+  }
+}

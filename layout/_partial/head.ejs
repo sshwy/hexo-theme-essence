@@ -1,0 +1,14 @@
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <%- meta_generator() %>
+  <title><%= 
+    page.title?page.title+' - '
+    :page.tag?page.tag+' - Tag - '
+    :page.archive?'Articles - ':''
+    %><%= config.title %></title>
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <%- css('css/ssimple.css') %>
+  <%- css('iconfont/iconfont.css') %>
+  <%- partial('./katex') %>
+</head>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="<%= config.language %>">
+  <%- partial('_partial/head') %>
+  <body>
+    <%- partial('_partial/header',null,{cache: true}) %>
+    <main class="main">
+      <%- body %>
+    </main>
+  </body>
+  <%- partial('_partial/side-button') %>
+  <%- partial('_partial/footer') %>
+  <%- partial('_partial/after_footer',null,{cache: true}) %>
+</html>

@@ -1,0 +1,83 @@
+.index-title{
+  text-align: center
+  padding-top: 7em
+  padding-bottom: 12em
+  font-size: 2em
+}
+
+.more-articles{
+  text-align:center
+  a{
+    text-decoration: none
+    font-size:1.5em
+    color: gray
+    &:hover{
+      color: black
+    }
+  }
+}
+
+.index-post-title{
+  a {
+    text-decoration:none
+    font-size: 1.5em
+    transition: color 0.3s
+    &:hover{
+      text-decoration: underline
+      color: var(--link-hover-color);
+    }
+  }
+}
+
+.index-section-title{
+  text-align: center; 
+  font-size: 1.7rem
+}
+
+.index-post{
+  margin: 1em 0 1em 0
+}
+
+.posts  {
+  width: max-content;
+  margin: auto;
+  .post:first-child {
+    margin-top: 0;
+  }
+  .post-title {
+    font-size: 1.5em;
+    .post-title-link {
+      text-decoration: none;
+    }
+  }
+  .post-meta {
+    color: var(--tag-color);
+    &.post-time{
+      margin-right: 15px;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .index-title {
+    font-size: 1.5rem;
+  }
+  .index-section-title{
+    font-size: 1.4rem
+  }
+  .posts .post-meta.post-time{
+    display: none;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .index-title {
+    font-size: 1.3rem;
+  }
+  .index-section-title{
+    font-size: 1.2rem
+  }
+  .index-post-title{
+    font-size: 0.9rem
+  }
+}

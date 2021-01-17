@@ -1,0 +1,47 @@
+# headline will be showed in index
+headline: 只要卷不死，就往死里卷。
+
+# topbar menu link
+menu:
+  Archives: 
+    link: /archives/
+  Directory:
+    link: /directory/
+  About: 
+    link: /about/
+
+copyright: 2019-2020
+
+# katex (latex)
+katex: true
+
+# button fixed on the right bottom side
+button:
+  back2top: true # back to top
+  darkmode: true # switch light/dark mode
+  comment: true # go to valine comment
+
+# if false, the index page will only show your first several articles 
+# without paginator.
+index_pagination: true
+
+# generate a set of directory page under yoursite.com/directory/
+directory:
+  enable: true
+  title: Directory
+  parent_directory: Directory Above
+  wordmap:
+    Documetation: 文档
+    home_page: 主页
+
+# To be exact, it count the file's bytes.
+wordcount: true
+
+# valine comment
+valine:
+  enable: true
+  appid:
+  appkey:
+  placeholder: Stay Simple, Stay Curious.
+  notify: true
+  visitor: true

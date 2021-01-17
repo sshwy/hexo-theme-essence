@@ -1,0 +1,93 @@
+{
+  "id": "1610691",
+  "name": "Hexo Theme Ssimple",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7826085",
+      "name": "close",
+      "font_class": "baseline-close-px",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "7712727",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    },
+    {
+      "icon_id": "278288",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "1004137",
+      "name": "folder",
+      "font_class": "folder",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "10043855",
+      "name": "Back",
+      "font_class": "Back",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "581006",
+      "name": "comment",
+      "font_class": "comment",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "929286",
+      "name": "eye",
+      "font_class": "eye",
+      "unicode": "e6e0",
+      "unicode_decimal": 59104
+    },
+    {
+      "icon_id": "584791",
+      "name": "arrow_right",
+      "font_class": "arrowrightcircle1187580easyiconnet",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "584802",
+      "name": "arrow_left",
+      "font_class": "arrowleftcircle1187576easyiconnet",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "401150",
+      "name": "sun-fill",
+      "font_class": "sunfill",
+      "unicode": "e876",
+      "unicode_decimal": 59510
+    },
+    {
+      "icon_id": "792344",
+      "name": "moon-b-月亮",
+      "font_class": "moonbyueliang",
+      "unicode": "e6a0",
+      "unicode_decimal": 59040
+    },
+    {
+      "icon_id": "1185438",
+      "name": "arrow-up",
+      "font_class": "arrowup",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+<%
+  const sorted = listPosts.sort((a, b)=> {
+    return b.date.unix() - a.date.unix();
+  });
+  
+  const postViews = sorted.reduce((acc, model)=> {
+    const entry = Object.assign(model, {
+      // only show year/month if this is first entry in list with that yearstamp/monthstamp
+      displayYear : !acc.find(_ => _.date.year() === model.date.year()),
+      displayMonth : !acc.find(_ => _.date.month() === model.date.month()),
+      title: model.title || 'Untitled',
+      yearText: model.date.format('YYYY'),
+      monthText: model.date.format('MMM'),
+      monthNumber: model.date.format('M'),
+      MonthText: model.date.format('MMMM'),
+      dayText: model.date.format('DD'),
+      timeText: model.date.format('hh:mm'),
+      datetime: date_xml(model.date),
+      target: model.link ? '_blank': '',
+      url: url_for(model.path).split('index.html')[0]
+    });
+    acc.push(entry);
+    return acc;
+  }, []);
+%>
+  
+<div class="post-list">
+  <% postViews.forEach(function(p) { %>
+    <% if ((Month && p.displayMonth)||(Year && p.displayYear)) { %>
+      <div class="post-list-date-title">
+        <h2><%=Year? p.yearText:''%> <%=Month? p.MonthText:''%></h2>
+      </div>
+    <% } %>
+    <div class="post-list-item">
+      <div class="post-list-title">
+        <a href="<%=p.url%>" target="<%=p.target%>">
+          <%=p.title%>
+        </a>
+      </div>
+      <div class="post-list-meta">
+        <div class="post-list-time">
+          <time datetime="<%=p.datetime%>" 
+            title="<%=p.yearText+'.'+p.monthNumber+'.'+p.dayText%>">
+            <span class="month"><%=p.monthText%></span>
+            <span class="day"><%=p.dayText%></span>
+            <span class="time"><%=p.timeText%></span>
+          </time>
+        </div>
+        <% if (p.tags && p.tags.length){ %>
+          <div class="post-list-tags">
+            <% p.tags.forEach((tag, i) => { %>
+              <span class="tag">
+                <a class="tag" href="<%=url_for(tag.path)%>">
+                  <%='#'+tag.name%>
+                </a>
+              </span>
+            <% }) %>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  <% }); %>
+</div>

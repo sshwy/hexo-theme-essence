@@ -1,0 +1,36 @@
+<% if(page.current==1){ %>
+  <div class="index-title">
+    <h1><%=theme.headline%></h1>
+  </div>
+  <div class="hshc" style="width: 100%; margin-top: -23em;">
+    <div class="hshs-img" style="margin: 0 auto; width: max-content;">
+      <img src="/images/hshc.jpg" alt="昏睡红茶（物理）" />
+    </div>
+  </div>
+<% } %>
+
+<% if(page.current==1){ %>
+  <div class="index-section-title">
+    <h2>- Recently Update -</h2>
+  </div>
+<% } %>
+<section class="posts">
+  <% page.posts.each(function (post) { %>
+    <div class="index-post">
+      <div class="index-post-title">
+        <span class="post-meta post-time" title="更新时间"><%- date(post.date, "YYYY MMM DD  hh:mm") %></span>
+        <a class="post-title-link" href="<%- url_for(post.path) %>">
+          <%= post.title %>
+        </a>
+      </div>
+    </div>
+  <% }) %>
+</section>
+
+<% if(theme.index_pagination){ %>
+  <%- partial('_partial/paginator') %>
+<% }else{ %>
+  <div class="more-articles">
+    <a href="/archives">- More Articles -</a>
+  </div>
+<% } %>

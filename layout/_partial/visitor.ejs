@@ -1,0 +1,9 @@
+<% if(theme.valine.enable && theme.valine.visitor){ %>
+  <div class="visitor">
+    <span id="/<%=page.path.replace('index.html','')%>" class="leancloud_visitors" data-flag-title="<%=page.title%>">
+      <span class="iconfont icon-eye"></span>
+      <span class="post-meta-item-text">Page view </span>
+      <i class="leancloud-visitors-count">0</i>
+    </span>
+  </div>
+<% } %>

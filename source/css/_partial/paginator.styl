@@ -1,0 +1,39 @@
+.page-nav{
+  text-align:center
+  a{
+    text-decoration:none
+    &:hover{
+      text-decoration:none
+    }
+  }
+  .page-number{
+    margin: 0.2em;
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    border: var(--text-color) solid 2px;
+    border-radius: 2em;
+    transition: 0.3s
+    &:hover{
+      text-decoration:none
+      color: var(--background-color);
+      background-color: var(--text-color);
+      transition: 0.3s
+    }
+  }
+  .current{
+    border: var(--text-color) solid 2px
+    background-color: var(--text-color);
+    color: var(--background-color);
+  }
+  .next, .prev{
+    transition: 0.3s
+    .iconfont{
+      font-size: 1.7em;
+      vertical-align: -5px;
+    }
+    &:hover{
+      transition: 0.3s
+      color: #a6a6a6
+    }
+    margin: 0 0.1em 0 0.1em
+  }
+}
