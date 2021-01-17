@@ -1,0 +1,23 @@
+{
+  "name": "hexo-theme-essence",
+  "version": "1.0.0",
+  "description": "A Simple Clean Theme for Hexo with user-friendly Navigation System.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "essence"
+  ],
+  "author": "Sshwy",
+  "license": "MIT",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
