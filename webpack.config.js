@@ -5,7 +5,6 @@ module.exports = {
     './js/browser-type.js',
     './js/crypt.js',
     './js/rtc.js',
-    //'./js/search.js',
     './js/cookie.js',
     './js/ssimple.js'
   ],
@@ -14,10 +13,5 @@ module.exports = {
     path: 'js/',
   },
   mode: 'production',
-  plugins: [
-    //new webpack.ProvidePlugin({
-    //  $: 'jquery',
-    //  jQuery: 'jquery',
-    //}),
-  ]
+  plugins: []
 };
