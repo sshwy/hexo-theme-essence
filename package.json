@@ -19,5 +19,10 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "hexo-util": "^2.4.0",
+    "htmlparser2": "^6.0.0",
+    "webpack": "^5.15.0"
   }
 }
