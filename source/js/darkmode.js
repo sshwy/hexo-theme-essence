@@ -1,4 +1,4 @@
-const { LS } = require('./utils');
+import { LS } from './utils';
 
 const modeKey = 'data-user-color-scheme';
 const modeKeyCSS = '--color-mode';
@@ -23,7 +23,7 @@ const resetDarkMode = () => {
   LS.remove(modeKey);
 }
 
-const applyCustomDarkModeSettings = (mode) => {
+export const applyCustomDarkModeSettings = (mode) => {
   // 接受从「开关」处传来的模式，或者从 localStorage 读取
   const cur = mode || LS.get(modeKey);
 
@@ -48,7 +48,7 @@ const invert = {
   'light': 'dark'
 }
 
-const toggleDarkMode = () => {
+export const toggleDarkMode = () => {
 
   let cur = LS.get(modeKey);
 
@@ -67,8 +67,3 @@ const toggleDarkMode = () => {
 
   return cur;
 }
-
-module.exports = {
-  applyCustomDarkModeSettings: applyCustomDarkModeSettings,
-  toggleDarkMode: toggleDarkMode
-};

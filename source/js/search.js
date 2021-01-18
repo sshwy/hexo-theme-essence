@@ -1,7 +1,7 @@
 function escapeRegExp (s) {
   return s.replace(/[(){}\[\]|.*+?^$\\]/g, '\\$&');
 }
-function getSearchData (keyword) {
+export const getSearchData = function (keyword) {
   let rkey = new RegExp(escapeRegExp(keyword), "gi");
   let posts = [];
   const arround_length = 30;
@@ -57,7 +57,7 @@ function getSearchData (keyword) {
     pages: pages
   };
 }
-function renderSearchData (data, counterEl, resultEl) {
+export const renderSearchData = function (data, counterEl, resultEl) {
   let html = '';
   function parse (post) {
     let occ = '';
@@ -90,7 +90,7 @@ function renderSearchData (data, counterEl, resultEl) {
   resultEl.innerHTML = html;
 }
 
-function initializeSearchData () {
+export const initializeSearchData = function () {
   if (window.searchData === undefined) {
     (new Promise(function (resolve, reject) {
       fetch('/search.json')
@@ -112,9 +112,3 @@ function initializeSearchData () {
       });
   }
 }
-
-module.exports = {
-  getSearchData: getSearchData,
-  renderSearchData: renderSearchData,
-  initializeSearchData: initializeSearchData
-};

@@ -1,4 +1,4 @@
-const { Md5, encodeUTF8 } = require('./utils');
+import { Md5, encodeUTF8 } from './utils';
 
 window.encodeUTF8 = encodeUTF8;
 

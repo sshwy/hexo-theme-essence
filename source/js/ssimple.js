@@ -1,5 +1,5 @@
-const { applyCustomDarkModeSettings, toggleDarkMode } = require('./darkmode');
-const { getSearchData, renderSearchData, initializeSearchData } = require('./search');
+import { applyCustomDarkModeSettings, toggleDarkMode } from './darkmode';
+import { getSearchData, renderSearchData, initializeSearchData } from './search';
 
 const headerDiv = document.getElementsByClassName('header-inner')[0],
   searchHeaderDiv = headerDiv.getElementsByClassName('search')[0],
