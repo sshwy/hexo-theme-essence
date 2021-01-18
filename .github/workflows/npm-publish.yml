@@ -13,6 +13,6 @@ jobs:
       - run: npm test
       - uses: JS-DevTools/npm-publish@v1
         with:
-          token: ${{ NPM_PUBLISH.NPM_TOKEN }}
+          token: ${{ secrets.NPM_TOKEN }}
           registry: https://registry.npmjs.org/
           check-version: true
