@@ -3,7 +3,9 @@
   "version": "1.0.1",
   "description": "A Simple Clean Theme for Hexo with user-friendly Navigation System.",
   "scripts": {
-    "test": "echo \"No test specified\""
+    "test": "echo \"No test specified\"",
+    "lint": "eslint source/js/**",
+    "lint-fix": "eslint source/js/** --fix"
   },
   "keywords": [
     "hexo",
@@ -13,7 +15,8 @@
   "author": "Sshwy",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "cz-conventional-changelog": "^3.3.0"
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.18.0"
   },
   "config": {
     "commitizen": {
