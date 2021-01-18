@@ -24,5 +24,13 @@
     "hexo-util": "^2.4.0",
     "htmlparser2": "^6.0.0",
     "webpack": "^5.15.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sshwy/hexo-theme-essence.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sshwy/hexo-theme-essence/issues"
+  },
+  "homepage": "https://github.com/sshwy/hexo-theme-essence#readme"
 }
