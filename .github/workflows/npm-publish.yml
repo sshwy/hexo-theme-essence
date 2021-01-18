@@ -1,0 +1,18 @@
+on: push
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: NPM Publish
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13
+      - run: npm install
+      - run: npm test
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ NPM_PUBLISH.NPM_TOKEN }}
+          registry: https://registry.npmjs.org/
+          check-version: true
