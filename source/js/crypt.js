@@ -6,10 +6,10 @@ window.md5 = function (str) {
   var data = new Uint8Array(encodeUTF8(str));
   var result = Md5(data);
   var hex = Array.prototype.map.call(result, function (e) {
-    return (e < 16 ? "0" : "") + e.toString(16);
-  }).join("");
+    return (e < 16 ? '0' : '') + e.toString(16);
+  }).join('');
   return hex;
-}
+};
 var c2i = {
   'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6,
   'h': 7, 'i': 8, 'j': 9, 'k': 10, 'l': 11, 'm': 12, 'n': 13,
@@ -32,28 +32,28 @@ window.renderKatex = function () {
   for (var i = 0; i < document.scripts.length; i++) {
     if (/math\/tex/.test(document.scripts[i].type)) {
       if (/display/.test(document.scripts[i].type)) {
-        var math = document.createElement('p');
+        let math = document.createElement('p');
         math.setAttribute('style', 'text-align:center');
         math.setAttribute('class', 'katex-display');
-        katex.render(document.scripts[i].text.replace(/&lt;/g, '<').replace(/&gt;/g, '>'), math, {
+        window.katex.render(document.scripts[i].text.replace(/&lt;/g, '<').replace(/&gt;/g, '>'), math, {
           displayMode: true,
-          output: "html"
+          output: 'html'
         });
         document.scripts[i].after(math);
         document.scripts[i].removeAttribute('type'); // avoid multi times render
       } else {
-        var math = document.createElement('span');
+        let math = document.createElement('span');
         math.setAttribute('class', 'katex-inline');
-        katex.render(document.scripts[i].text.replace(/&lt;/g, '<').replace(/&gt;/g, '>'), math, {
+        window.katex.render(document.scripts[i].text.replace(/&lt;/g, '<').replace(/&gt;/g, '>'), math, {
           displayMode: false,
-          output: "html"
+          output: 'html'
         });
         document.scripts[i].after(math);
         document.scripts[i].removeAttribute('type'); // avoid multi times render
       }
     }
   }
-}
+};
 
 window.updateToc = function () {
   var sectionTitles = document.getElementsByClassName('post-content')[0].getElementsByClassName('headerlink');
@@ -64,7 +64,7 @@ window.updateToc = function () {
   var sectionNumbers = [0, 0, 0, 0, 0, 0], nodes = [toc, 0, 0, 0, 0, 0];
 
   for (var node of sectionTitles) {
-    data = {
+    const data = {
       id: node.id || node.parentElement.id || '',
       level: parseInt(node.parentElement.tagName.charAt(1)) - 1,
       text: node.parentElement.textContent
@@ -95,7 +95,7 @@ window.updateToc = function () {
 
     nodes[data.level] = liItem;
 
-    if (nodes[data.level - 1].tagName != "OL") {
+    if (nodes[data.level - 1].tagName != 'OL') {
       var olItem = document.createElement('ol');
       olItem.setAttribute('class', 'toc-child');
       nodes[data.level - 1].appendChild(olItem);
@@ -105,41 +105,43 @@ window.updateToc = function () {
   }
 
   var old = document.getElementsByClassName('toc-content')[0];
-  old.innerHTML = "";
+  old.innerHTML = '';
   old.appendChild(toc);
-}
+};
 
 window.decrypt = function (idx) {
   idx = idx.toString();
   var key = document.getElementById('key' + idx).value;
-  var keymd5 = md5(key);
+  var keymd5 = window.md5(key);
   if (document.getElementById('keyMd5' + idx).innerHTML != keymd5) {
     console.log('Your key is not correct!');
     return;
   }
-  document.getElementById('encrypted' + idx).style.display = "";
-  var cipher = document.getElementById('encrypted' + idx).innerHTML;
-  var unicode = "";
+  document.getElementById('encrypted' + idx).style.display = '';
+  let cipher = document.getElementById('encrypted' + idx).innerHTML;
+  let unicode = '';
   for (var i = 0; i < cipher.length; i++) {
     unicode += i2c[(c2i[cipher[i]] - c2i[key[i % key.length]] + sz) % sz];
   }
-  var plain = "";
-  lst = unicode.split('.');
-  for (var i = 0; i < lst.length - 1; i++) {//最最后一个字符是空的
+  let plain = '';
+  let lst = unicode.split('.');
+  for (let i = 0; i < lst.length - 1; i++) {//最最后一个字符是空的
     plain += String.fromCharCode(parseInt(lst[i], 16).toString(10));
   }
   document.getElementById('encrypted' + idx).innerHTML = plain;
-  document.getElementById('encButton' + idx).style.display = "none";
+  document.getElementById('encButton' + idx).style.display = 'none';
 
-  var EncryptVisiterObject = AV.Object.extend('EncryptListener');
-  var encryptVisiterObject = new EncryptVisiterObject();
+  const { returnCitySN, rtcIp, AV, browserTypeObject, renderKatex, updateToc } = window;
+
+  const EncryptVisiterObject = AV.Object.extend('EncryptListener');
+  let encryptVisiterObject = new EncryptVisiterObject();
   encryptVisiterObject.set('date', new Date());
   encryptVisiterObject.set('url', document.location.pathname);
   encryptVisiterObject.set('sid', idx);
-  if (typeof (returnCitySN) != "undefined") {
-    encryptVisiterObject.set('cip', returnCitySN["cip"]);
-    encryptVisiterObject.set('cid', returnCitySN["cid"]);
-    encryptVisiterObject.set('cname', returnCitySN["cname"]);
+  if (typeof (returnCitySN) != 'undefined') {
+    encryptVisiterObject.set('cip', returnCitySN['cip']);
+    encryptVisiterObject.set('cid', returnCitySN['cid']);
+    encryptVisiterObject.set('cname', returnCitySN['cname']);
   }
   encryptVisiterObject.set('ip', rtcIp);
   encryptVisiterObject.set('browser', browserTypeObject);
@@ -147,4 +149,4 @@ window.decrypt = function (idx) {
 
   renderKatex();
   updateToc();
-}
+};

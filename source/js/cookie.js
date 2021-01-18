@@ -24,4 +24,4 @@ function getCookie (cname) {
 window.CookieTools = {
   setCookie: setCookie,
   getCookie: getCookie
-}
+};

@@ -1,8 +1,8 @@
 function escapeRegExp (s) {
-  return s.replace(/[(){}\[\]|.*+?^$\\]/g, '\\$&');
+  return s.replace(/[(){}[\]|.*+?^$\\]/g, '\\$&');
 }
 export const getSearchData = function (keyword) {
-  let rkey = new RegExp(escapeRegExp(keyword), "gi");
+  let rkey = new RegExp(escapeRegExp(keyword), 'gi');
   let posts = [];
   const arround_length = 30;
   const results_count = 3;
@@ -42,13 +42,13 @@ export const getSearchData = function (keyword) {
         tags: tags
       };
     } else return null;
-  }
-  searchData.posts.forEach(function (post) {
+  };
+  window.searchData.posts.forEach(function (post) {
     let data = postSearch(post);
     if (data) posts.push(data);
   });
   let pages = [];
-  searchData.pages.forEach(function (post) {
+  window.searchData.pages.forEach(function (post) {
     let data = postSearch(post);
     if (data) pages.push(data);
   });
@@ -56,7 +56,7 @@ export const getSearchData = function (keyword) {
     posts: posts,
     pages: pages
   };
-}
+};
 export const renderSearchData = function (data, counterEl, resultEl) {
   let html = '';
   function parse (post) {
@@ -88,7 +88,7 @@ export const renderSearchData = function (data, counterEl, resultEl) {
   let counter = data.posts.length + data.pages.length;
   counterEl.innerHTML = `一共搜索到 ${counter} 个结果`;
   resultEl.innerHTML = html;
-}
+};
 
 export const initializeSearchData = function () {
   if (window.searchData === undefined) {
@@ -98,7 +98,7 @@ export const initializeSearchData = function () {
         .then(function (data) {
           console.log('Search data initialize succeed!');
           window.searchData = data;
-          document.getElementsByClassName('search-result')[0].innerHTML = "";
+          document.getElementsByClassName('search-result')[0].innerHTML = '';
           resolve(data);
         })
         .catch(function (reason) {
@@ -111,4 +111,4 @@ export const initializeSearchData = function () {
         console.log(err);
       });
   }
-}
+};

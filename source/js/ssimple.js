@@ -15,24 +15,24 @@ const headerDiv = document.getElementsByClassName('header-inner')[0],
 
 const check_hamberger = () => {
   const enable_hamberger = () => {
-    menuBtn.style.display = "initial";
-    menuList.style.display = "none";
-    searchHeaderDiv.style.marginRight = "0";
+    menuBtn.style.display = 'initial';
+    menuList.style.display = 'none';
+    searchHeaderDiv.style.marginRight = '0';
     searchContainer.style.width = '90%';
-  }
+  };
   const disable_hamberger = () => {
-    menuBtn.style.display = "none";
-    menuList.style.display = "initial";
-    searchHeaderDiv.style.marginRight = "1.5em";
+    menuBtn.style.display = 'none';
+    menuList.style.display = 'initial';
+    searchHeaderDiv.style.marginRight = '1.5em';
     searchContainer.style.width = '60%';
-  }
+  };
   var offsetWid = window.innerWidth;
   if (offsetWid <= 600) {
     enable_hamberger();
   } else {
     disable_hamberger();
   }
-}
+};
 
 function searchOpen () {
   console.log('focus!');
@@ -48,9 +48,9 @@ function searchClose (clearAll) {
   searchBox.classList.remove('active');
   searchShadow.classList.remove('active');
   if(clearAll){
-    searchInput.value = "";
-    searchResult.innerHTML = "";
-    searchCounter.innerHTML = "";
+    searchInput.value = '';
+    searchResult.innerHTML = '';
+    searchCounter.innerHTML = '';
   }
 }
 
@@ -60,7 +60,7 @@ function searchSubmit (e) {
     e.target.blur();
   }
   const str = searchInput.value;
-  if (searchData) {
+  if (window.searchData) {
     if (str) {
       console.log(str);
       renderSearchData(getSearchData(str), searchCounter, searchResult);
@@ -70,7 +70,7 @@ function searchSubmit (e) {
   }
 }
 
-; (function () {
+(function () {
   applyCustomDarkModeSettings();
   check_hamberger();
 
@@ -87,13 +87,13 @@ function searchSubmit (e) {
   window.searchSubmit = searchSubmit;
 
   menuBtn.onclick = () => {
-    if (menuList.style.display == "none") menuList.style.display = "block";
-    else menuList.style.display = "none";
+    if (menuList.style.display == 'none') menuList.style.display = 'block';
+    else menuList.style.display = 'none';
   };
   document.onscroll = function () {
     if (document.documentElement.scrollTop < 10) headerDiv.classList.remove('header-shadow');
     else headerDiv.classList.add('header-shadow');
-  }
+  };
   searchInput.addEventListener('focus', searchOpen, false);
   searchInput.addEventListener('keyup', searchSubmit, false);
   searchCloseBtn.addEventListener('click', () => searchClose(true), false);

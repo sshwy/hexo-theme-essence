@@ -1,9 +1,5 @@
-const Md5 = require('./md5');
-const LS = require('./localStorage');
-const encodeUTF8 = require('./encodeUTF8');
+import Md5 from './md5';
+import LS from './localStorage';
+import encodeUTF8 from './encodeUTF8';
 
-module.exports = {
-  Md5,
-  LS,
-  encodeUTF8
-};
+export { Md5, LS, encodeUTF8 };

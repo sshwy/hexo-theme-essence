@@ -9,19 +9,19 @@ const darkmode_button = document.getElementById('darkmode-button');
 
 const getModeFromCSS = () => {
   const res = getComputedStyle(rootElement).getPropertyValue(modeKeyCSS);
-  if (res.length) return res.replace(/\"/g, '').trim();
+  if (res.length) return res.replace(/"/g, '').trim();
   return res === 'dark' ? 'dark' : 'light';
-}
+};
 
 const valid = {
   'dark': true,
   'light': true
-}
+};
 
 const resetDarkMode = () => {
   rootElement.removeAttribute(modeKey);
   LS.remove(modeKey);
-}
+};
 
 export const applyCustomDarkModeSettings = (mode) => {
   // 接受从「开关」处传来的模式，或者从 localStorage 读取
@@ -41,12 +41,12 @@ export const applyCustomDarkModeSettings = (mode) => {
   } else {
     darkmode_button.innerHTML = moon;
   }
-}
+};
 
 const invert = {
   'dark': 'light',
   'light': 'dark'
-}
+};
 
 export const toggleDarkMode = () => {
 
@@ -66,4 +66,4 @@ export const toggleDarkMode = () => {
   LS.set(modeKey, cur);
 
   return cur;
-}
+};
