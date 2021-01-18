@@ -9,7 +9,7 @@ const parseHtml = html => {
   return handler.dom;
 };
 
-const getId = ({ attribs, parent, children }) => {
+const getId = ({ attribs, children }) => {
   const el = DomUtils.find(({ tagName }) => tagName === 'a', children, false);
   return (el && el[0] && el[0].attribs.id) || attribs.id || '';
 };

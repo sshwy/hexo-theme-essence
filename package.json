@@ -4,8 +4,8 @@
   "description": "A Simple Clean Theme for Hexo with user-friendly Navigation System.",
   "scripts": {
     "test": "echo \"No test specified\"",
-    "lint": "eslint source/js/**",
-    "lint-fix": "eslint source/js/** --fix"
+    "lint": "eslint source/js/** && eslint scripts/**",
+    "lint-fix": "eslint source/js/** --fix && eslint scripts/** --fix"
   },
   "keywords": [
     "hexo",
