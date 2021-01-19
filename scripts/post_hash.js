@@ -3,12 +3,17 @@
 const jsYaml = require('js-yaml');
 const crypto = require('crypto');
 const fs = require('fs');
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 hexo.extend.filter.register('before_post_render', function (data) {
+  const { config } = this;
+  const themeCfg = this.theme.config;
+
+  const timezone = config.timezone || 'Asia/Shanghai';
+  console.log('timezone', timezone);
+
+  if(themeCfg.historyHash === false || data.historyHash === false) return data;
   // User configuration
-  // const { config } = this;
-  // const themeCfg = this.theme.config;
   let shasum = crypto.createHash('sha1');
 
   const frontMatterMatch = data.raw.match(/^---\n(.*?)\n---\n/s);
@@ -23,7 +28,7 @@ hexo.extend.filter.register('before_post_render', function (data) {
   });
 
   shasum.update(rawContentStr);
-  const shastr = shasum.digest('hex') + '#' + moment().format();
+  const shastr = shasum.digest('hex') + '#' + moment().tz(timezone).format();
 
   let flag = true;
   if (!obj.historyHash || obj.historyHash[0].replace(/#.*$/, '') !== shastr.replace(/#.*$/, '')) {
@@ -31,13 +36,13 @@ hexo.extend.filter.register('before_post_render', function (data) {
     if (!obj.historyHash) obj.historyHash = [shastr];
     else obj.historyHash.unshift(shastr);
   }
-  const latestTime = moment(obj.historyHash[0].replace(/^.*?#/,'')).format('YYYY-MM-DD HH:mm:ss');
+  const latestTime = moment(obj.historyHash[0].replace(/^.*?#/,'')).tz(timezone).format('YYYY-MM-DD HH:mm:ss');
   if(obj.date !== latestTime){
     flag = false;
     obj.date = latestTime;
   }
   if(flag) {
-    data.date = moment(obj.historyHash[0].replace(/^.*?#/,''));
+    data.date = moment(obj.historyHash[0].replace(/^.*?#/,'')).tz(timezone);
     return data;
   }
 
@@ -57,7 +62,7 @@ hexo.extend.filter.register('before_post_render', function (data) {
 });
 
 hexo.extend.helper.register('historyParseTime', function (str) {
-  return (str.match(/#.*$/)[0] || '').replace(/^#(\d{4})-(\d{1,2})-(\d{1,2})T(\d{1,2}):(\d{1,2}):(\d{1,2})\+\d{1,2}:\d{1,2}$/,
+  return (str.match(/#.*$/)[0] || '').replace(/^#(\d{4})-(\d{1,2})-(\d{1,2})T(\d{1,2}):(\d{1,2}):(\d{1,2})[+-]\d{1,2}:\d{1,2}$/,
     ($, $Y, $M, $D) => {
       return `${$Y}年${$M}月${$D}日`;
     }

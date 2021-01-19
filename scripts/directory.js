@@ -7,9 +7,9 @@ hexo.extend.generator.register('directory', function (locals) {
   let map_pardirs = new Map();
   locals.posts.forEach(function (post, id) {//按路径给文章分类
     map.set(id, post);
-    let path = post.source.split('/');
+    const path = post.source.split('/');
     let curpath = '', laspath = '';
-    for (var i = 0; i < path.length - 1; i++) {
+    for (let i = 0; i < path.length - 1; i++) {
       curpath += (i == 0 ? 'directory' : path[i]) + '/';
       if (map_posts.get(curpath) == undefined) {//init
         map_posts.set(curpath, []);

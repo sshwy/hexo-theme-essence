@@ -42,7 +42,7 @@
     <%- page.content %>
   </div>
 
-  <% if (page.historyHash) { %>
+  <% if (page.historyHash && theme.historyHash) { %>
     <hr>
     <h3>修订记录</h3>
     <div class="post-history-list"><ol reversed>

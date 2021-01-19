@@ -1,5 +1,5 @@
 # headline will be showed in index
-headline: 只要卷不死，就往死里卷。
+headline: Hi, There!
 
 # topbar menu link
 menu:
@@ -11,6 +11,8 @@ menu:
     link: /about/
 
 copyright: 2019-2020
+
+historyHash: true
 
 # katex (latex)
 katex: true
@@ -33,6 +35,7 @@ directory:
   wordmap:
     Documetation: 文档
     home_page: 主页
+    Test: 测试
 
 # To be exact, it count the file's bytes.
 wordcount: true
