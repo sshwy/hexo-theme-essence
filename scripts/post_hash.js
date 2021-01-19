@@ -36,7 +36,7 @@ hexo.extend.filter.register('before_post_render', function (data) {
     if (!obj.historyHash) obj.historyHash = [shastr];
     else obj.historyHash.unshift(shastr);
   }
-  const latestTime = moment(obj.historyHash[0].replace(/^.*?#/,'')).tz(timezone).format('YYYY-MM-DD HH:mm:ss');
+  const latestTime = moment(obj.historyHash[0].replace(/^.*?#/,'')).tz(timezone).format();
   if(obj.date !== latestTime){
     flag = false;
     obj.date = latestTime;
