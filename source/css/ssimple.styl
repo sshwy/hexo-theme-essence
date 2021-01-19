@@ -1,13 +1,8 @@
 @import "_partial/variable";
-
-div {
-  box-sizing: border-box;
-}
+@import "./common";
 
 body {
-  font-size: 1rem;
-  margin: 0;
-  font-family: "PT Serif", Georgia, Times, "Times New Roman", serif;
+  font-size: 1.6rem;
   tab-size: 4;
   background-color: var(--background-color);
   color: var(--text-color);
@@ -37,12 +32,6 @@ hr{
   .page-title{
     font-size: 2em
   }
-}
-
-.post-title{
-  font-size: 2em;
-  margin-bottom: 2em;
-  text-align: center;
 }
 
 .post-meta{
@@ -102,6 +91,11 @@ span.katex-inline:before {
 }
 span.katex-inline:after {
   content: " ";
+}
+
+span.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 figure {

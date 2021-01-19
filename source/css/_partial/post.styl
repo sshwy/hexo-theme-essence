@@ -1,11 +1,14 @@
 .post {
   margin: 1em auto;
   padding: 30px 50px;
-  max-width: 860px;
+  max-width: 920px;
   line-height: 1.8em;
 
-  .title {
-    font-weight: normal;
+  .post-title{
+    font-size: 2em;
+    line-height: 2em;
+    margin: 2em 0;
+    text-align: center;
   }
 
   .post-meta{
@@ -18,41 +21,35 @@
   }
   .post-content {
     counter-reset: h2
-    h2 {
-      counter-reset: h3
-    }
-    h3 {
-      counter-reset: h4
-    }
-    h4 {
-      counter-reset: h5
-    }
-    h5 {
-      counter-reset: h6
-    }
 
     h2{
-      font-size:2rem;
+      counter-reset: h3
+      font-size: 3.2rem;
+      margin: 1em 0;
       &:before{
         counter-increment: h2;
         content: counter(h2);
       }
     }
     h3{
-      font-size:1.6rem;
+      counter-reset: h4
+      font-size: 2.56rem;
+      margin: 1em 0;
       &:before{
         counter-increment: h3;
         content: counter(h2) "." counter(h3)
       }
     }
     h4{
-      font-size:1.3rem;
+      counter-reset: h5
+      font-size: 2.08rem;
       &:before{
         counter-increment: h4;
         content: counter(h2) "." counter(h3) "." counter(h4)
       }
     }
     h5{
+      counter-reset: h6
       font-size: 1.05em;
     }
     h5:before{
@@ -70,7 +67,7 @@
     h6:before{
       font-size: 80%;
       color: #afafaf;
-      margin-right: 0.6rem;
+      margin-right: 0.96rem;
     }
     a {
       text-decoration: underline;
@@ -82,6 +79,14 @@
     a.headerlink {
       position: relative;
       top: -70px;
+    }
+    ul {
+      margin: 1em 0;
+      padding-inline-start: 40px;
+      list-style-type: disc;
+    }
+    p {
+      margin: 1em 0;
     }
   }
   .post-footer{
@@ -113,7 +118,7 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 769px) {
   .post {
     padding: 15px;
     .post-title{

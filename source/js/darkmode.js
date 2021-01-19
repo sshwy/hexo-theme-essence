@@ -1,11 +1,11 @@
 import { LS } from './utils';
 
-const modeKey = 'data-user-color-scheme';
-const modeKeyCSS = '--color-mode';
-const rootElement = document.documentElement; // <html>
-const moon = '<span class="iconfont icon-moonbyueliang"></span>';
-const sun = '<span class="iconfont icon-sunfill"></span>';
-const darkmode_button = document.getElementById('darkmode-button');
+const modeKey = 'data-user-color-scheme',
+  modeKeyCSS = '--color-mode',
+  rootElement = document.documentElement,
+  moon = '<span class="iconfont icon-moonbyueliang"></span>',
+  sun = '<span class="iconfont icon-sunfill"></span>',
+  darkmode_button = document.getElementById('darkmode-button');
 
 const getModeFromCSS = () => {
   const res = getComputedStyle(rootElement).getPropertyValue(modeKeyCSS);
@@ -13,10 +13,7 @@ const getModeFromCSS = () => {
   return res === 'dark' ? 'dark' : 'light';
 };
 
-const valid = {
-  'dark': true,
-  'light': true
-};
+const valid = { 'dark': true, 'light': true };
 
 const resetDarkMode = () => {
   rootElement.removeAttribute(modeKey);

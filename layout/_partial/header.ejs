@@ -3,10 +3,17 @@
     <div class="header-inner">
       <div class="header-content">
         <div class="blog-title">
-          <span class="iconfont icon-menu" id="menu-button" style="display: none"></span>
-          <a href="<%- url_for() %>" class="logo">
+          <span class="iconfont icon-menu" id="menu-button"></span>
+          <a href="<%- url_for() %>" class="logo header-title">
             <%= config.title %>
           </a>
+          <div class="mobile-search">
+            <form onsubmit="mobileSearchSubmit(); return false;" class="search-form">
+              <input type="text" />
+            </form>
+            <span class="iconfont icon-search mobile-search-icon"></span>
+            <span class="iconfont icon-baseline-close-px search-close-icon"></span>
+          </div>
         </div>
         <div class="navbar" id="menu-list">
           <ul class="menu">

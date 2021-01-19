@@ -1,7 +1,20 @@
+const headerDiv = document.getElementsByClassName('header-inner')[0],
+  searchHeaderDiv = document.querySelector('.header-inner .search'),
+  searchInput = searchHeaderDiv.getElementsByTagName('input')[0],
+  searchBox = document.getElementsByClassName('search-box')[0],
+  searchContainer = searchBox.getElementsByClassName('search-container')[0],
+  searchCounter = searchContainer.getElementsByClassName('search-count')[0],
+  searchResult = searchContainer.getElementsByClassName('search-result')[0],
+  searchCloseBtn = document.querySelector('.header-inner .search .search-close-icon'),
+  mobileSearchCloseBtn = document.querySelector('.header-inner .mobile-search .search-close-icon'),
+  searchShadow = document.getElementsByClassName('search-shadow')[0],
+  mobileSearchInput = document.querySelector('.mobile-search input');
+
 function escapeRegExp (s) {
   return s.replace(/[(){}[\]|.*+?^$\\]/g, '\\$&');
 }
-export const getSearchData = function (keyword) {
+
+function getSearchData (keyword) {
   let rkey = new RegExp(escapeRegExp(keyword), 'gi');
   let posts = [];
   const arround_length = 30;
@@ -56,8 +69,8 @@ export const getSearchData = function (keyword) {
     posts: posts,
     pages: pages
   };
-};
-export const renderSearchData = function (data, counterEl, resultEl) {
+}
+function renderSearchData (data, counterEl, resultEl) {
   let html = '';
   function parse (post) {
     let occ = '';
@@ -88,9 +101,9 @@ export const renderSearchData = function (data, counterEl, resultEl) {
   let counter = data.posts.length + data.pages.length;
   counterEl.innerHTML = `一共搜索到 ${counter} 个结果`;
   resultEl.innerHTML = html;
-};
+}
 
-export const initializeSearchData = function () {
+function initializeSearchData () {
   if (window.searchData === undefined) {
     (new Promise(function (resolve, reject) {
       fetch('/search.json')
@@ -105,10 +118,107 @@ export const initializeSearchData = function () {
           console.error('Search data initialize failed!');
           reject(reason);
         });
-    }))
-      .catch(function (err) {
-        console.error('Search data initialize failed!');
-        console.log(err);
-      });
+    })).catch(function (err) {
+      console.error('Search data initialize failed!');
+      console.log(err);
+    });
   }
-};
+}
+
+function bindEvent () {
+  searchInput.addEventListener('focus', searchOpen, false);
+  searchInput.addEventListener('keyup', searchSubmit, false);
+
+  mobileSearchInput.addEventListener('focus', mobileSearchOpen, false);
+  mobileSearchInput.addEventListener('keyup', mobileSearchSubmit, false);
+
+  searchCloseBtn.addEventListener('click', () => searchClose(true), false);
+  mobileSearchCloseBtn.addEventListener('click', () => mobileSearchClose(true), false);
+
+  searchBox.addEventListener('click', () => searchClose(false), false);
+  searchContainer.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+}
+function searchOpen () {
+  console.log('focus!');
+  headerDiv.classList.add('header-input-shadow');
+  searchBox.classList.add('active');
+  searchShadow.classList.add('active');
+  if (!window.searchData) initializeSearchData();
+}
+function searchClose (clearAll) {
+  console.log('lost focus!');
+  headerDiv.classList.remove('header-input-shadow');
+  searchBox.classList.remove('active');
+  searchShadow.classList.remove('active');
+  if (clearAll) {
+    searchInput.value = '';
+    searchResult.innerHTML = '';
+    searchCounter.innerHTML = '';
+  }
+}
+function mobileSearchOpen () {
+  console.log('mobile focus!');
+  headerDiv.classList.add('mobile-search-active');
+  searchBox.classList.add('active','mobile');
+  searchShadow.classList.add('active');
+  if (!window.searchData) initializeSearchData();
+}
+function mobileSearchClose (clearAll) {
+  console.log('mobile lost focus!');
+  headerDiv.classList.remove('mobile-search-active');
+  searchBox.classList.remove('active','mobile');
+  searchShadow.classList.remove('active');
+  if (clearAll) {
+    mobileSearchInput.value = '';
+    searchResult.innerHTML = '';
+    searchCounter.innerHTML = '';
+  }
+}
+
+export function searchSubmit (e) {
+  if (e && e.keyCode === 27) {
+    searchClose(false);
+    e.target.blur();
+  }
+  const str = searchInput.value;
+  if (window.searchData) {
+    if (str) {
+      console.log(str);
+      renderSearchData(getSearchData(str), searchCounter, searchResult);
+    }
+  } else {
+    console.error('searchData not defined!');
+  }
+}
+
+export function mobileSearchSubmit (e) {
+  if (e && e.keyCode === 27) {
+    mobileSearchClose(false);
+    e.target.blur();
+  }
+  const str = mobileSearchInput.value;
+  if (window.searchData) {
+    if (str) {
+      console.log(str);
+      renderSearchData(getSearchData(str), searchCounter, searchResult);
+    }
+  } else {
+    console.error('searchData not defined!');
+  }
+}
+
+export function searchInit() {
+  bindEvent ();
+}
+
+export function mobileSearchControl (method) {
+  if(method === 'open') {
+    console.log('mobile');
+    headerDiv.classList.add('mobile-search-active');
+    mobileSearchInput.focus();
+  } else {
+    mobileSearchClose(true);
+  }
+}

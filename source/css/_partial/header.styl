@@ -12,14 +12,13 @@
 }
 
 .header-content {
-  padding: 0 20px;
   max-width: 1200px;
   margin: auto;
 }
 
 .header-inner {
   position: fixed;
-  z-index: 999;
+  z-index: 20;
   top: 0;
   left: 0;
 
@@ -30,12 +29,13 @@
 
   transition: box-shadow ease .2s;
 
-  font-size: 1.4rem;
+  font-size: 2.23rem;
 
   .navbar{
     float: right;
   }
   .blog-title {
+    padding: 0 20px;
     display: inline-block;
     a {
       color: #AAA;
@@ -48,8 +48,7 @@
   }
 
   .menu {
-    margin: 0;
-    padding: 0;
+    margin-right: 10px;
 
     .menu-item {
       display: inline-block;
@@ -65,61 +64,40 @@
       }
     }
   }
+}
 
-  .search {
-    position: relative;
-    float: right;
-    margin-right: 1.5em;
-    line-height: 57px;
-    input {
-      background-color: var(--header-search-input-background);
-      border: none;
-      border-radius: 2px;
-      padding: 10px 35px 10px 35px;
-      font-size: 1rem;
-      color: var(--text-color);
-      &:focus {
-        outline: none;
-      }
+@media only screen and (min-width: 770px) {
+  .header-inner .blog-title {
+    .iconfont.icon-menu {
+      display: none;
+      float: left;
     }
   }
 }
-
-.search-icon {
-  position: absolute;
-  left: 13px;
-  top: 4px;
-  color: #6d6d6d;
-}
-.search-close-icon {
-  display: none;
-}
-.header-input-shadow .search-close-icon {
-  display: inline;
-  position: absolute;
-  right: 7px;
-  top: 4px;
-  color: #6d6d6d;
-  cursor: pointer;
-  &::before {
-    padding: 6px 5px 5px 5px;
-    border-radius: 50%;
-    transition: all .2s ease;
-  }
-  &:hover::before{
-    background: var(--header-search-close-btn-hover);
-  }
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 769px) {
   .header-inner{
+    .blog-title {
+      display: block;
+      width: 100%
+      .iconfont.icon-menu {
+        display: inline;
+      }
+    }
     .menu .menu-item {
       display: block;
     }
     .navbar {
+      display: none;
       line-height: 1.5em;
       float: none;
-      margin: 1em 0;
+      .menu {
+        margin-right: 0;
+        margin-bottom: 5px;
+        li {
+          margin-right: 0;
+          padding-left: 55px;
+        }
+      }
     }
   }
 }
