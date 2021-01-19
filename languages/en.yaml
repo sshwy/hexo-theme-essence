@@ -15,3 +15,9 @@ post:
 index:
   recently: Recently Updated
   more: More Articles
+archive:
+  title: Archive
+  counter:
+    zero: You haven\'t write any article.
+    one: One article.
+    other: A total of %d articles.

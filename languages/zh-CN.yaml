@@ -15,3 +15,9 @@ post:
 index:
   recently: 最近更新
   more: 更多文章
+archive:
+  title: 归档
+  counter:
+    zero: 您还没有写过文章呐
+    one: 共 %d 篇文章
+    other: 共 %d 篇文章

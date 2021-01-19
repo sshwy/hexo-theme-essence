@@ -1,9 +1,9 @@
-<div class="articles-list">
+<div class="archive">
   <header>
-    <h1 class="page-title">Articles</h1>
+    <h1 class="page-title"><%- __('archive.title') %></h1>
   </header>
   <div class="article-count">
-    <p>A total of <%=site.posts.length%> <%=site.posts.length>1? "articles":"article"%></p>
+    <p><%- _p('archive.counter', site.posts.length) %></p>
   </div>
-  <%- partial('_partial/post-list', {listPosts: site.posts.data,Year:true,Month:true}) %>
+  <%- partial('_partial/post-list', {listPosts: site.posts.data, Year:true, Month:true}) %>
 </div>
