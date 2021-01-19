@@ -3,8 +3,13 @@
     <h2 class="title"><%= page.title %></h2>
   </div>
   <div class="post-meta">
-    <span class="post-time"><%- date(page.date, "MMM DD , YYYY") %></span>
-    <% if (theme.wordcount){const len=page.raw.replace(/\s/g,'').length; %>
+    <span class="post-time" title="<%- date(page.date, "LLLL") %>">
+      <%- date(page.date, "LL") %>
+    </span>
+    <% 
+      if (theme.wordcount){
+        const len=page.raw.replace(/\s/g,'').length;
+    %>
       ,<span class="post-wordcount">
         <%= len<1000? len+'c':number_format(len/1000,{precision: 1})+'k' %>
       </span>
@@ -46,7 +51,10 @@
     <hr>
     <h3><%= __('post.modification') %></h3>
     <div class="post-history-list"><ol reversed>
-      <% let tothis = page.historyHash.length || 0; page.historyHash.forEach((hashstr, index) => { %>
+      <% 
+        let tothis = page.historyHash.length || 0; 
+        page.historyHash.forEach((hashstr, index) => {
+      %>
         <li class="post-history-item">
           <%= 
             historyParseTime(hashstr) + (tothis-index == 1 ? ` ${__('post.creation')}${__('comma')}` 

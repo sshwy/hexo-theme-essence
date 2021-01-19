@@ -3,7 +3,8 @@
 const jsYaml = require('js-yaml');
 const crypto = require('crypto');
 const fs = require('fs');
-const moment = require('moment-timezone');
+const momentTZ = require('moment-timezone');
+const moment = require('moment');
 
 hexo.extend.filter.register('before_post_render', function (data) {
   const { config } = this;
@@ -28,7 +29,8 @@ hexo.extend.filter.register('before_post_render', function (data) {
   });
 
   shasum.update(rawContentStr);
-  const shastr = shasum.digest('hex') + '#' + moment().tz(timezone).format();
+  const currentTime = momentTZ().tz(timezone);
+  const shastr = shasum.digest('hex') + '#' + currentTime.format();
 
   let flag = true;
   if (!obj.historyHash || obj.historyHash[0].replace(/#.*$/, '') !== shastr.replace(/#.*$/, '')) {
@@ -36,13 +38,14 @@ hexo.extend.filter.register('before_post_render', function (data) {
     if (!obj.historyHash) obj.historyHash = [shastr];
     else obj.historyHash.unshift(shastr);
   }
-  const latestTime = moment(obj.historyHash[0].replace(/^.*?#/,'')).tz(timezone).format();
-  if(obj.date !== latestTime){
+  const latestTime = momentTZ(obj.historyHash[0].replace(/^.*?#/,''));
+  if(obj.date !== latestTime.tz(timezone).format()){
     flag = false;
-    obj.date = latestTime;
+    obj.date = latestTime.tz(timezone).format();
   }
   if(flag) {
-    data.date = moment(obj.historyHash[0].replace(/^.*?#/,'')).tz(timezone);
+    console.log('latestTime', latestTime.format());
+    data.date = moment(latestTime.format('YYYY-MM-DD HH:mm:ss'));
     return data;
   }
 
@@ -52,18 +55,16 @@ hexo.extend.filter.register('before_post_render', function (data) {
 
   fs.writeFileSync(data.full_source, newRaw, { encoding: 'utf8' });
 
-  // console.log(data.full_source);
-  // console.log(obj.historyHash);
-
   if (data.historyHash) data.historyHash.unshift(shastr);
   else data.historyHash = [shastr];
+  data.date = moment(currentTime.format('YYYY-MM-DD HH:mm:ss'));
 
   return data;
 });
 
 hexo.extend.helper.register('historyParseTime', function (str) {
   const { timezone, language } = this.config;
-  return moment(str.match(/#(.*?)$/)[1] || '').tz(timezone).locale(language).format('LL');
+  return momentTZ(str.match(/#(.*?)$/)[1] || '').tz(timezone).locale(language).format('LL');
 });
 
 hexo.extend.helper.register('historyParseHash', function (str) {
