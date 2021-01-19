@@ -1,9 +1,15 @@
 <div class="side-button">
   <% if(theme.button.comment && (is_post()||is_page()) && page.comments!=false){ %>
-    <div id="comment-button" class="button" title="Valine Comment" onclick="go_to_comment()"><span class="iconfont icon-comment"></span></div>
+    <div id="comment-button" class="button" title="Valine Comment" onclick="go_to_comment()">
+      <span class="iconfont icon-comment"></span>
+    </div>
   <% }if(theme.button.darkmode){ %>
-    <div id="darkmode-button" class="button" title="Switch between day and night" onclick="chang_light_dark_mode()"><span class="iconfont icon-moonbyueliang"></span></div>
+    <div id="darkmode-button" class="button" title="Switch between day and night" onclick="chang_light_dark_mode()">
+      <span class="iconfont icon-moonbyueliang"></span>
+    </div>
   <% }if(theme.button.back2top){ %>
-    <div id="top" class="button" title="Back to top" onclick="back_to_top()"><span class="iconfont icon-arrowup"></span></div>
+    <div id="top" class="button" title="Back to top" onclick="back_to_top()">
+      <span class="iconfont icon-arrowup"></span>
+    </div>
   <% } %>
 </div>

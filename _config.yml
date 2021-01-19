@@ -7,10 +7,12 @@ menu:
     link: /archives/
   Directory:
     link: /directory/
-  About: 
-    link: /about/
 
-copyright: 2019-2020
+copyright:
+  duration: 2019-2020
+  license:
+    title: Creative Commons Attribution-ShareAlike 4.0 International License
+    link: https://creativecommons.org/licenses/by-sa/4.0/
 
 historyHash: true
 
@@ -33,9 +35,7 @@ directory:
   title: Directory
   parent_directory: Directory Above
   wordmap:
-    Documetation: 文档
     home_page: 主页
-    Test: 测试
 
 # To be exact, it count the file's bytes.
 wordcount: true
@@ -45,6 +45,6 @@ valine:
   enable: true
   appid:
   appkey:
-  placeholder: Stay Simple, Stay Curious.
+  placeholder:
   notify: true
   visitor: true

@@ -1,11 +1,14 @@
 <footer id="footer">
   <%- partial('visitor') %>
   <div class="copyright">
-    <span>Copyright &copy; <%=theme.copyright%> - <%= config.author %></span>
+    <span>Copyright &copy; <%=theme.copyright.duration%> - <%= config.author %></span>
   </div>
-  <div class="licenes">
+  <div class="license">
     <span>
-    All works on this site is licensed under a <a target="_blank" rel="license noreferrer noopener" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    <%= __('post.copyrightDeclaration') %> 
+    <a target="_blank" rel="license noreferrer noopener" href="<%= theme.copyright.license.link %>">
+      <%= theme.copyright.license.title %>
+    </a>.
     </span>
   </div>
   <div class="credit">

@@ -44,12 +44,13 @@
 
   <% if (page.historyHash && theme.historyHash) { %>
     <hr>
-    <h3>修订记录</h3>
+    <h3><%= __('post.modification') %></h3>
     <div class="post-history-list"><ol reversed>
       <% let tothis = page.historyHash.length || 0; page.historyHash.forEach((hashstr, index) => { %>
         <li class="post-history-item">
           <%= 
-            historyParseTime(hashstr) + (tothis-index == 1 ? `创建文章，` : `第${tothis - index}次修订，`) + `哈希值：` + historyParseHash(hashstr)
+            historyParseTime(hashstr) + (tothis-index == 1 ? ` ${__('post.creation')}${__('comma')}` 
+            : ` ${_p('post.modifiedForKth', tothis - index)}${__('comma')}`) + `${__('post.hash')}${__('colon')}` + historyParseHash(hashstr)
           %> 
         </li>
       <% }); %> 

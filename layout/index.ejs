@@ -6,14 +6,16 @@
 
 <% if(page.current==1){ %>
   <div class="index-section-title">
-    <h2>- Recently Update -</h2>
+    <h2><%= __('index.recently') %></h2>
   </div>
 <% } %>
 <section class="posts">
   <% page.posts.each(function (post) { %>
     <div class="index-post">
       <div class="index-post-title">
-        <span class="post-meta post-time" title="更新时间"><%- date(post.date, "YYYY MMM DD  hh:mm") %></span>
+        <span class="post-meta post-time" title="<%= __('post.updateTime') %>">
+          <%- date(post.date, "YYYY MMM DD  hh:mm") %>
+        </span>
         <a class="post-title-link" href="<%- url_for(post.path) %>">
           <%= post.title %>
         </a>
@@ -24,8 +26,8 @@
 
 <% if(theme.index_pagination){ %>
   <%- partial('_partial/paginator') %>
-<% }else{ %>
+<% } else { %>
   <div class="more-articles">
-    <a href="/archives">- More Articles -</a>
+    <a href="/archives"><%= __('index.more') %></a>
   </div>
 <% } %>

@@ -14,7 +14,11 @@ Theme for Hexo.
 - Responsive layout.
 - Local search.
 
-## Developing Reference
+## Requirements
+
+Since it use Webpack to package JavaScript files, you need to install `hexo-webpack` in order to get it work.
+
+## Developing References
 
 - https://www.ahonn.me/blog/create-a-hexo-theme-from-scratch
 - https://hexo.io/zh-cn/docs/variables#%E9%A1%B5%E9%9D%A2%E5%8F%98%E9%87%8F

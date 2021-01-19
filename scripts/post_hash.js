@@ -62,11 +62,8 @@ hexo.extend.filter.register('before_post_render', function (data) {
 });
 
 hexo.extend.helper.register('historyParseTime', function (str) {
-  return (str.match(/#.*$/)[0] || '').replace(/^#(\d{4})-(\d{1,2})-(\d{1,2})T(\d{1,2}):(\d{1,2}):(\d{1,2})[+-]\d{1,2}:\d{1,2}$/,
-    ($, $Y, $M, $D) => {
-      return `${$Y}年${$M}月${$D}日`;
-    }
-  );
+  const { timezone, language } = this.config;
+  return moment(str.match(/#(.*?)$/)[1] || '').tz(timezone).locale(language).format('LL');
 });
 
 hexo.extend.helper.register('historyParseHash', function (str) {
