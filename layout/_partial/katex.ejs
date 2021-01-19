@@ -1,32 +1,9 @@
 <% if(theme.katex){ %>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      for(var i=0;i<document.scripts.length;i++){
-        if( /math\/tex/.test(document.scripts[i].type) ){
-          if(/display/.test(document.scripts[i].type) ){
-            var math=document.createElement('p');
-            math.setAttribute('style','text-align:center');
-            math.setAttribute('class','katex-display');
-            katex.render(document.scripts[i].text.replace(/&lt;/g,'<').replace(/&gt;/g,'>'),math,{
-              displayMode: true,
-              output: "html"
-            });
-            document.scripts[i].after(math);
-            document.scripts[i].removeAttribute('type'); // avoid multi times render
-          }else {
-            var math=document.createElement('span');
-            math.setAttribute('class','katex-inline');
-            katex.render(document.scripts[i].text.replace(/&lt;/g,'<').replace(/&gt;/g,'>'), math ,{
-              displayMode: false,
-              output: "html"
-            });
-            document.scripts[i].after(math);
-            document.scripts[i].removeAttribute('type'); // avoid multi times render
-          }
-        }
-      }
+    document.addEventListener("DOMContentLoaded", function(){
+      window.renderKatex();
     });
   </script>
 <% } %>

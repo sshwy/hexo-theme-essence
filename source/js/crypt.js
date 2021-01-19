@@ -1,4 +1,5 @@
 import { Md5, encodeUTF8 } from './utils';
+import renderKatex from './katex';
 
 window.encodeUTF8 = encodeUTF8;
 
@@ -28,32 +29,10 @@ var i2c = {
 };
 var sz = 38;
 
-window.renderKatex = function () {
-  for (var i = 0; i < document.scripts.length; i++) {
-    if (/math\/tex/.test(document.scripts[i].type)) {
-      if (/display/.test(document.scripts[i].type)) {
-        let math = document.createElement('p');
-        math.setAttribute('style', 'text-align:center');
-        math.setAttribute('class', 'katex-display');
-        window.katex.render(document.scripts[i].text.replace(/&lt;/g, '<').replace(/&gt;/g, '>'), math, {
-          displayMode: true,
-          output: 'html'
-        });
-        document.scripts[i].after(math);
-        document.scripts[i].removeAttribute('type'); // avoid multi times render
-      } else {
-        let math = document.createElement('span');
-        math.setAttribute('class', 'katex-inline');
-        window.katex.render(document.scripts[i].text.replace(/&lt;/g, '<').replace(/&gt;/g, '>'), math, {
-          displayMode: false,
-          output: 'html'
-        });
-        document.scripts[i].after(math);
-        document.scripts[i].removeAttribute('type'); // avoid multi times render
-      }
-    }
-  }
-};
+window.renderKatex = () => renderKatex({
+  output: 'html',
+  macros: { }, // CANT REMOVE (or it will cause render error)
+});
 
 window.updateToc = function () {
   var sectionTitles = document.getElementsByClassName('post-content')[0].getElementsByClassName('headerlink');
