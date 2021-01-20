@@ -62,15 +62,15 @@ window.updateToc = function () {
     spanTocText.setAttribute('class', 'toc-text');
     spanTocText.innerHTML = tocText;
 
-    var aItem = document.createElement('a');
-    aItem.setAttribute('class', 'toc-link');
-    aItem.setAttribute('href', '#' + data.id);
-    aItem.appendChild(spanTocNumber);
-    aItem.appendChild(spanTocText);
+    var a = document.createElement('a');
+    a.setAttribute('class', 'toc-link');
+    a.setAttribute('href', '#' + data.id);
+    a.appendChild(spanTocNumber);
+    a.appendChild(spanTocText);
 
     var liItem = document.createElement('li');
     liItem.setAttribute('class', 'toc-item toc-level-' + (data.level + 1).toString());
-    liItem.appendChild(aItem);
+    liItem.appendChild(a);
 
     nodes[data.level] = liItem;
 
@@ -112,19 +112,19 @@ window.decrypt = function (idx) {
 
   const { returnCitySN, rtcIp, AV, browserTypeObject, renderKatex, updateToc } = window;
 
-  const EncryptVisiterObject = AV.Object.extend('EncryptListener');
-  let encryptVisiterObject = new EncryptVisiterObject();
-  encryptVisiterObject.set('date', new Date());
-  encryptVisiterObject.set('url', document.location.pathname);
-  encryptVisiterObject.set('sid', idx);
+  const EncryptVisiter = AV.Object.extend('EncryptListener');
+  let evObj = new EncryptVisiter();
+  evObj.set('date', new Date());
+  evObj.set('url', document.location.pathname);
+  evObj.set('sid', idx);
   if (typeof (returnCitySN) != 'undefined') {
-    encryptVisiterObject.set('cip', returnCitySN['cip']);
-    encryptVisiterObject.set('cid', returnCitySN['cid']);
-    encryptVisiterObject.set('cname', returnCitySN['cname']);
+    evObj.set('cip', returnCitySN['cip']);
+    evObj.set('cid', returnCitySN['cid']);
+    evObj.set('cname', returnCitySN['cname']);
   }
-  encryptVisiterObject.set('ip', rtcIp);
-  encryptVisiterObject.set('browser', browserTypeObject);
-  encryptVisiterObject.save();
+  evObj.set('ip', rtcIp);
+  evObj.set('browser', browserTypeObject);
+  evObj.save();
 
   renderKatex();
   updateToc();
