@@ -50,15 +50,18 @@
     }
     h5{
       counter-reset: h6
-      font-size: 1.05em;
+      font-size: 1.76rem;
+      &:before{
+        counter-increment: h5;
+        content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5)
+      }
     }
-    h5:before{
-      counter-increment: h5;
-      content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5)
-    }
-    h6:before{
-      counter-increment: h6;
-      content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6)
+    h6 {
+      font-size: 1.7rem;
+      &:before{
+        counter-increment: h6;
+        content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6)
+      }
     }
     h2:before,
     h3:before,
