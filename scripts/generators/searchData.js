@@ -218,7 +218,7 @@ hexo.extend.generator.register('json-content', function (site) {
     }
     : {};
 
-  console.log('config: ', config);
+  // console.log('config: ', config);
   if (pages) {
     const pagesProps = getProps(pages);
     const pagesValid = site.pages.filter((page) => !isIgnored(page, ignore));
