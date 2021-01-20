@@ -1,6 +1,6 @@
 # Essence
 
-[![GitHub license](https://img.shields.io/github/license/sshwy/hexo-theme-essence)](https://github.com/sshwy/hexo-theme-essence) ![npm](https://img.shields.io/npm/v/hexo-theme-essence)
+[![GitHub license](https://img.shields.io/github/license/sshwy/hexo-theme-essence)](https://github.com/sshwy/hexo-theme-essence) [![npm](https://img.shields.io/npm/v/hexo-theme-essence)](https://www.npmjs.com/package/hexo-theme-essence)
 
 Theme for Hexo.
 
@@ -16,7 +16,9 @@ Theme for Hexo.
 
 ## Requirements
 
-Since it use Webpack to package JavaScript files, you need to install `hexo-webpack` in order to get it work.
+```bash
+npm i hexo-webpack --save
+```
 
 ## Developing References
 
