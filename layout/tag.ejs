@@ -1,6 +1,6 @@
 <div class="archive">
   <header>
-    <h1 class="page-title">Tagged  <%-page.tag%></h1>
+    <h1 class="page-title"><%- __('tag.tagged', escape_html(page.tag)) %></h1>
   </header>
   <%- partial('_partial/post-list', {listPosts: page.posts.data,Year:true,Month:true}) %>
 <div>

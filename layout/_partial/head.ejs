@@ -3,9 +3,10 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <%- meta_generator() %>
   <title><%= 
-    page.title?page.title+' - '
-    :page.tag?page.tag+' - Tag - '
-    :page.archive?'Articles - ':''
+    page.title ? page.title + ' - '
+      : page.tag ? page.tag + ' - ' + __('tag.title') + ' - '
+      : page.archive ? __('archive.title') + ' - '
+      : ''
     %><%= config.title %></title>
   <link rel="shortcut icon" href="/images/favicon.ico" />
   <%- css('css/ssimple.css') %>

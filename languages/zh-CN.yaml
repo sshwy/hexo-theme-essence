@@ -21,3 +21,6 @@ archive:
     zero: 您还没有写过文章呐
     one: 共 %d 篇文章
     other: 共 %d 篇文章
+tag:
+  title: 标签
+  tagged: 标签「%s」下的文章

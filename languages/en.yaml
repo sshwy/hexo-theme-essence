@@ -21,3 +21,6 @@ archive:
     zero: You haven\'t write any article.
     one: One article.
     other: A total of %d articles.
+tag:
+  title: Tag
+  tagged: Tagged %s
