@@ -1,7 +1,6 @@
-:root{
+light()
   --color-mode: 'light';
   --navbar-color: #8d8d8d;
-
   --text-color: black;
   --link-hover-color: #0074d1;
   --tag-color: #808080;
@@ -22,37 +21,8 @@
   --header-search-input-background: #f1f1f1;
   --header-search-close-btn-hover: #d6d6d6;
   --search-container-shadow-color: #b5b3b3;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-mode: 'dark';
-  }
-
-  :root:not([data-user-color-scheme]) {
-    --text-color: #eee;
-    --link-hover-color: #db9348;
-    --background-color: #212121;
-    --blockquote-color: #db9348;
-    --valine-par-color: var(--text-color);
-    --valine-code-background: #000;
-    --valine-button-background: var(--background-color);
-    --valine-vsys-background: #2d2d2d;
-    --valine-vimg-border: #5e5e5e;
-    --valine-vexpand-after-background: #212121;
-    --valine-vexpand-before-background: linear-gradient(180deg, rgba(255,255,255,0), #212121);
-    --encrypt-background: #353535;
-    --inline-code-color: #d75677;
-    --inline-code-background: #38292d;
-    --codeforces-lgm-head-color: #959595;
-    --header-shadow-color: #000;
-    --header-search-input-background: #292929;
-    --header-search-close-btn-hover: #212121;
-    --search-container-shadow-color: #000;
-  }
-}
-
-[data-user-color-scheme='dark'] {
+dark()
   --text-color: #eee;
   --link-hover-color: #db9348;
   --background-color: #212121;
@@ -72,4 +42,21 @@
   --header-search-input-background: #292929;
   --header-search-close-btn-hover: #212121;
   --search-container-shadow-color: #000;
+
+:root{
+  light()
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-mode: 'dark';
+  }
+
+  :root:not([data-user-color-scheme]) {
+    dark()
+  }
+}
+
+[data-user-color-scheme='dark'] {
+  dark()
 }
