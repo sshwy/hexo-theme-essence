@@ -1,6 +1,5 @@
 const headerDiv = document.getElementsByClassName('header-inner')[0],
-  searchHeaderDiv = document.querySelector('.header-inner .search'),
-  searchInput = searchHeaderDiv.getElementsByTagName('input')[0],
+  searchInput = document.querySelector('.header-inner .search input'),
   searchBox = document.getElementsByClassName('search-box')[0],
   searchContainer = searchBox.getElementsByClassName('search-container')[0],
   searchCounter = searchContainer.getElementsByClassName('search-count')[0],
@@ -10,11 +9,11 @@ const headerDiv = document.getElementsByClassName('header-inner')[0],
   searchShadow = document.getElementsByClassName('search-shadow')[0],
   mobileSearchInput = document.querySelector('.mobile-search input');
 
-function escapeRegExp (s) {
-  return s.replace(/[(){}[\]|.*+?^$\\]/g, '\\$&');
-}
-
 function getSearchData (keyword) {
+  function escapeRegExp (s) {
+    return s.replace(/[(){}[\]|.*+?^$\\]/g, '\\$&');
+  }
+
   let rkey = new RegExp(escapeRegExp(keyword), 'gi');
   let posts = [];
   const arround_length = 30;
@@ -126,66 +125,59 @@ function initializeSearchData () {
 }
 
 function bindEvent () {
-  searchInput.addEventListener('focus', searchOpen, false);
+  searchInput.addEventListener('focus', () => searchOpen('desktop'), false);
   searchInput.addEventListener('keyup', searchSubmit, false);
 
-  mobileSearchInput.addEventListener('focus', mobileSearchOpen, false);
+  mobileSearchInput.addEventListener('focus', () => searchOpen('mobile'), false);
   mobileSearchInput.addEventListener('keyup', mobileSearchSubmit, false);
 
-  searchCloseBtn.addEventListener('click', () => searchClose(true), false);
-  mobileSearchCloseBtn.addEventListener('click', () => mobileSearchClose(true), false);
+  searchCloseBtn.addEventListener('click', () => searchClose('desktop', true), false);
+  mobileSearchCloseBtn.addEventListener('click', () => searchClose('mobile', true), false);
 
   searchBox.addEventListener('click', () => searchClose(false), false);
   searchContainer.addEventListener('click', (e) => {
     e.stopPropagation();
   });
 }
-function searchOpen () {
-  console.log('focus!');
-  headerDiv.classList.add('header-input-shadow');
-  searchBox.classList.add('active');
+function searchOpen (type) {
+  if(type === 'mobile') {
+    headerDiv.classList.add('mobile-search-active');
+    searchBox.classList.add('active', 'mobile');
+  } else {
+    headerDiv.classList.add('header-input-shadow');
+    searchBox.classList.add('active');
+  }
   searchShadow.classList.add('active');
   if (!window.searchData) initializeSearchData();
 }
-function searchClose (clearAll) {
-  console.log('lost focus!');
-  headerDiv.classList.remove('header-input-shadow');
-  searchBox.classList.remove('active');
+function searchClose (type, clearAll) {
+  if(type === 'mobile') {
+    headerDiv.classList.remove('mobile-search-active');
+    searchBox.classList.remove('active', 'mobile');
+    if (clearAll) {
+      mobileSearchInput.value = '';
+    }
+  } else {
+    headerDiv.classList.remove('header-input-shadow');
+    searchBox.classList.remove('active');
+    if (clearAll) {
+      searchInput.value = '';
+    }
+  }
   searchShadow.classList.remove('active');
   if (clearAll) {
-    searchInput.value = '';
     searchResult.innerHTML = '';
     searchCounter.innerHTML = '';
   }
 }
-function mobileSearchOpen () {
-  console.log('mobile focus!');
-  headerDiv.classList.add('mobile-search-active');
-  searchBox.classList.add('active','mobile');
-  searchShadow.classList.add('active');
-  if (!window.searchData) initializeSearchData();
-}
-function mobileSearchClose (clearAll) {
-  console.log('mobile lost focus!');
-  headerDiv.classList.remove('mobile-search-active');
-  searchBox.classList.remove('active','mobile');
-  searchShadow.classList.remove('active');
-  if (clearAll) {
-    mobileSearchInput.value = '';
-    searchResult.innerHTML = '';
-    searchCounter.innerHTML = '';
-  }
-}
-
 export function searchSubmit (e) {
   if (e && e.keyCode === 27) {
-    searchClose(false);
+    searchClose('desktop', false);
     e.target.blur();
   }
   const str = searchInput.value;
   if (window.searchData) {
     if (str) {
-      console.log(str);
       renderSearchData(getSearchData(str), searchCounter, searchResult);
     }
   } else {
@@ -195,13 +187,12 @@ export function searchSubmit (e) {
 
 export function mobileSearchSubmit (e) {
   if (e && e.keyCode === 27) {
-    mobileSearchClose(false);
+    searchClose('mobile', false);
     e.target.blur();
   }
   const str = mobileSearchInput.value;
   if (window.searchData) {
     if (str) {
-      console.log(str);
       renderSearchData(getSearchData(str), searchCounter, searchResult);
     }
   } else {
@@ -215,10 +206,9 @@ export function searchInit() {
 
 export function mobileSearchControl (method) {
   if(method === 'open') {
-    console.log('mobile');
     headerDiv.classList.add('mobile-search-active');
     mobileSearchInput.focus();
   } else {
-    mobileSearchClose(true);
+    searchClose('mobile', true);
   }
 }
