@@ -117,3 +117,4 @@ function encrypttag (args, content) {
 }
 
 hexo.extend.tag.register('enc', encrypttag, { ends: true });
+hexo.extend.tag.register('encrypt', encrypttag, { ends: true });
