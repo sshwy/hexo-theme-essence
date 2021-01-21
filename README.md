@@ -4,6 +4,8 @@
 
 Theme for Hexo.
 
+Used by [Sshwy's Notes](https://notes.sshwy.name).
+
 ## Features
 
 - Dark mode.
