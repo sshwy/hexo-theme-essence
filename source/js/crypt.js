@@ -1,5 +1,5 @@
 import { Md5, encodeUTF8 } from './utils';
-import renderKatex from './katex';
+import renderKatex from './module/katex';
 
 window.encodeUTF8 = encodeUTF8;
 

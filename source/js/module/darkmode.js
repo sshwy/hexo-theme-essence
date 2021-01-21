@@ -1,4 +1,4 @@
-import { LS } from './utils';
+import { LS } from '../utils';
 
 const modeKey = 'data-user-color-scheme',
   modeKeyCSS = '--color-mode',

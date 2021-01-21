@@ -1,5 +1,5 @@
-import { applyCustomDarkModeSettings, toggleDarkMode } from './darkmode';
-import { searchInit, mobileSearchSubmit, searchSubmit, mobileSearchControl } from './search';
+import { applyCustomDarkModeSettings, toggleDarkMode } from './module/darkmode';
+import { searchInit, mobileSearchSubmit, searchSubmit, mobileSearchControl } from './module/search';
 
 (function (doc) {
   const headerDiv = doc.getElementsByClassName('header-inner')[0],
