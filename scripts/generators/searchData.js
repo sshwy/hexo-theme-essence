@@ -46,8 +46,8 @@ var defaults = {
   },
 };
 
-function ignoreSettings (cfg) {
-  const ignore = cfg.ignore ? cfg.ignore : {};
+function ignoreSettings (config) {
+  const ignore = config.ignore || {};
 
   ignore.paths = ignore.paths
     ? ignore.paths.map((path) => path.toLowerCase())
@@ -61,28 +61,26 @@ function ignoreSettings (cfg) {
 }
 
 function isIgnored (content, settings) {
-  if (content.hidden === false) {
-    return false;
-  }
+  if (content.hidden === false)  return false;
 
-  if (content.password || content.hidden) {
-    return true;
-  }
+  if (content.password || content.hidden)  return true;
 
   const pathIgnored = settings.paths.find((path) => content.path.includes(path));
 
-  if (pathIgnored) {
-    return true;
-  }
+  if (pathIgnored)  return true;
 
   const tags = content.tags ? content.tags.map(mapTags) : [];
   const tagIgnored = tags.filter((tag) => settings.tags.includes(tag)).length;
 
-  if (tagIgnored) {
-    return true;
-  }
+  if (tagIgnored)  return true;
 
   return false;
+}
+
+function hasLayout(content){
+  // console.log(content.layout, typeof(content.layout));
+  if(content.layout === false || content.layout === 'false') return false;
+  return true;
 }
 
 function mapTags (tag) {
@@ -95,8 +93,8 @@ function has (obj, key) {
 
 function minify (str) {
   return hexoUtil.stripHTML(str
-    .replace(/<div\s?id="encrypted(([\s\S])*?)<\/div>/g, ' ')
-    .replace(/<div\s?id="keyMd(([\s\S])*?)<\/div>/g, ' ')
+    .replace(/<div(\s+?)id="encrypted(([\s\S])*?)<\/div>/g, ' ')
+    .replace(/<div(\s+?)id="keyMd(([\s\S])*?)<\/div>/g, ' ')
   ).trim().replace(/\s+/g, ' ');
 }
 
@@ -195,38 +193,36 @@ function reduceCategs (posts) {
 hexo.extend.generator.register('json-content', function (site) {
   const { config } = this.theme;
   const defs = { meta: true };
-  const opts = config.jsonContent || {};
-  const json = { ...defs, ...opts };
-  const pages = has(json, 'pages') ? json.pages : defaults.pages;
-  const posts = has(json, 'posts') ? json.posts : defaults.posts;
-  const ignore = ignoreSettings(json);
+  const opts = config.searchData || {};
+  const options = { ...defs, ...opts };
+  const pages = has(options, 'pages') ? options.pages : defaults.pages;
+  const posts = has(options, 'posts') ? options.posts : defaults.posts;
+  const ignore = ignoreSettings(options);
   const categs = {
     categories: [],
     tags: [],
   };
 
-  let output = json.meta
-    ? {
-      meta: {
-        title: config.title,
-        subtitle: config.subtitle,
-        description: config.description,
-        author: config.author,
-        url: config.url,
-        root: config.root,
-      },
-    }
-    : {};
+  let output = options.meta ? {
+    meta: {
+      title: config.title,
+      subtitle: config.subtitle,
+      description: config.description,
+      author: config.author,
+      url: config.url,
+      root: config.root,
+    },
+  } : {};
 
   // console.log('config: ', config);
   if (pages) {
     const pagesProps = getProps(pages);
-    const pagesValid = site.pages.filter((page) => !isIgnored(page, ignore));
+    const pagesValid = site.pages.filter((page) => !isIgnored(page, ignore) && hasLayout(page));
     const pagesContent = pagesValid.map((page) =>
-      reduceContent(pagesProps, page, json),
+      reduceContent(pagesProps, page, options),
     );
 
-    if (posts || json.meta) {
+    if (posts || options.meta) {
       output = Object.assign(output, { pages: pagesContent });
 
       const pagesCategs = reduceCategs(pagesContent);
@@ -242,14 +238,14 @@ hexo.extend.generator.register('json-content', function (site) {
     const postsProps = getProps(posts);
     const postsSorted = site.posts.sort('-date');
     const postsValid = postsSorted.filter((post) => {
-      const include = json.drafts || post.published;
+      const include = options.drafts || post.published;
       return include && !isIgnored(post, ignore);
     });
     const postsContent = postsValid.map((post) =>
-      reduceContent(postsProps, post, json),
+      reduceContent(postsProps, post, options),
     );
 
-    if (pages || json.meta) {
+    if (pages || options.meta) {
       output = Object.assign(output, { posts: postsContent });
 
       const postsCategs = reduceCategs(postsContent);
@@ -261,10 +257,10 @@ hexo.extend.generator.register('json-content', function (site) {
     }
   }
 
-  if (pages || posts || json.meta) Object.assign(output, reduceCategs([categs]));
+  if (pages || posts || options.meta) Object.assign(output, reduceCategs([categs]));
 
   return {
-    path: json.file || 'content.json',
+    path: options.file || 'content.options',
     data: JSON.stringify(output),
   };
 });

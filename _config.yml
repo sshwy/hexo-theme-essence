@@ -49,7 +49,7 @@ valine:
   notify: true
   visitor: true
 
-jsonContent:
+searchData:
   meta: true
   drafts: false
   file: search.json
