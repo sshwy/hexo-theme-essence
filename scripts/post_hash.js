@@ -42,7 +42,8 @@ hexo.extend.filter.register('before_post_render', function (data) {
     obj.date = latestTime.tz(timezone).format();
   }
   if(flag) {
-    data.date = latestTime.tz(timezone);
+    log.info('latestTime:',latestTime.utc().format());
+    data.date = latestTime.utc();
     return data;
   }
 
@@ -53,7 +54,7 @@ hexo.extend.filter.register('before_post_render', function (data) {
 
   if (data.historyHash) data.historyHash.unshift(shastr);
   else data.historyHash = [shastr];
-  data.date = currentTime.tz(timezone);
+  data.date = currentTime.utc();
   data.raw = newRaw;
 
   return data;
