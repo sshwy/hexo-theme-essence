@@ -19,8 +19,9 @@ function renderSearchData (keyword, counterEl, resultEl) {
   const data = {
     posts: window.searchData.posts.map(post => postSearch(post, rkey)).filter(data => data !== null),
     pages: window.searchData.pages.map(post => postSearch(post, rkey)).filter(data => data !== null),
-  }
-  const html = data.pages.join('') + data.posts.join('');
+  };
+  const html = [...data.pages, ...data.posts]
+    .sort((a, b) => b.weight - a.weight).map(o => o.output).join('');
   let counter = data.posts.length + data.pages.length;
   counterEl.innerHTML = `一共搜索到 ${counter} 个结果`;
   resultEl.innerHTML = html;
