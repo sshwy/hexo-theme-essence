@@ -1,115 +1,90 @@
-.post {
+.post 
   margin: 1em auto;
   padding: 30px 50px;
   max-width: 920px;
   line-height: 1.8em;
 
-  .post-title{
+  .post-title
     font-size: 2em;
     line-height: 2em;
     margin: 2em 0;
     text-align: center;
-  }
 
-  .post-meta{
-    a.tag{
+  .post-meta
+    a.tag
       margin: 0 3px;
-    }
-    a.directory {
+    a.directory 
       text-decoration: none;
-    }
-  }
-  .post-content {
+  .post-content 
     counter-reset: h2
 
-    h2{
+    h2
       counter-reset: h3
       font-size: 3.2rem;
       margin: 1em 0;
-      &:before{
+      &:before
         counter-increment: h2;
         content: counter(h2);
-      }
-    }
-    h3{
+    h3
       counter-reset: h4
       font-size: 2.56rem;
       margin: 1em 0;
-      &:before{
+      &:before
         counter-increment: h3;
         content: counter(h2) "." counter(h3)
-      }
-    }
-    h4{
+    h4
       counter-reset: h5
       font-size: 2.08rem;
-      &:before{
+      &:before
         counter-increment: h4;
         content: counter(h2) "." counter(h3) "." counter(h4)
-      }
-    }
-    h5{
+    h5
       counter-reset: h6
       font-size: 1.76rem;
-      &:before{
+      &:before
         counter-increment: h5;
         content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5)
-      }
-    }
-    h6 {
+    h6 
       font-size: 1.7rem;
-      &:before{
+      &:before
         counter-increment: h6;
         content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6)
-      }
-    }
     h2:before,
     h3:before,
     h4:before,
     h5:before,
-    h6:before{
+    h6:before
       font-size: 80%;
       color: #afafaf;
       margin-right: 0.96rem;
-    }
-    a {
+    a 
       text-decoration: underline;
       transition:color 0.3s;
-      &:hover{
+      &:hover
         color: var(--link-hover-color);
-      }
-    }
-    a.headerlink {
+    a.headerlink 
       position: relative;
       top: -70px;
-    }
-    ul {
+    ul 
       margin: 0.5em 0;
       padding-inline-start: 30px;
       list-style-type: disc;
-    }
-    ol {
+    ol 
       margin: 0.5em 0;
       padding-inline-start: 30px;
-    }
-    p {
+    p 
       margin: 1em 0;
-    }
-  }
-  .post-footer{
+  .post-footer
     margin-top:2em;
-    .next-post{
+    .next-post
       display: inline-block;
-    }
-    .prev-post{
+    .prev-post
       display: inline-block;
       float: right;
-    }
-  }
-  .post-meta span{
+  .post-meta span
     margin: 0.2em;
-  }
-  .inline-code {
+  
+  .inline-code 
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
     padding: 4px 4px 1px 4px;
     font-size: 90%;
@@ -117,45 +92,31 @@
     background-color: var(--inline-code-background);
     border-radius: 4px;
     margin: 0 1px;
-  }
-  pre {
+  pre
     border-radius: 5px;
-    span {
+    span
       white-space: pre-wrap;
-    }
-  }
-}
 
-@media only screen and (max-width: 769px) {
-  .post {
+@media only screen and (max-width: 769px)
+  .post
     padding: 15px;
-    .post-title{
+    .post-title
       font-size: 1.7em;
-    }
-    .post-content {
-      ul {
+    .post-content 
+      ul 
         padding-inline-start: 20px;
-      }
-      ol {
+      ol 
         padding-inline-start: 25px;
-      }
-    }
-  }
-  .title{
+
+  .title
     line-height: normal;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .post {
-    .post-title{
+
+@media only screen and (max-width: 600px) 
+  .post 
+    .post-title
       font-size: 1.5em;
-    }
-  }
-}
-@media only screen and (max-width: 500px) {
-  .post {
-    .post-title{
+
+@media only screen and (max-width: 500px) 
+  .post 
+    .post-title
       font-size: 1.3em;
-    }
-  }
-}
