@@ -4,7 +4,7 @@ const jsYaml = require('js-yaml');
 const crypto = require('crypto');
 const fs = require('fs');
 const moment = require('moment');
-const log = require('hexo-log')({ debug: false, silent: false });
+// const log = require('hexo-log')({ debug: false, silent: false });
 const timezone = hexo.config.timezone || 'Asia/Shanghai';
 const language = hexo.config.language || 'en';
 
@@ -42,7 +42,6 @@ hexo.extend.filter.register('before_post_render', function (data) {
     obj.date = latestTime.tz(timezone).format();
   }
   if(flag) {
-    log.info('latestTime:',latestTime.utc().format());
     data.date = latestTime.utc();
     return data;
   }
@@ -61,15 +60,12 @@ hexo.extend.filter.register('before_post_render', function (data) {
 });
 
 function _date(obj, fmt){
-  log.info('obj:', moment(obj).format(), 'fmt:', fmt, 'config:', timezone, language, 'result:', 
-    moment(obj).tz(timezone).locale(language).format(fmt));
   return moment(obj).tz(timezone).locale(language).format(fmt);
 }
 
 hexo.extend.helper.register('lctzDate', _date);
 
 hexo.extend.helper.register('historyParseTime', function (str) {
-  // log.info('Final:           ', _date(str.match(/#(.*?)$/)[1] || '', 'LLL z LLLL'));
   return _date(str.match(/#(.*?)$/)[1] || '', 'LL');
 });
 
