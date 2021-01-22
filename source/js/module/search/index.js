@@ -1,3 +1,5 @@
+import { postSearch } from './parser';
+
 const headerDiv = document.getElementsByClassName('header-inner')[0],
   searchInput = document.querySelector('.header-inner .search input'),
   searchBox = document.getElementsByClassName('search-box')[0],
@@ -9,94 +11,16 @@ const headerDiv = document.getElementsByClassName('header-inner')[0],
   searchShadow = document.getElementsByClassName('search-shadow')[0],
   mobileSearchInput = document.querySelector('.mobile-search input');
 
-function getSearchData (keyword) {
-  function escapeRegExp (s) {
-    return s.replace(/[(){}[\]|.*+?^$\\]/g, '\\$&');
-  }
-
-  let rkey = new RegExp(escapeRegExp(keyword), 'gi');
-  let posts = [];
-  const arround_length = 30;
-  const results_count = 3;
-  let postSearch = function (post) {
-    let i = post.text.search(rkey);
-    if (i != -1 ||
-      post.title.search(rkey) != -1 ||
-      post.tags && post.tags.some(function (tag) {
-        return tag.name.search(rkey) != -1;
-      })
-    ) {
-      let occurrences = [], tags = [], totlen = post.text.length;
-      while (i != -1 && occurrences.length < results_count) {
-        let L = i - arround_length, R = i + arround_length;
-        if (L < 0) L = 0;
-        if (R > totlen) R = totlen;
-        occurrences.push(post.text.slice(L, R).replace(rkey,
-          '<span class="search-key-word">$&</span>'));
-        if (R == totlen) break;
-        i = post.text.slice(R).search(rkey);
-        if (i != -1) i += R;
-      }
-      post.tags && post.tags.forEach(function (tag) {
-        if (tag.name.search(rkey) != -1) {
-          tags.push({
-            name: tag.name.replace(rkey,
-              '<span class="search-key-word">$&</span>'),
-            permalink: tag.permalink
-          });
-        }
-      });
-      return {
-        title: post.title.replace(rkey,
-          '<span class="search-key-word">$&</span>'),
-        path: '/' + post.path,
-        occurrences: occurrences,
-        tags: tags
-      };
-    } else return null;
-  };
-  window.searchData.posts.forEach(function (post) {
-    let data = postSearch(post);
-    if (data) posts.push(data);
-  });
-  let pages = [];
-  window.searchData.pages.forEach(function (post) {
-    let data = postSearch(post);
-    if (data) pages.push(data);
-  });
-  return {
-    posts: posts,
-    pages: pages
-  };
+function escapeRegExp (s) {
+  return s.replace(/[(){}[\]|.*+?^$\\]/g, '\\$&');
 }
-function renderSearchData (data, counterEl, resultEl) {
-  let html = '';
-  function parse (post) {
-    let occ = '';
-    post.occurrences.forEach(function (str) {
-      occ += `<li>${str + '……'}</li>`;
-    });
-    if (occ) occ = `<ul>${occ}</ul>`;
-    let tags = '';
-    post.tags.forEach(function (tag) {
-      tags += `
-        <span class="tag">
-          <a class="tag" href="${tag.permalink}"
-              target="_blank" rel="noreferrer noopener">#${tag.name}</a>
-        </span>
-      `;
-    });
-    return `<div class="search-post">
-              <div class="search-post-title">
-                <span class="title"><a href="${post.path}" target="_blank"
-                    rel="noreferrer noopener">${post.title}</a></span>
-                ${tags}
-              </div>
-              <div class="search-post-content">${occ}</div>
-            </div>`;
+function renderSearchData (keyword, counterEl, resultEl) {
+  let rkey = new RegExp(escapeRegExp(keyword), 'gi');
+  const data = {
+    posts: window.searchData.posts.map(post => postSearch(post, rkey)).filter(data => data !== null),
+    pages: window.searchData.pages.map(post => postSearch(post, rkey)).filter(data => data !== null),
   }
-  data.pages.forEach(function (post) { html += parse(post); });
-  data.posts.forEach(function (post) { html += parse(post); });
+  const html = data.pages.join('') + data.posts.join('');
   let counter = data.posts.length + data.pages.length;
   counterEl.innerHTML = `一共搜索到 ${counter} 个结果`;
   resultEl.innerHTML = html;
@@ -178,7 +102,7 @@ export function searchSubmit (e) {
   const str = searchInput.value;
   if (window.searchData) {
     if (str) {
-      renderSearchData(getSearchData(str), searchCounter, searchResult);
+      renderSearchData(str, searchCounter, searchResult);
     }
   } else {
     console.error('searchData not defined!');
@@ -193,7 +117,7 @@ export function mobileSearchSubmit (e) {
   const str = mobileSearchInput.value;
   if (window.searchData) {
     if (str) {
-      renderSearchData(getSearchData(str), searchCounter, searchResult);
+      renderSearchData(str, searchCounter, searchResult);
     }
   } else {
     console.error('searchData not defined!');
