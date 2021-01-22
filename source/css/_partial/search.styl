@@ -1,59 +1,50 @@
-.search-post {
-  border: 1px solid #bbb;
+.search-post
+  border-top 2px dashed #bbb;
   margin: 0.8rem 0;
-  .search-post-title {
+  .search-post-title 
     padding: 1.44rem 1rem;
     font-size: 2.08rem;
-    .title{
+    .title
       margin-right: 1.12rem
-    }
-    a {
-      text-decoration: none;
-      &:hover{
+    a 
+      &:hover
         text-decoration: underline;
-      }
-      &.tag{
+      &.tag
         text-decoration: underline;
         font-size: 0.9em;
         color: var(--tag-color);
-        &:hover{
+        &:hover
           color: var(--link-hover-color);
-        }
-      }
-    }
-  }
-  span.search-key-word {
+
+  span.search-key-word 
     color: red;
     font-weight: bold;
-  }
-  .search-post-tags {
+  
+  .search-post-tags 
     padding: 0 1.92rem;
     margin-bottom: 1.6rem;
-  }
-  .search-post-content {
-    ul {
-      margin: 1em 0;
-      padding-inline-start: 40px;
-      list-style-type: square;
-      margin-top: 0;
-    }
-  }
-}
+  
+  .search-post-content ul 
+    margin: 1em 0;
+    padding-inline-start: 30px;
+    list-style-type: square;
+    margin-top: 0;
 
-.search-shadow {
+
+.search-shadow 
   transition: all .2s ease;
-}
-.search-shadow.active {
+
+.search-shadow.active 
   position: fixed;
   top: 0;
   width: 100%;
   height: 100vh;
   background-color: #00000012;
-}
-.search-box {
+
+.search-box 
   display: none;
-}
-.search-box.active {
+
+.search-box.active 
   display: block;
   position: fixed;
   z-index: 10;
@@ -61,11 +52,11 @@
   left: 0;
   width: 100%;
   height: 100vh;
-}
-.search-container {
+
+.search-container 
   display: none;
-}
-.active .search-container {
+
+.active .search-container 
   display: block;
   width: 70%;
   margin: 72px auto 0;
@@ -73,15 +64,15 @@
   background-color: var(--background-color);
   border-radius: 2px;
   box-shadow: 0px 1px 4px var(--search-container-shadow-color);
-}
-.active.mobile .search-container {
+
+.active.mobile .search-container 
   width: calc(100% - 20px);
-}
-.active .search-container-inner {
+
+.active .search-container-inner 
   max-height: calc(100vh - 120px);
   overflow-y: auto;
-  padding-right: 4px;
-}
+  padding-right: 8px;
+
 
 .header-inner{
   .search {
