@@ -13,8 +13,8 @@
   <% page.posts.each(function (post) { %>
     <div class="index-post">
       <div class="index-post-title">
-        <span class="post-meta post-time" title="<%= __('post.updateTime') %>">
-          <%- date(post.date, "LL") %>
+        <span class="post-meta post-time" title="<%= __('post.updateTime') + __('colon') + lctzDate(page.date, 'LLLL (zZ)') %>">
+          <%- lctzDate(post.date, "LL") %>
         </span>
         <a class="post-title-link" href="<%- url_for(post.path) %>">
           <%= post.title %>

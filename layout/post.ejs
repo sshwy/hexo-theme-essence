@@ -3,8 +3,8 @@
     <h2 class="title"><%= page.title %></h2>
   </div>
   <div class="post-meta">
-    <span class="post-time" title="<%- date(page.date, "LLLL") %>">
-      <%- date(page.date, "LL") %>
+    <span class="post-time" title="<%- lctzDate(page.date, "LLLL (zZ)") %>">
+      <%- lctzDate(page.date, "LL") %>
     </span>
     <% 
       if (theme.wordcount){

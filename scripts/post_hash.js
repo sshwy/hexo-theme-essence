@@ -4,10 +4,9 @@ const jsYaml = require('js-yaml');
 const crypto = require('crypto');
 const fs = require('fs');
 const moment = require('moment');
-const log = require('hexo-log')({
-  debug: false,
-  silent: false
-});
+// const log = require('hexo-log')({ debug: false, silent: false });
+const timezone = hexo.config.timezone || 'Asia/Shanghai';
+const language = hexo.config.language || 'en';
 
 function parseFrontMatter(raw){
   const frontMatterMatch = raw.match(/^---\n(.*?)\n---\n/s);
@@ -21,10 +20,6 @@ function shaHash(raw){
 }
 hexo.extend.filter.register('before_post_render', function (data) {
   const themeCfg = this.theme.config;
-  const timezone = this.config.timezone || 'Asia/Shanghai';
-
-  // console.log(data.date.format());
-  // console.log(data.date.tz(timezone).format());
 
   if(themeCfg.historyHash === false || data.historyHash === false) return data;
 
@@ -47,8 +42,7 @@ hexo.extend.filter.register('before_post_render', function (data) {
     obj.date = latestTime.tz(timezone).format();
   }
   if(flag) {
-    // console.log('latestTime', latestTime.format());
-    data.date = latestTime.tz(timezone); //format('YYYY-MM-DD HH:mm:ss'));
+    data.date = latestTime.tz(timezone);
     return data;
   }
 
@@ -59,19 +53,23 @@ hexo.extend.filter.register('before_post_render', function (data) {
 
   if (data.historyHash) data.historyHash.unshift(shastr);
   else data.historyHash = [shastr];
-  data.date = currentTime.tz(timezone); //format('YYYY-MM-DD HH:mm:ss'));
+  data.date = currentTime.tz(timezone);
   data.raw = newRaw;
 
   return data;
 });
 
+function _date(obj, fmt){
+  return moment(obj).tz(timezone).locale(language).format(fmt);
+}
+
+hexo.extend.helper.register('lctzDate', _date);
+
 hexo.extend.helper.register('historyParseTime', function (str) {
-  const { timezone, language } = this.config;
-  const date = moment(str.match(/#(.*?)$/)[1] || '');
-  log.info('Origin:          ', date.format()); 
-  log.info('Parsed Timezone: ', date.tz(timezone).format()); 
-  return date.tz(timezone).locale(language).format('LL');
+  // log.info('Final:           ', _date(str.match(/#(.*?)$/)[1] || '', 'LLL z LLLL'));
+  return _date(str.match(/#(.*?)$/)[1] || '', 'LL');
 });
+
 
 hexo.extend.helper.register('historyParseHash', function (str) {
   return str.match(/^.{6}/)[0] || 'Null';
