@@ -1,4 +1,5 @@
 /* global hexo */
+
 /**
  * Load prism theme file
  * Place custom css stylesheet file in base_dir/prism/
@@ -7,11 +8,10 @@
  */
 
 const { resolve }= require('path');
+const log = require('hexo-log')({ debug: false, silent: false });
 
 hexo.extend.filter.register('stylus:renderer', function(style) {
-  console.log('Load prism themes for stylus renderer');
-  console.log(hexo.base_dir);
-  console.log(hexo.theme_dir);
+  log.info('Load prism themes for stylus renderer');
   const paths = [
     resolve(hexo.theme_dir, 'prism'),
     resolve(hexo.base_dir, 'prism')

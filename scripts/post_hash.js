@@ -4,7 +4,6 @@ const jsYaml = require('js-yaml');
 const crypto = require('crypto');
 const fs = require('fs');
 const moment = require('moment');
-// const log = require('hexo-log')({ debug: false, silent: false });
 const timezone = hexo.config.timezone || 'Asia/Shanghai';
 const language = hexo.config.language || 'en';
 
