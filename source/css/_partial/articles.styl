@@ -1,91 +1,69 @@
-.page-title{
+.page-title
   font-size: 3em;
   text-align: center;
   margin: 1em 0;
-}
 
-.archive{
-  h2{
-    margin-top: 1em;
-    font-size: 2em;
-  }
+.archive
   margin: auto;
   max-width: 1100px;
-  a {
+
+  h2
+    margin-top: 1em;
+    font-size: 2em;
+  a 
     text-decoration: none;
-    &.tag{
+    &.tag
       color: var(--tag-color);
-      &:hover{
+      &:hover
         text-decoration: underline;
         color: var(--link-hover-color);
-      }
-    }
-    &:hover{
+    &:hover
       text-decoration: underline;
       color: var(--link-hover-color);
-    }
-  }
-  .post-list-item{
+    
+  .post-list-item
     margin: 0.8em 0.5em 0.8em 0;
     min-width: 300px;
     display: inline-block;
-    .post-list-title{
+    .post-list-title
       font-size: 1.3em;
       padding-bottom: 0.2em;
-    }
-    .post-list-time{
+    .post-list-time
       color: gray
-    }
-    .post-list-tags{
+    .post-list-tags
       color: gray
-    }
-  }
-  .tags{
+
+  .tags
     font-size:1.1em;
-  }
-  .article-count {
+  .article-count
     font-size:1.5em;
     text-align:center;
-  }
-}
-@media only screen and (min-width: 900px) {
-  .archive {
-    .post-list {
-      padding-left: 60px;
-    }
-    .post-list-item{
+
+@media only screen and (min-width: 900px) 
+  .archive 
+    .post-list 
+      padding-left: 45px;
+    .post-list-item
       min-width: 32%
-    }
-  }
-}
-@media only screen and (max-width: 900px) {
-  .post-list {
+
+@media only screen and (max-width: 900px)
+  .post-list 
     padding: 0 15px;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .archive {
-    .post-list-item{
+
+@media only screen and (max-width: 600px) 
+  .archive
+    .post-list-item
       margin: 0.6em 0.3em 0.6em 0;
-      .post-list-title {
+      .post-list-title
         font-size: 1.3em;
-      }
-    }
-    h2{
+    h2
       font-size: 1.5em;
-    }
-  }
-}
-@media only screen and (max-width: 500px) {
-  .archive {
-    .post-list-item{
+
+@media only screen and (max-width: 500px) 
+  .archive 
+    .post-list-item
       margin: 0.5em 0.3em 0.5em 0;
-      .post-list-title {
+      .post-list-title 
         font-size: 1.1em;
-      }
-    }
-    h2{
+    h2
       font-size: 1.4em;
-    }
-  }
-}
