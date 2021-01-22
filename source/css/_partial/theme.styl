@@ -43,20 +43,18 @@ dark()
   --header-search-close-btn-hover: #212121;
   --search-container-shadow-color: #000;
 
-:root{
+:root
   light()
-}
+  @import hexo-config("prismjs.theme.light")
 
-@media (prefers-color-scheme: dark) {
-  :root {
+@media (prefers-color-scheme: dark)
+  :root
     --color-mode: 'dark';
-  }
 
-  :root:not([data-user-color-scheme]) {
+  :root:not([data-user-color-scheme])
     dark()
-  }
-}
+    @import hexo-config("prismjs.theme.dark")
 
-[data-user-color-scheme='dark'] {
+[data-user-color-scheme='dark']
   dark()
-}
+  @import hexo-config("prismjs.theme.dark")

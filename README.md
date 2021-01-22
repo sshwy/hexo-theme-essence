@@ -15,6 +15,7 @@ Used by [Sshwy's Notes](https://notes.sshwy.name).
 - Leancloud storage project for Valine.
 - Responsive layout.
 - Local search.
+- [prism-themes](https://github.com/PrismJS/prism-themes) supported.
 
 ## Requirements
 
