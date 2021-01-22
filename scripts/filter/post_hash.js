@@ -5,7 +5,6 @@ const crypto = require('crypto');
 const fs = require('fs');
 const moment = require('moment');
 const timezone = hexo.config.timezone || 'Asia/Shanghai';
-const language = hexo.config.language || 'en';
 
 function parseFrontMatter(raw){
   const frontMatterMatch = raw.match(/^---\n(.*?)\n---\n/s);
@@ -17,7 +16,7 @@ function shaHash(raw){
   shasum.update(raw);
   return shasum.digest('hex');
 }
-hexo.extend.filter.register('before_post_render', function (data) {
+function updatePostHash (data) {
   const themeCfg = this.theme.config;
 
   if(themeCfg.historyHash === false || data.historyHash === false) return data;
@@ -56,19 +55,6 @@ hexo.extend.filter.register('before_post_render', function (data) {
   data.raw = newRaw;
 
   return data;
-});
-
-function _date(obj, fmt){
-  return moment(obj).tz(timezone).locale(language).format(fmt);
 }
 
-hexo.extend.helper.register('lctzDate', _date);
-
-hexo.extend.helper.register('historyParseTime', function (str) {
-  return _date(str.match(/#(.*?)$/)[1] || '', 'LL');
-});
-
-
-hexo.extend.helper.register('historyParseHash', function (str) {
-  return str.match(/^.{6}/)[0] || 'Null';
-});
+hexo.extend.filter.register('before_post_render', updatePostHash);
