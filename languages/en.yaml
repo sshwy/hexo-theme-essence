@@ -2,7 +2,10 @@ name: English
 comma: ', '
 colon: ': '
 post:
+  character: characters
+  current: Current Page
   updateTime: Last modified time
+  updateAt: Updated at
   modification: Modification
   creation: Created
   modifiedForKth: 
