@@ -1,5 +1,9 @@
-<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
-<%- js('js/script.bundle.js') %>
+<%- 
+  js([
+    'js/script.bundle.js?' + date(Date.now(), 'YYYYMMDD'),
+    'https://pv.sohu.com/cityjson?ie=utf-8'
+  ])
+%>
 
 <% if(theme.valine.enable){ %>
   <script src="https://cdn.jsdelivr.net/npm/valine"></script>
