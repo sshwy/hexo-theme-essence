@@ -11,7 +11,7 @@
         const len=page.raw.replace(/\s/g,'').length;
     %>
       ,<span class="post-wordcount">
-        <%= len<1000? len+'c':number_format(len/1000,{precision: 1})+'k' %>
+        <%= len<1000 ? len+'c' : number_format(len/1000,{precision: 1}) + 'k' %>
       </span>
     <% } %>
     <div class="post-directory">
