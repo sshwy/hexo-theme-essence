@@ -1,101 +1,83 @@
 @import "_partial/theme";
 @import "_partial/common";
 
-body {
+body 
   font-size: 1.6rem;
   tab-size: 4;
   background-color: var(--background-color);
   color: var(--text-color);
-}
 
-hr{
+hr
   border: none;
   border-top: #a7a7a7 dashed 3px;
-}
 
-.container {
+.container 
   max-width: 960px;
   margin: 0 auto;
-}
 
-@media only screen and (max-width: 600px){
-  .page-title{
+@media only screen and (max-width: 600px)
+  .page-title
     font-size: 2.2em
-  }
-}
-@media only screen and (max-width: 500px){
-  .page-title{
+
+@media only screen and (max-width: 500px)
+  .page-title
     font-size: 2em
-  }
-}
 
-.post-meta{
+.post-meta
   color: gray
-}
 
-img {
+img 
   max-width: 100%;
-}
 
-blockquote {
+blockquote 
   color: var(--blockquote-color);
   margin: 1em;
-}
 
-a{
+a
   color: var(--text-color);
   transition: color 0.3s;
-  &:hover{
+  &:hover
     text-decoration: underline;
     color: var(--link-hover-color);
-  }
-}
 
-.visitor{
+.visitor
   text-align: center;
-}
 
-#footer{
+#footer
   margin: 3em 0 2em 0;
   text-align: center;
-}
+  a
+    text-decoration underline
 
-span.codeforces{
+span.codeforces
   font-family: verdana,arial,sans-serif
-}
 
-details{
+details
   border: 1px solid var(--text-color);
   padding: 8px 12px;
   margin: 0.5em 0;
   border-radius: 5px;
-  summary {
+  summary 
     outline: none;
-  }
-}
 
-#menu-button{
+#menu-button
   font-size: 1em;
   color: var(--navbar-color);
   cursor: pointer;
   margin-right: 5px;
-}
 
-span.katex-inline:before {
+span.katex-inline:before 
   content: " ";
-}
-span.katex-inline:after {
-  content: " ";
-}
 
-span.katex-display {
+span.katex-inline:after 
+  content: " ";
+
+span.katex-display 
   overflow-x: auto;
   overflow-y: hidden;
-}
 
-figure {
+figure 
   margin: 0.5em;
-}
 
 @import "_partial/header";
 @import "_partial/post";
