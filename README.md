@@ -23,6 +23,10 @@ Used by [Sshwy's Notes](https://notes.sshwy.name).
 npm i hexo-webpack --save
 ```
 
+## License
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsshwy%2Fhexo-theme-essence.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsshwy%2Fhexo-theme-essence?ref=badge_large)
+
 ## Developing References
 
 - https://www.ahonn.me/blog/create-a-hexo-theme-from-scratch
@@ -33,3 +37,4 @@ npm i hexo-webpack --save
 - https://github.com/alexbruno/hexo-generator-json-content
 - https://github.com/theme-next/hexo-generator-searchdb
 - https://blog.skk.moe/post/hello-darkmode-my-old-friend/
+
