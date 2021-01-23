@@ -8,13 +8,13 @@
  */
 
 const { resolve }= require('path');
-const log = require('hexo-log')({ debug: false, silent: false });
 
 hexo.extend.filter.register('stylus:renderer', function(style) {
-  log.info('Load prism themes for stylus renderer');
+  hexo.log.i('[hexo-theme-essence] Load prism themes for stylus renderer');
   const paths = [
     resolve(hexo.theme_dir, 'prism'),
     resolve(hexo.base_dir, 'prism')
   ];
   paths.forEach(path => style.include(path));
+  // console.log(hexo.theme.i18n.__('zh-CN')('comma'));
 });

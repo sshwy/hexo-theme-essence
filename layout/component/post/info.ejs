@@ -1,11 +1,12 @@
 <div class="post-meta">
   <div class="post-info">
     <span class="post-time iconfont icon-shizhong" title="<%- lctzDate(page.date, "LLLL (zZ)") %>">
-      <%- __('post.updateAt') + lctzDate(page.date, "LL") %>
+      <%- __('post.updateAt', lctzDate(page.date, "LL")) %>
     </span>
     <% if (theme.wordcount){ %>
+      <span class="icon infosep"></span>
       <span class="post-wordcount iconfont icon-yuedu">
-        <%= wordCount(page.raw) + __('post.character') %>
+        <%= __('post.wordCount', wordCount(page.raw)) %>
       </span>
     <% } %>
   </div>
@@ -19,9 +20,9 @@
     <% s.forEach((dir, i) => { %>
         <% url = url + dir + '\/'; %>
         <a class="directory" href="<%=url_for(url)%>">
-          <%= theme.directory.wordmap[dir]?theme.directory.wordmap[dir]:dir %>
+          <%= theme.directory.wordmap[dir] ? theme.directory.wordmap[dir] : dir %>
         </a>
-        <span class="icon smallarrow">»</span>
+        <span class="icon smallarrow"></span>
     <% }) %>
     <%- __('post.current') %>
   </div>

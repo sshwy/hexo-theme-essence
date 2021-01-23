@@ -12,8 +12,8 @@
     <% if(page.par_path){ %>
       <div class="parent-dir">
         <span class="iconfont icon-Back"></span>
-        <a href="<%=url_for(page.par_path)%>"><span>
-          <%=theme.directory.parent_directory%>
+        <a href="<%= url_for(page.par_path) %>"><span>
+          <%= theme.directory.parent_directory %>
         </span></a>
       </div>
     <% } %>
@@ -22,9 +22,9 @@
         <% page.dirs.forEach(function(dir){ %>
           <div class="dir-list-item">
             <span class="iconfont icon-folder"></span>
-            <a href="<%=url_for(page.dir_path+"/"+dir)%>"><span><%=
-              theme.directory.wordmap[dir]?theme.directory.wordmap[dir]:dir
-            %></span></a>
+            <a href="<%= url_for(page.dir_path + '/' + dir) %>"><span>
+              <%= theme.directory.wordmap[dir] ? theme.directory.wordmap[dir] : dir %>
+            </span></a>
           </div>
         <% }) %>
       </div>

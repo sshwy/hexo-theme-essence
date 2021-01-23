@@ -19,11 +19,14 @@
       margin: 0 3px;
     a.directory 
       text-decoration: none;
-    .post-info span
-      margin-right .7em
-    span.icon.smallarrow
+    span.icon.smallarrow:before
       vertical-align: .05em;
       font-size: 1.3em;
+      content: "»"
+    span.icon.infosep:before
+      content "·"
+      margin .4em
+      font-weight bold
 
   .post-content 
     counter-reset: h2

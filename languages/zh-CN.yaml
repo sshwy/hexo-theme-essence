@@ -2,10 +2,10 @@ name: 简体中文
 comma: ，
 colon: ：
 post:
-  character: 字
+  wordCount: 约 %s 字
   current: 当前文章
   updateTime: 文章更新时间
-  updateAt: 更新于
+  updateAt: 更新于 %s
   modification: 修订记录
   creation: 创建文章
   modifiedForKth: 
