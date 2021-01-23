@@ -1,0 +1,19 @@
+<div class="post-footer">
+  <hr>
+  <% if(page.next){ %>
+    <div class="next-post">
+      <span class="iconfont icon-arrowleftcircle1187576easyiconnet"></span> 
+      <a href="/<%=page.next.path%>">
+        <%=page.next.title%>
+      </a>
+    </div>
+  <% } %>
+  <% if(page.prev){ %>
+    <div class="prev-post">
+      <a href="/<%=page.prev.path%>">
+        <%=page.prev.title%>
+      </a> 
+      <span class="iconfont icon-arrowrightcircle1187580easyiconnet"></span>
+    </div>
+  <% } %>
+</div>

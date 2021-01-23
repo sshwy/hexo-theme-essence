@@ -2,88 +2,15 @@
   <div class="post-title">
     <h2 class="title"><%= page.title %></h2>
   </div>
-  <div class="post-meta">
-    <div class="post-info">
-      <span class="post-time iconfont icon-shizhong" title="<%- lctzDate(page.date, "LLLL (zZ)") %>">
-        <%- __('post.updateAt') + lctzDate(page.date, "LL") %>
-      </span>
-      <% if (theme.wordcount){ %>
-        <span class="post-wordcount iconfont icon-yuedu">
-          <%= wordCount(page.raw) + __('post.character') %>
-        </span>
-      <% } %>
-    </div>
-    <div class="post-directory">
-      <%
-        let s=page.source.split('\/').slice(0,-1);
-        s[0]="";
-        let url="/directory";
-      %>
-      <a class="directory" href="<%=url_for(url)%>">Home</a>
-      <% s.forEach((dir, i) => { %>
-          <% url = url + dir + '\/'; %>
-          <a class="directory" href="<%=url_for(url)%>">
-            <%= theme.directory.wordmap[dir]?theme.directory.wordmap[dir]:dir %>
-          </a>
-          <span class="icon smallarrow">»</span>
-      <% }) %>
-      <%- __('post.current') %>
-    </div>
-    <% if (page.tags && page.tags.length){ %>
-      <div class="post-list-tags">
-        <% page.tags.forEach((tag, i) => { %>
-          <a class="tag" href="<%=url_for(tag.path)%>">
-            <%='#'+tag.name%>
-          </a>
-        <% }) %>
-      </div>
-    <% } %>
-  </div>
+  <%- partial('component/post/info') %>
   <br>
-  <%- partial('_partial/toc') %>
+  <%- partial('component/post/toc') %>
   <br>
   <div class="post-content">
     <%- page.content %>
   </div>
-
-  <% if (page.historyHash && theme.historyHash) { %>
-    <hr>
-    <h3><%= __('post.modification') %></h3>
-    <div class="post-history-list"><ol reversed>
-      <% 
-        let tothis = page.historyHash.length || 0; 
-        page.historyHash.forEach((hashstr, index) => {
-      %>
-        <li class="post-history-item">
-          <%= 
-            historyParseTime(hashstr) + (tothis-index == 1 ? ` ${__('post.creation')}${__('comma')}` 
-            : ` ${_p('post.modifiedForKth', tothis - index)}${__('comma')}`) + `${__('post.hash')}${__('colon')}` + historyParseHash(hashstr)
-          %> 
-        </li>
-      <% }); %> 
-    </ol></div>
-  <% } %>
-
-  <div class="post-footer">
-    <hr>
-    <% if(page.next){ %>
-      <div class="next-post">
-        <span class="iconfont icon-arrowleftcircle1187576easyiconnet"></span> 
-        <a href="/<%=page.next.path%>">
-          <%=page.next.title%>
-        </a>
-      </div>
-    <% } %>
-    <% if(page.prev){ %>
-      <div class="prev-post">
-        <a href="/<%=page.prev.path%>">
-          <%=page.prev.title%>
-        </a> 
-        <span class="iconfont icon-arrowrightcircle1187580easyiconnet"></span>
-      </div>
-    <% } %>
-  </div>
+  <%- partial('component/post/hash') %>
+  <%- partial('component/post/footer') %>
 </article>
 
-
-<%- partial('_partial/valine') %>
+<%- partial('component/post/valine') %>
