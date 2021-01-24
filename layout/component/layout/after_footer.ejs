@@ -1,25 +1,50 @@
 <%- 
-  js([
-    'js/script.bundle.js?' + date(Date.now(), 'YYYYMMDD'),
-    'https://pv.sohu.com/cityjson?ie=utf-8'
-  ])
+  js([{
+    src: 'js/script.bundle.js?' + date(Date.now(), 'YYYYMMDD')
+  },{
+    src: 'https://pv.sohu.com/cityjson?ie=utf-8',
+    defer: 'defer',
+  }])
 %>
 
 <% if(theme.valine.enable){ %>
-  <script src="https://cdn.jsdelivr.net/npm/valine"></script>
-  <script>
-    var valine_path = window.location.pathname;
-    if(valine_path[valine_path.length-1]!='\/')valine_path=valine_path+'\/';
-    new Valine({
-      el: '#vcomments',
-      appId: '<%= theme.valine.appid %>',
-      appKey: '<%= theme.valine.appkey %>',
-      placeholder: '<%= theme.valine.placeholder %>',
-      visitor: true,
-      recordIP: true,
-      requiredFields: ['nick','mail'],
-      avatar: 'retro',
-      path: valine_path
-    })
+  <script type="text/javascript">
+    loadComments();
+    function loadComments() {
+      if (typeof Valine === 'undefined') {
+        var getScript = (options) => {
+          var script = document.createElement('script');
+          script.defer = true;
+          script.crossOrigin = 'anonymous';
+          Object.keys(options).forEach((key) => {
+            script[key] = options[key];
+          });
+          document.body.appendChild(script);
+        };
+        getScript({
+          src: 'https://cdn.jsdelivr.net/npm/valine',
+          onload: function () {
+            newValine();
+          }
+        });
+      } else {
+        newValine();
+      }
+    }
+    function newValine() {
+      var valine_path = window.location.pathname;
+      if (valine_path[valine_path.length - 1] != '\/') valine_path = valine_path + '\/';
+      new Valine({
+        el: '#vcomments',
+        appId: '<%= theme.valine.appid %>',
+        appKey: '<%= theme.valine.appkey %>',
+        placeholder: '<%= theme.valine.placeholder %>',
+        visitor: true,
+        recordIP: true,
+        requiredFields: ['nick', 'mail'],
+        avatar: 'retro',
+        path: valine_path
+      });
+    }
   </script>
 <% } %>
