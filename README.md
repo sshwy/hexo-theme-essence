@@ -17,12 +17,6 @@ Used by [Sshwy's Notes](https://notes.sshwy.name).
 - Local search.
 - [prism-themes](https://github.com/PrismJS/prism-themes) supported.
 
-## Requirements
-
-```bash
-npm i hexo-webpack --save
-```
-
 ## License
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsshwy%2Fhexo-theme-essence.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsshwy%2Fhexo-theme-essence?ref=badge_large)

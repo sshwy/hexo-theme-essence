@@ -6,12 +6,9 @@ post:
   current: Current Page
   updateTime: Last modified time
   updateAt: Updated at %s
-  modification: Modification
-  creation: Created
-  modifiedForKth: 
-    zero: WTF is %d
-    one: Modified for the first time
-    other: Modified for the %d-th times 
+  modification: Modification Log
+  createAt: Created on %s
+  modifiedForKth: Modified for the %1$d-th time on %2$s
   hash: hash
   toc: Table of Content
   copyrightDeclaration: All works on this site is licensed under the

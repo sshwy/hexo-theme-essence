@@ -7,9 +7,9 @@
       page.historyHash.forEach((hashstr, index) => {
     %>
       <li class="post-history-item">
-        <%= 
-          historyParseTime(hashstr) + (tothis-index == 1 ? ` ${__('post.creation')}${__('comma')}` 
-          : ` ${_p('post.modifiedForKth', tothis - index)}${__('comma')}`) + `${__('post.hash')}${__('colon')}` + historyParseHash(hashstr)
+        <%=
+          tothis - index === 1 ? __('post.createAt', historyParseTime(hashstr))
+          : __('post.modifiedForKth', tothis - index, historyParseTime(hashstr))
         %> 
       </li>
     <% }); %> 

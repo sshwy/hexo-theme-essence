@@ -7,11 +7,8 @@ post:
   updateTime: 文章更新时间
   updateAt: 更新于 %s
   modification: 修订记录
-  creation: 创建文章
-  modifiedForKth: 
-    zero: WTF is %d
-    one: 第%d次修订
-    other: 第%d次修订
+  createAt: '%s 创建文章'
+  modifiedForKth: '%2$s 第%1$d次修订'
   hash: 哈希值
   toc: 文章目录
   copyrightDeclaration: 本站所有文章遵循许可协议
