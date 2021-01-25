@@ -68,8 +68,13 @@ function md5str (str) {
   return hex;
 }
 
+function toCharArray(s){
+  return s.replace(/()/g,':><:').split(/:><:/).filter(c => c);
+}
+
 module.exports = {
   wordCount,
   insertComma,
   md5str,
+  toCharArray,
 };
