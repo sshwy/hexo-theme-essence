@@ -4,7 +4,7 @@
       <h1 class="page-title"><span class="iconfont icon-folder"></span>
         <% if(page.par_path){ %>
           <%=theme.directory.wordmap[page.dir]%>
-        <% }else { %>
+        <% } else { %>
           <%=theme.directory.title%>
         <% } %>
       </h1>
@@ -23,7 +23,7 @@
           <div class="dir-list-item">
             <span class="iconfont icon-folder"></span>
             <a href="<%= url_for(page.dir_path + '/' + dir) %>"><span>
-              <%= theme.directory.wordmap[dir] ? theme.directory.wordmap[dir] : dir %>
+              <%= theme.directory.wordmap[dir] || dir %>
             </span></a>
           </div>
         <% }) %>

@@ -1,3 +1,8 @@
+/**
+ * Update post hash as well as date in front matter
+ * @author Sshwy
+ */
+
 /* global hexo */
 
 const jsYaml = require('js-yaml');

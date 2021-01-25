@@ -1,12 +1,6 @@
 /* global hexo */
 
-function insertComma (num){
-  return String(num).replace(/(?=(\d{3})+$)(?!^)/g,',');
-}
-function wordCount (s) {
-  const ignore = /[{}[\]()\-+\\/!,.'"，。“”‘’「」·、（）！？《》\s:;；：]+/g;
-  s.replace(ignore, '');
-  return insertComma(s.length);
-}
+const { wordCount, insertComma } = require('../../module/utils');
 
-hexo.extend.helper.register('wordCount', wordCount);
+hexo.extend.helper.register('wordCount', s => insertComma(wordCount(s || '')));
+hexo.extend.helper.register('insertComma', insertComma);

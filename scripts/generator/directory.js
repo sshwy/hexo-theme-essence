@@ -34,7 +34,7 @@ hexo.extend.generator.register('directory', function (locals) {
       posts_id.forEach(function (id) { posts = posts.concat(map.get(id)); });
 
       let dir = path.replace(par_path, '').replace('/', '');
-      let title = par_path ? hexo.theme.config.directory.wordmap[dir] + ' - ' : '';
+      let title = par_path ? (hexo.theme.config.directory.wordmap[dir] || dir) + ' - ' : '';
       title += hexo.theme.config.directory.title;
 
       return {

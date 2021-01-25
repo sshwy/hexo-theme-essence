@@ -1,11 +1,12 @@
-/* global hexo */
-
 /**
- * Load prism theme file
+ * Load prism theme file (.styl)
  * Place custom css stylesheet file in base_dir/prism/
  * MAKE SURE to replace the .css suffix with .styl!
  * then modify base_dir/_config.essence.yml to apply it.
+ * @author Sshwy
  */
+
+/* global hexo */
 
 const { resolve }= require('path');
 

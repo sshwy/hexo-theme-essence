@@ -2,7 +2,8 @@ name: English
 comma: ', '
 colon: ': '
 post:
-  wordCount: About %s characters
+  totalWordCount: A total of %s words
+  wordCount: About %s words
   current: Current Page
   updateTime: Last modified time
   updateAt: Updated at %s
