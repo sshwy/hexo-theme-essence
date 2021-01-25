@@ -1,16 +1,8 @@
-import { Md5, encodeUTF8 } from './utils';
 import renderKatex from './module/katex';
+import { md5str } from '../../module/utils';
 
-window.encodeUTF8 = encodeUTF8;
+window.md5 = md5str;
 
-window.md5 = function (str) {
-  var data = new Uint8Array(encodeUTF8(str));
-  var result = Md5(data);
-  var hex = Array.prototype.map.call(result, function (e) {
-    return (e < 16 ? '0' : '') + e.toString(16);
-  }).join('');
-  return hex;
-};
 var c2i = {
   'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6,
   'h': 7, 'i': 8, 'j': 9, 'k': 10, 'l': 11, 'm': 12, 'n': 13,
