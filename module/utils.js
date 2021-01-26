@@ -1,6 +1,6 @@
 function wordCount (s) {
   const ignore = /[\s,.:;'"*&^%$#@!?+=()[\]{}|/\\，。：“”‘’《》<>；、？！￥…—（）\-`～~]+/g;
-  console.log('wordCount', typeof s);
+  // console.log('wordCount', typeof s);
   s = (s || '').replace(ignore, '');
   return s.length;
 }
