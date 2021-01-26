@@ -1,6 +1,6 @@
 # Essence
 
-[![GitHub license](https://img.shields.io/github/license/sshwy/hexo-theme-essence)](https://github.com/sshwy/hexo-theme-essence) [![npm](https://img.shields.io/npm/v/hexo-theme-essence)](https://www.npmjs.com/package/hexo-theme-essence) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsshwy%2Fhexo-theme-essence.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsshwy%2Fhexo-theme-essence?ref=badge_shield)
+[![npm](https://img.shields.io/npm/v/hexo-theme-essence)](https://www.npmjs.com/package/hexo-theme-essence) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsshwy%2Fhexo-theme-essence.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsshwy%2Fhexo-theme-essence?ref=badge_shield)
 
 Essence is a functional and darkmode featured theme for Hexo.
 
