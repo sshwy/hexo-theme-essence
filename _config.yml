@@ -92,3 +92,6 @@ prismjs: # 只在主题配置中生效
   theme:
     light: prism
     dark: prism-vsc-dark-plus
+
+friends:
+  enable: true

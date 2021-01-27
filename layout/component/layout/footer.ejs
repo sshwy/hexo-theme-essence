@@ -2,9 +2,10 @@
 
   <%- partial('./visitor') %>
 
-  <div class="copyright">
-    <span>Copyright &copy; <%=theme.copyright.duration%> - <%= config.author %></span>
-  </div>
+  <% if (theme.wordcount){ %>
+    <span class="post-wordcount iconfont icon-yuedu"></span>
+    <%= __('post.totalWordCount', insertComma(totalWords)) %>
+  <% } %>
 
   <div class="license" style="padding: 0 10px;">
     <span>
@@ -15,15 +16,28 @@
     </span>
   </div>
 
-  <% if (theme.wordcount){ %>
-    <span class="post-wordcount iconfont icon-yuedu"></span>
-    <%= __('post.totalWordCount', insertComma(totalWords)) %>
-  <% } %>
-
   <div class="credit">
     <span>Themed
     <a href="https://github.com/sshwy/hexo-theme-essence" target="_blank" rel="noreferrer noopener">Essence</a>
     for <a href="http://hexo.io" target="_blank" rel="noreferrer noopener">Hexo</a></span>
+  </div>
+
+  <% if (theme.friends.enable && site.data && site.data.friends) { %>
+    <div class="friends">
+      <span class="friend-link-span"><%= __('friendLink') %> </span>
+      <% for(const item in site.data.friends) { %>
+        <span class="icon friendsep"></span>
+        <a href="<%= site.data.friends[item].link %>">
+          <span class="friend-link-span">
+            <%= site.data.friends[item].title %> 
+          </span>
+        </a>
+      <% } %>
+    </div>
+  <% } %>
+
+  <div class="copyright">
+    <span>Copyright &copy; <%=theme.copyright.duration%> - <%= config.author %></span>
   </div>
 
 </footer>
