@@ -12,7 +12,7 @@ function renderer (text, type, link) {
   type = (type || '').trim();
   if (type) type = ' ' + type;
   return `<a href="${link}" target="_blank" style="text-decoration: none;">`
-    + `<span class="codeforces${type}">${type == 'lgm' ? lgm(text) : com(text)}</span>`
+    + `<span class="codeforces${type}">${type == ' lgm' ? lgm(text) : com(text)}</span>`
     + '</a>';
 }
 function codeforcesUser (args) {

@@ -10,14 +10,17 @@ window.renderKatex = () => renderKatex({
 });
 
 window.updateToc = function () {
-  var sectionTitles = document.getElementsByClassName('post-content')[0].getElementsByClassName('headerlink');
+  const old = document.getElementsByClassName('toc-content')[0];
+  if(!old)return;
 
-  var toc = document.createElement('ol');
+  const sectionTitles = document.getElementsByClassName('post-content')[0].getElementsByClassName('headerlink');
+
+  let toc = document.createElement('ol');
   toc.setAttribute('class', 'toc');
 
-  var sectionNumbers = [0, 0, 0, 0, 0, 0], nodes = [toc, 0, 0, 0, 0, 0];
+  let sectionNumbers = [0, 0, 0, 0, 0, 0], nodes = [toc, 0, 0, 0, 0, 0];
 
-  for (var node of sectionTitles) {
+  for (const node of sectionTitles) {
     const data = {
       id: node.id || node.parentElement.id || '',
       level: parseInt(node.parentElement.tagName.charAt(1)) - 1,
@@ -26,31 +29,31 @@ window.updateToc = function () {
 
     sectionNumbers[data.level]++;
     sectionNumbers[data.level + 1] = 0;
-    var tocNumber = sectionNumbers.slice(1, data.level + 1).join('.') + '. ';
-    var tocText = data.text;
+    const tocNumber = sectionNumbers.slice(1, data.level + 1).join('.') + '. ';
+    const tocText = data.text;
 
-    var spanTocNumber = document.createElement('span');
+    let spanTocNumber = document.createElement('span');
     spanTocNumber.setAttribute('class', 'toc-number');
     spanTocNumber.innerHTML = tocNumber;
 
-    var spanTocText = document.createElement('span');
+    let spanTocText = document.createElement('span');
     spanTocText.setAttribute('class', 'toc-text');
     spanTocText.innerHTML = tocText;
 
-    var a = document.createElement('a');
+    let a = document.createElement('a');
     a.setAttribute('class', 'toc-link');
     a.setAttribute('href', '#' + data.id);
     a.appendChild(spanTocNumber);
     a.appendChild(spanTocText);
 
-    var liItem = document.createElement('li');
+    let liItem = document.createElement('li');
     liItem.setAttribute('class', 'toc-item toc-level-' + (data.level + 1).toString());
     liItem.appendChild(a);
 
     nodes[data.level] = liItem;
 
     if (nodes[data.level - 1].tagName != 'OL') {
-      var olItem = document.createElement('ol');
+      let olItem = document.createElement('ol');
       olItem.setAttribute('class', 'toc-child');
       nodes[data.level - 1].appendChild(olItem);
       nodes[data.level - 1] = olItem;
@@ -58,7 +61,6 @@ window.updateToc = function () {
     nodes[data.level - 1].appendChild(liItem);
   }
 
-  var old = document.getElementsByClassName('toc-content')[0];
   old.innerHTML = '';
   old.appendChild(toc);
 };
