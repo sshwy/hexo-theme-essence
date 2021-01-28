@@ -28,7 +28,7 @@
       <% for(const item in site.data.friends) { %>
         <span class="icon friendsep"></span>
         <a href="<%= site.data.friends[item].link %>">
-          <span class="friend-link-span">
+          <span class="friend-link-span" title="<%= site.data.friends[item].description || '' %> ">
             <%- site.data.friends[item].title %> 
           </span>
         </a>
