@@ -5,13 +5,14 @@
 
 .dir-list
   .dir-list-item
-    margin: 0.7em 0.3em 0.7em 0;
+    margin: 0.7em 0.5em
     min-width: 300px;
+    width: calc(49% - 1em);
     display: inline-block;
     font-size: 2rem;
 
 .parent-dir
-  margin: .8em 20px
+  padding .8em 20px
   min-width: 32%;
   font-size: 2.4rem;
   span
@@ -21,7 +22,7 @@
   .dir-list 
     padding-left: 45px;
     .dir-list-item
-      min-width: 32%
+      width: calc(33% - 1em);
   .parent-dir
     padding-left: 45px;
 
@@ -32,5 +33,4 @@
 @media only screen and (max-width: 600px) 
   .dir-list
     .dir-list-item
-      margin: 0.5em 0.3em 0.5em 0;
       font-size: 2rem;
