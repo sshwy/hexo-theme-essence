@@ -24,9 +24,6 @@
 <div class="post-list">
   <% postViews.forEach(function(p) { %>
     <% if ((Month && p.displayMonth) || (Year && p.displayYear)) { %>
-      <% 
-        console.log('display month/year:', p.title);
-      %> 
       <div class="post-list-date-title">
         <h2><%= Year ? p.yearText : '' %> <%= Month ? p.MonthText : '' %></h2>
       </div>
