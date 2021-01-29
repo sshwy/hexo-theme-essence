@@ -1,23 +1,20 @@
 <%
-  const sorted = listPosts.sort((a, b)=> {
-    return b.date.unix() - a.date.unix();
-  });
-  
-  const postViews = sorted.reduce((acc, model)=> {
-    const entry = Object.assign(model, {
+  const sorted = listPosts.sort((a, b) => b.date.unix() - a.date.unix());
+  const postViews = sorted.reduce((acc, post)=> {
+    const entry = Object.assign(post, {
       // only show year/month if this is first entry in list with that yearstamp/monthstamp
-      displayYear : !acc.find(_ => _.date.year() === model.date.year()),
-      displayMonth : !acc.find(_ => _.date.month() === model.date.month()),
-      title: model.title || 'Untitled',
-      yearText: model.date.format('YYYY'),
-      monthText: model.date.format('MMM'),
-      monthNumber: model.date.format('M'),
-      MonthText: model.date.format('MMMM'),
-      dayText: model.date.format('DD'),
-      timeText: model.date.format('hh:mm'),
-      datetime: date_xml(model.date),
-      target: model.link ? '_blank': '',
-      url: url_for(model.path).split('index.html')[0]
+      displayYear : !acc.find(_ => _.date.year() === post.date.year()),
+      displayMonth : !acc.find(_ => _.date.year() === post.date.year() && _.date.month() === post.date.month()),
+      title: post.title || 'Untitled',
+      yearText: post.date.format('YYYY'),
+      monthText: post.date.format('MMM'),
+      MonthText: post.date.format('MMMM'),
+      dayText: post.date.format('DD'),
+      timeText: post.date.format('HH:mm'),
+      datetime: date_xml(post.date),
+      fullDate: lctzDate(post.date, 'LLLL (zZ)'),
+      target: post.link ? '_blank': '',
+      url: url_for(post.path)
     });
     acc.push(entry);
     return acc;
@@ -26,9 +23,12 @@
   
 <div class="post-list">
   <% postViews.forEach(function(p) { %>
-    <% if ((Month && p.displayMonth)||(Year && p.displayYear)) { %>
+    <% if ((Month && p.displayMonth) || (Year && p.displayYear)) { %>
+      <% 
+        console.log('display month/year:', p.title);
+      %> 
       <div class="post-list-date-title">
-        <h2><%=Year? p.yearText:''%> <%=Month? p.MonthText:''%></h2>
+        <h2><%= Year ? p.yearText : '' %> <%= Month ? p.MonthText : '' %></h2>
       </div>
     <% } %>
     <div class="post-list-item">
@@ -39,11 +39,10 @@
       </div>
       <div class="post-list-meta">
         <div class="post-list-time">
-          <time datetime="<%=p.datetime%>" 
-            title="<%=p.yearText+'.'+p.monthNumber+'.'+p.dayText%>">
-            <span class="month"><%=p.monthText%></span>
-            <span class="day"><%=p.dayText%></span>
-            <span class="time"><%=p.timeText%></span>
+          <time datetime="<%= p.datetime %>" title="<%= p.fullDate %>">
+            <span class="month"><%= p.monthText %></span>
+            <span class="day"><%= p.dayText %></span>
+            <span class="time"><%= p.timeText %></span>
           </time>
         </div>
         <% if (p.tags && p.tags.length){ %>
@@ -51,7 +50,7 @@
             <% p.tags.forEach((tag, i) => { %>
               <span class="tag">
                 <a class="tag" href="<%=url_for(tag.path)%>">
-                  <%='#'+tag.name%>
+                  <%= '#' + tag.name %>
                 </a>
               </span>
             <% }) %>
