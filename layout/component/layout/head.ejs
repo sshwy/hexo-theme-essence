@@ -1,6 +1,21 @@
+<% 
+  let arr = [];
+  if(page.tags && page.tags.length){
+    page.tags.forEach((tag, idx) => {
+      arr.push(tag.name);
+    });
+  }
+  if(page.keywords && page.keywords.length){
+    page.keywords.forEach((tag, idx) => {
+      arr.push(tag);
+    });
+  }
+%> 
+
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="keywords" content="<%= arr.join(',') %>">
   <%- meta_generator() %>
   <title><%= 
     page.title ? page.title + ' - '

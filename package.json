@@ -43,5 +43,5 @@
     "url": "https://github.com/sshwy/hexo-theme-essence/issues"
   },
   "homepage": "https://github.com/sshwy/hexo-theme-essence#readme",
-  "main": ".eslintrc.js"
+  "main": "README.md"
 }
