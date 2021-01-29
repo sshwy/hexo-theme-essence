@@ -1,5 +1,7 @@
 /**
  * Update post hash as well as date in front matter
+ * Set historyHash to false in theme config to disable it for all posts
+ * Set historyHash to false in post front matter to disable it for this post
  * @author Sshwy
  */
 
@@ -22,9 +24,7 @@ function shaHash(raw){
   return shasum.digest('hex');
 }
 function updatePostHash (data) {
-  const themeCfg = this.theme.config;
-
-  if(themeCfg.historyHash === false || data.historyHash === false) return data;
+  if(this.theme.config.historyHash === false || data.historyHash === false) return data;
 
   const obj = parseFrontMatter(data.raw);
   if(obj === null)return;

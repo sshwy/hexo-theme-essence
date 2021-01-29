@@ -2,12 +2,12 @@
 <html lang="<%= config.language %>">
   <%- partial('component/layout/head') %>
   <body>
-    <%- partial('component/layout/header',null,{cache: true}) %>
+    <%- partial('component/layout/header', null, { cache: true }) %>
     <main class="main">
       <%- body %>
     </main>
   </body>
   <%- partial('component/layout/side-button') %>
-  <%- partial('component/layout/footer') %>
-  <%- partial('component/layout/after_footer',null,{cache: true}) %>
+  <%- partial('component/layout/footer', null, { cache: true }) %>
+  <%- partial('component/layout/after_footer', null, { cache: true }) %>
 </html>
