@@ -10,39 +10,39 @@ var hexoUtil = require('hexo-util');
 
 var defaults = {
   pages: {
+    date: false,
+    updated: true,
+    comments: false,
+    path: true,
+    link: false,
+    permalink: false,
+    excerpt: false,
+    keywords: false,
+    text: true,
     raw: false,
     content: false,
-    title: true,
-    slug: true,
-    date: true,
-    updated: true,
-    comments: true,
-    path: true,
-    link: true,
-    permalink: true,
-    excerpt: true,
-    text: true,
-    keywords: true,
     author: true,
+    title: true,
+    slug: false, 
   },
 
   posts: {
+    title: true,
+    slug: false,
+    date: false,
+    updated: true,
+    comments: false,
+    path: true,
+    link: false,
+    permalink: false,
+    excerpt: false,
+    keywords: false,
+    text: true,
     raw: false,
     content: false,
-    title: true,
-    slug: true,
-    date: true,
-    updated: true,
-    comments: true,
-    path: true,
-    link: true,
-    permalink: true,
-    excerpt: true,
-    text: true,
-    categories: true,
-    tags: true,
-    keywords: true,
     author: true,
+    categories: true,
+    tags: true
   },
 };
 
@@ -94,8 +94,8 @@ function has (obj, key) {
 function minify (str) {
   return hexoUtil.stripHTML(str
     .replace(/<div(\s+?)id="encrypted(([\s\S])*?)<\/div>/g, ' ')
-    .replace(/<div(\s+?)id="keyMd(([\s\S])*?)<\/div>/g, ' ')
-  ).trim().replace(/\s+/g, ' ');
+    .replace(/<div(\s+?)id="enckey(([\s\S])*?)<\/div>/g, ' ')
+  ).trim().replace(/\s{2,}/g, ' ');
 }
 
 function getProps (ref) {
@@ -260,7 +260,7 @@ hexo.extend.generator.register('json-content', function (site) {
   if (pages || posts || options.meta) Object.assign(output, reduceCategs([categs]));
 
   return {
-    path: options.file || 'content.options',
+    path: 'search.json',
     data: JSON.stringify(output),
   };
 });

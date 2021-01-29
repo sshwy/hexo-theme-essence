@@ -50,43 +50,7 @@ valine:
   visitor: true
 
 searchData:
-  meta: true
   drafts: false
-  file: search.json
-  keywords: undefined
-  dateFormat: YYYY-MM-DD
-  pages:
-    title: true
-    slug: false
-    date: false
-    updated: true
-    comments: false
-    path: true
-    link: false
-    permalink: false
-    excerpt: false
-    keywords: false
-    text: true
-    raw: false
-    content: false
-    author: true
-  posts:
-    title: true
-    slug: false
-    date: false
-    updated: true
-    comments: false
-    path: true
-    link: false
-    permalink: false
-    excerpt: false
-    keywords: false
-    text: true
-    raw: false
-    content: false
-    author: true
-    categories: true
-    tags: true
 
 prismjs: # 只在主题配置中生效
   theme:
