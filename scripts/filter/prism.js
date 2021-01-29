@@ -17,5 +17,4 @@ hexo.extend.filter.register('stylus:renderer', function(style) {
     resolve(hexo.base_dir, 'prism')
   ];
   paths.forEach(path => style.include(path));
-  // console.log(hexo.theme.i18n.__('zh-CN')('comma'));
 });

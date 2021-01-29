@@ -1,32 +1,30 @@
-.encrypt-container{
-  border-radius: 2px;
+.encrypt-container 
+  position relative
   margin: 2em;
-  background: var(--encrypt-background);
-  border-bottom: 3px grey solid;
-  input{
-    &:focus {
+  input 
+    line-height: 1.3em
+  input[type="text"]
+    border-radius: 2px;
+    background: var(--encrypt-background);
+    border: 0;
+    border-bottom: 3px grey solid;
+    &:focus 
       outline: none;
-    }
-  }
-}
-.encrypt-key-inputarea {
-  color: var(--text-color);
-  width: 85%;
-  border: 0;
-  font-size: initial;
-  padding: 10px;
-  background: none;
-}
-.decrypt-button {
-  color: var(--text-color);
-  border: 0;
-  background: none;
-  padding: 9px 11px;
-  font-size: initial;
-  transition: 0.2s;
-  float: right;
-  &:hover {
-    background: grey;
-    color: white;
-  }
-}
+    
+    color: var(--text-color);
+    width: calc(100%)
+    font-size: initial;
+    padding: 12px 10px 8px;
+  input[type="submit"]
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--text-color);
+    border: 0;
+    background: none;
+    padding: 12px 10px 10px;
+    font-size: initial;
+    transition: 0.2s;
+    &:hover 
+      background: grey;
+      color: white;

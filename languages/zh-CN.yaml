@@ -13,6 +13,7 @@ post:
   hash: 哈希值
   toc: 文章目录
   copyrightDeclaration: 本站所有文章遵循许可协议
+  decrypt: 解密
 index:
   recently: 最近更新
   more: 更多文章

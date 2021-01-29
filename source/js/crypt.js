@@ -66,15 +66,20 @@ window.updateToc = function () {
 };
 
 window.decrypt = function (idx) {
+  const oPart = document.getElementById('encpart' + idx),
+    oContent = document.getElementById('encrypted' + idx),
+    oFeedback = oPart.querySelector('.inputfeedback span');
+
   idx = idx.toString();
-  var key = document.getElementById('key' + idx).value;
+  const key = oPart.querySelector('input[type="text"]').value;
   var keymd5 = window.md5(key);
-  if (document.getElementById('keyMd5' + idx).innerHTML != keymd5) {
+  if (document.getElementById('enckey' + idx).innerHTML != keymd5) {
     console.log('Your key is not correct!');
+    oFeedback.innerHTML = 'Your key is not correct!';
     return;
   }
-  document.getElementById('encrypted' + idx).style.display = '';
-  let cipher = document.getElementById('encrypted' + idx).innerHTML;
+  oContent.style.display = '';
+  let cipher = oContent.innerHTML;
 
   let unicode = '';
   for (var i = 0; i < cipher.length; i++) {
@@ -86,8 +91,8 @@ window.decrypt = function (idx) {
     plain += String.fromCharCode(parseInt(lst[i], 16).toString(10));
   }
 
-  document.getElementById('encrypted' + idx).innerHTML = plain;
-  document.getElementById('encButton' + idx).style.display = 'none';
+  oContent.innerHTML = plain;
+  oPart.style.display = 'none';
 
   visitorRecord(idx);
   window.renderKatex();

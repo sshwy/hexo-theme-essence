@@ -22,18 +22,22 @@ function encrypttag (args, content) {
   let key = args[0] || '.';
   let hint = args.slice(1).join(' ') || '';
   let str = hexo.render.renderSync({ text: content, engine: 'markdown' });
-  totid_encrypt += 1;
   let sid = totid_encrypt.toString();
+  const decryptText = hexo.theme.i18n.__(hexo.config.language || 'en')('post.decrypt');
+
+  totid_encrypt += 1;
+
   str = encrypt(key, str);
   str = `<div id="encrypted${sid}" style="display: none;">${str}</div>`;
-  str += `<div id="encButton${sid}">
-            <p><div class="encrypt-container">
-                <input type="text" class="encrypt-key-inputarea" placeholder="${hint ? '提示：' + hint : ''}" 
-                    id="key${sid}" onkeydown='if(event.keyCode==13){decrypt(${sid});}'value=""> 
-                <input type="submit" class="decrypt-button" value="解密" onclick="decrypt(${sid})">
-            </div></p>
-            <div id="keyMd5${sid}" style="display: none;">${md5str(key)}</div>
-          </div>`;
+  str += `<div id="encpart${sid}">`
+    + '<div class="encrypt-container">'
+    + `<input type="text" placeholder="${hint}" autocomplete="off" `
+    + `id="key${sid}" onkeydown="if(event.keyCode==13){decrypt(${sid});}" value="">`
+    + `<input type="submit" value="${decryptText}" onclick="decrypt(${sid})">`
+    + '<div class="inputfeedback"><span style="color: red;"></span></div>'
+    + '</div>'
+    + `<div id="enckey${sid}" style="display: none;">${md5str(key)}</div>`
+    + '</div>';
   return str;
 }
 
