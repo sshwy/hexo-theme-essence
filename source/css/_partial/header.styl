@@ -1,101 +1,59 @@
-.header {
-  min-height: 60px;
-  width: 100%;
-}
-
-.header-shadow {
+.header-shadow 
   box-shadow: 0 -4px 10px var(--header-shadow-color);
-}
 
-.header-input-shadow {
+.header-input-shadow 
   box-shadow: 0 -4px 10px var(--header-shadow-color);
-}
 
-.header-content {
-  max-width: 1200px;
-  margin: auto;
-}
-
-.header-inner {
-  position: fixed;
-  z-index: 20;
-  top: 0;
-  left: 0;
-
+.header-inner 
   min-height: 60px;
   width: 100%;
   line-height: 60px;
   background: var(--background-color);
-
   transition: box-shadow ease .2s;
-
   font-size: 2.23rem;
-
-  .navbar{
+  .navbar
     float: right;
-  }
-  .blog-title {
+  .blog-title 
     padding: 0 20px;
     display: inline-block;
-    a {
+    a 
       color: #AAA;
-      &:hover {
+      &:hover 
         text-decoration: none;
         color: var(--text-color);
-      }
-    }
-  }
-
-  .menu {
+  .menu 
     margin-right: 10px;
-
-    .menu-item {
+    .menu-item 
       display: inline-block;
       margin-right: 10px;
-    }
-
-    .menu-item-link {
+    .menu-item-link 
       color: #AAA;
-      &:hover {
+      &:hover 
         text-decoration: none;
         color: var(--text-color);
-      }
-    }
-  }
-}
 
-@media only screen and (min-width: 770px) {
-  .header-inner .blog-title {
-    .iconfont.icon-menu {
+@media only screen and (min-width: 770px) 
+  .header-inner .blog-title 
+    .iconfont.icon-menu 
       display: none;
       float: left;
-    }
-  }
-}
-@media only screen and (max-width: 769px) {
-  .header-inner{
-    .blog-title {
+
+@media only screen and (max-width: 769px) 
+  .header-inner
+    .blog-title 
       display: block;
       width: 100%
-      .iconfont.icon-menu {
+      .iconfont.icon-menu 
         display: inline;
-      }
-    }
-    .menu .menu-item {
+    .menu .menu-item 
       display: block;
-    }
-    .navbar {
+    .navbar 
       display: none;
       line-height: 1.5em;
       float: none;
-      .menu {
+      .menu 
         margin-right: 0;
         margin-bottom: 5px;
-        li {
+        li 
           margin-right: 0;
           padding-left: 55px;
-        }
-      }
-    }
-  }
-}
