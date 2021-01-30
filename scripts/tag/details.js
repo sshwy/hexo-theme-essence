@@ -6,7 +6,7 @@ const { htmlTag } = require('hexo-util');
 
 function detailsTag (args, content) {
   args = args.join(' ').split('@');
-  const isOpen = args[0] ? true : false;
+  const isOpen = args[0].trim() ? true : null;
   const summary = (args[1] || 'Details').trim();
   const str = hexo.render.renderSync({ text: content, engine: 'markdown' });
 
