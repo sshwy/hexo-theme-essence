@@ -2,15 +2,15 @@
 
 'use strict';
 
-function details (args, content) {
+const { htmlTag } = require('hexo-util');
+
+function detailsTag (args, content) {
   args = args.join(' ').split('@');
-  let is_open = args[0] || '';
-  let summary = args[1] || 'Details';
+  const isOpen = args[0] ? true : false;
+  const summary = (args[1] || 'Details').trim();
   const str = hexo.render.renderSync({ text: content, engine: 'markdown' });
 
-  if (is_open) is_open = ' open';
-  summary = summary.trim();
-  return `<details${is_open}><summary>${summary}</summary>${str}</details>`;
+  return htmlTag('details', { open: isOpen }, htmlTag('summary', {}, summary, false) + str, false);
 }
 
-hexo.extend.tag.register('details', details, { ends: true });
+hexo.extend.tag.register('details', detailsTag, { ends: true });

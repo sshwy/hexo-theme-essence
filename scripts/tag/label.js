@@ -2,16 +2,16 @@
 
 'use strict';
 
-function postLabel (args) {
-  //hexo.log.warn(hexo.config.author);
-  //hexo.log.warn(hexo.theme.config.katex);
+const { htmlTag } = require('hexo-util');
+
+function labelTag (args) {
   args = args.join(' ').split('@');
-  let classes = args[0] || 'default';
-  let text = args[1] || '';
+  const classes = args[0] || 'default';
+  const text = args[1] || '';
 
   !text && hexo.log.warn('Label text must be defined!');
 
-  return `<span class="label ${classes.trim()}">${text}</span>`;
+  return htmlTag('span', { class: 'label ' + classes }, text, false);
 }
 
-hexo.extend.tag.register('label', postLabel, { ends: false });
+hexo.extend.tag.register('label', labelTag, { ends: false });

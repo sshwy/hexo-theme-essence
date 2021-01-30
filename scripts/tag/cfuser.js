@@ -2,18 +2,20 @@
 
 'use strict';
 
+const { htmlTag } = require('hexo-util');
+
 function lgm (s) {
-  return `<strong class="lgm-head">${s[0]}</strong><strong class="lgm-tail">${s.substring(1)}</strong>`;
+  return htmlTag('strong', { class: 'lgm-head' }, s[0], false) 
+    + htmlTag('strong', { class: 'lgm-tail' }, s.substring(1), false);
 }
 function com (s) {
-  return `<strong>${s}</strong>`;
+  return htmlTag('strong', {}, s, false);
 }
 function renderer (text, type, link) {
   type = (type || '').trim();
-  if (type) type = ' ' + type;
-  return `<a href="${link}" target="_blank" style="text-decoration: none;">`
-    + `<span class="codeforces${type}">${type == ' lgm' ? lgm(text) : com(text)}</span>`
-    + '</a>';
+  return htmlTag('a', { href: link, target: '_blank', style: 'text-decoration: none;' },
+    htmlTag('span', { class: 'codeforces ' + type }, type === 'lgm' ? lgm(text) : com(text), false)
+    , false);
 }
 function codeforcesUser (args) {
   args = args.join(' ').split('@');
