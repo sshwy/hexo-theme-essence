@@ -1,22 +1,24 @@
-# headline will be showed in index
+# headline will be showed on index page
 headline: Hi, There!
 
-# topbar menu link
+# navbar menu link
 menu:
-  Archives: 
-    link: /archives/
+  Archives: # title
+    link: /archives/ # link
   Directory:
     link: /directory/
 
+# displayed on page footer
 copyright:
-  duration: 2019-2020
+  duration: 2019-2021
   license:
     title: Creative Commons Attribution-ShareAlike 4.0 International License
     link: https://creativecommons.org/licenses/by-sa/4.0/
 
+# whether update post hash automatically everytime running hexo
 historyHash: true
 
-# katex (latex)
+# katex (client side render)
 katex: true
 
 # button fixed on the right bottom side
@@ -37,10 +39,10 @@ directory:
   wordmap:
     home_page: 主页
 
-# To be exact, it count the file's bytes.
+# display the number of characters of the post
 wordcount: true
 
-# valine comment
+# valine comment configuration
 valine:
   enable: true
   appid:
@@ -52,10 +54,19 @@ valine:
 searchData:
   drafts: false
 
+# Place custom css stylesheet file under base_dir/prism/
+# MAKE SURE to replace the .css suffix with .styl!
+# view theme_dir/prism/ for builtin prism themes
 prismjs: # 只在主题配置中生效
-  theme:
-    light: prism
+  theme: # light mode and dark mode theme respectively
+    light: prism # name of the style file, no suffix required
     dark: prism-vsc-dark-plus
 
+# display friend links on page footer
+# write information in base_dir/source/_data/_firends.yml with following format:
+# friend:
+#   title: 'A Friend'
+#   link: https://example.com
+# the `title' attribute supports html tag for custom style
 friends:
   enable: true
