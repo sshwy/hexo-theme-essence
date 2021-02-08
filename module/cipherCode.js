@@ -1,6 +1,6 @@
 const { toCharArray } = require('./utils');
 
-const i2c = 'abcdefghijklmnopqrstuvwxyz0123456789.,';
+const i2c = 'abcdefghijklmnopqrstuvwxyz0123456789.,QWERTYUIOPASDFGHJKLZXCVBNM_-+=(){}[]';
 const c2i = ((arr) => {
   let obj = {};
   arr.forEach((val, idx) => {
