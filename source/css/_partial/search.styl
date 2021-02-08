@@ -9,7 +9,7 @@
     a.tag
       text-decoration: underline;
       font-size: 0.9em;
-      color: var(--tag-color);
+      color: var(--text-secondary-color);
       &:hover
         color: var(--link-hover-color);
 
@@ -84,6 +84,7 @@
       padding: 10px 35px 10px 35px;
       font-size: 1.6rem;
       color: var(--text-color);
+      vertical-align: middle;
       &:focus 
         outline: none;
   .mobile-search 
@@ -119,13 +120,13 @@
         position: absolute;
         left: 13px;
         top: 3px;
-        color: #6d6d6d;
+        color: var(--text-secondary-color)
 
 .search-icon 
   position: absolute;
   left: 13px;
   top: 4px;
-  color: #6d6d6d;
+  color: var(--text-secondary-color)
 
 .search-close-icon 
   display: none;
@@ -136,7 +137,7 @@
   position: absolute;
   right: 7px;
   top: 4px;
-  color: #6d6d6d;
+  color: var(--text-secondary-color)
   cursor: pointer;
   &::before 
     padding: 6px 5px 5px 5px;
