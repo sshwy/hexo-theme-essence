@@ -4,7 +4,7 @@
 
 Essence is a functional and darkmode featured theme for Hexo.
 
-:paperclip: Visit [Sshwy's Notes](https://notes.sshwy.name) for preview.
+Visit [Sshwy's Notes](https://notes.sshwy.name) for preview.
 
 ## Features :hammer:
 
