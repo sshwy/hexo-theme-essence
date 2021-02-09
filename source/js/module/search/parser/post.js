@@ -67,6 +67,15 @@ function render (data, regexp) {
   };
 }
 
-export default function searcher (post, regexp) {
+/**
+ * 在文章中搜索关键词
+ *
+ * @param {string} post
+ * @param {RegExp} regexp
+ * @return {{output: string, weight: number}} 
+ */
+function searcher (post, regexp) {
   return render(parse(post, regexp), regexp);
 }
+
+export default searcher;

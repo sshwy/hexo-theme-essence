@@ -90,8 +90,18 @@
   .mobile-search 
     display: inline-block;
     float: right;
-    .search-form 
+    input[type="text"]
       display: none;
+      vertical-align: middle;
+      background-color: var(--header-search-input-background);
+      border: none;
+      border-radius: 2px;
+      padding: 10px 35px 10px 35px;
+      font-size: 1.6rem;
+      color: var(--text-color);
+      width: 100%;
+      &:focus
+        outline: none;
     .mobile-search-icon:hover 
       cursor: pointer;
   &.mobile-search-active 
@@ -103,19 +113,8 @@
       position: relative;
       line-height: 57px;
       width: 100%;
-      .search-form
-        display: block;
-        input 
-          display: inline-block;
-          background-color: var(--header-search-input-background);
-          border: none;
-          border-radius: 2px;
-          padding: 10px 35px 10px 35px;
-          font-size: 1.6rem;
-          color: var(--text-color);
-          width: 100%;
-          &:focus
-            outline: none;
+      input[type="text"]
+        display: inline-block;
       .mobile-search-icon 
         position: absolute;
         left: 13px;

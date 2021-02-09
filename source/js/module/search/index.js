@@ -1,4 +1,5 @@
 import { postSearch } from './parser';
+import { throttle } from '../../../../module/utils';
 
 const headerDiv = document.getElementsByClassName('header-inner')[0],
   searchInput = document.querySelector('.header-inner .search input'),
@@ -14,17 +15,25 @@ const headerDiv = document.getElementsByClassName('header-inner')[0],
 function escapeRegExp (s) {
   return s.replace(/[(){}[\]|.*+?^$\\]/g, '\\$&');
 }
-function renderSearchData (keyword, counterEl, resultEl) {
+
+function renderSearchData (keyword, counterNode, resultNode) {
+  keyword = keyword.trim();
   let rkey = new RegExp(escapeRegExp(keyword), 'gi');
-  const data = {
-    posts: window.searchData.posts.map(post => postSearch(post, rkey)).filter(data => data !== null),
-    pages: window.searchData.pages.map(post => postSearch(post, rkey)).filter(data => data !== null),
-  };
-  const html = [...data.pages, ...data.posts]
-    .sort((a, b) => b.weight - a.weight).map(o => o.output).join('');
-  let counter = data.posts.length + data.pages.length;
-  counterEl.innerHTML = `一共搜索到 ${counter} 个结果`;
-  resultEl.innerHTML = html;
+  if (!keyword.trim()) {
+    const counter = 0, html = '';
+    counterNode.innerHTML = `一共搜索到 ${counter} 个结果`;
+    resultNode.innerHTML = html;
+  } else {
+    const data = {
+      posts: window.searchData.posts.map(post => postSearch(post, rkey)).filter(data => data !== null),
+      pages: window.searchData.pages.map(post => postSearch(post, rkey)).filter(data => data !== null),
+    };
+    const html = [...data.pages, ...data.posts]
+      .sort((a, b) => b.weight - a.weight).map(o => o.output).join('');
+    const counter = data.posts.length + data.pages.length;
+    counterNode.innerHTML = `一共搜索到 ${counter} 个结果`;
+    resultNode.innerHTML = html;
+  }
 }
 
 function initializeSearchData () {
@@ -49,12 +58,13 @@ function initializeSearchData () {
   }
 }
 
+
 function bindEvent () {
   searchInput.addEventListener('focus', () => searchOpen('desktop'), false);
-  searchInput.addEventListener('keyup', searchSubmit, false);
+  searchInput.addEventListener('keyup', throttle(searchSubmit, 500), false);
 
   mobileSearchInput.addEventListener('focus', () => searchOpen('mobile'), false);
-  mobileSearchInput.addEventListener('keyup', mobileSearchSubmit, false);
+  mobileSearchInput.addEventListener('keyup', throttle(mobileSearchSubmit, 500), false);
 
   searchCloseBtn.addEventListener('click', () => searchClose('desktop', true), false);
   mobileSearchCloseBtn.addEventListener('click', () => searchClose('mobile', true), false);
@@ -65,7 +75,7 @@ function bindEvent () {
   });
 }
 function searchOpen (type) {
-  if(type === 'mobile') {
+  if (type === 'mobile') {
     headerDiv.classList.add('mobile-search-active');
     searchBox.classList.add('active', 'mobile');
   } else {
@@ -76,7 +86,7 @@ function searchOpen (type) {
   if (!window.searchData) initializeSearchData();
 }
 function searchClose (type, clearAll) {
-  if(type === 'mobile') {
+  if (type === 'mobile') {
     headerDiv.classList.remove('mobile-search-active');
     searchBox.classList.remove('active', 'mobile');
     if (clearAll) {
@@ -95,42 +105,39 @@ function searchClose (type, clearAll) {
     searchCounter.innerHTML = '';
   }
 }
-export function searchSubmit (e) {
+
+function searchSubmit (e) {
   if (e && e.keyCode === 27) {
     searchClose('desktop', false);
     e.target.blur();
   }
   const str = searchInput.value;
   if (window.searchData) {
-    if (str) {
-      renderSearchData(str, searchCounter, searchResult);
-    }
+    renderSearchData(str, searchCounter, searchResult);
   } else {
     console.error('searchData not defined!');
   }
 }
 
-export function mobileSearchSubmit (e) {
+function mobileSearchSubmit (e) {
   if (e && e.keyCode === 27) {
     searchClose('mobile', false);
     e.target.blur();
   }
   const str = mobileSearchInput.value;
   if (window.searchData) {
-    if (str) {
-      renderSearchData(str, searchCounter, searchResult);
-    }
+    renderSearchData(str, searchCounter, searchResult);
   } else {
     console.error('searchData not defined!');
   }
 }
 
-export function searchInit() {
-  bindEvent ();
+export function searchInit () {
+  bindEvent();
 }
 
 export function mobileSearchControl (method) {
-  if(method === 'open') {
+  if (method === 'open') {
     headerDiv.classList.add('mobile-search-active');
     mobileSearchInput.focus();
   } else {

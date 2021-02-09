@@ -1,5 +1,5 @@
 import { applyCustomDarkModeSettings, toggleDarkMode } from './module/darkmode';
-import { searchInit, mobileSearchSubmit, searchSubmit, mobileSearchControl } from './module/search';
+import { searchInit, mobileSearchControl } from './module/search';
 
 (function (doc) {
   const headerDiv = doc.getElementsByClassName('header-inner')[0],
@@ -63,9 +63,6 @@ import { searchInit, mobileSearchSubmit, searchSubmit, mobileSearchControl } fro
   }
 
   init();
-
-  window.searchSubmit = searchSubmit;
-  window.mobileSearchSubmit = mobileSearchSubmit;
 
   doc.onscroll = function () {
     if (doc.documentElement.scrollTop < 10) headerDiv.classList.remove('header-shadow');
