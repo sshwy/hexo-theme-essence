@@ -16,7 +16,7 @@
   "license": "GPL-3.0-or-later",
   "devDependencies": {
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^7.18.0"
+    "eslint": "^7.19.0"
   },
   "config": {
     "commitizen": {
@@ -27,7 +27,7 @@
     "hexo-util": "^2.4.0",
     "htmlparser2": "^6.0.0",
     "keyword-extractor": "0.0.19",
-    "webpack": "^5.18.0"
+    "webpack": "^5.21.2"
   },
   "peerDependencies": {
     "hexo-renderer-stylus": ">= 2.0.1 < 3",

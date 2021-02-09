@@ -45,9 +45,9 @@
         <% if (p.tags && p.tags.length){ %>
           <div class="post-list-tags">
             <% p.tags.forEach((tag, i) => { %>
-              <span class="tag"><a class="tag" href="<%=url_for(tag.path)%>">
-                <%= '#' + tag.name %>
-              </a></span>
+              <span class="tag"><a class="tag" href="<%=url_for(tag.path)%>"><%=
+               '#' + tag.name
+              %></a></span>
             <% }) %>
           </div>
         <% } %>

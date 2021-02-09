@@ -7,17 +7,12 @@
 
 /* global hexo */
 
-const jsYaml = require('js-yaml');
 const crypto = require('crypto');
 const fs = require('fs');
 const moment = require('moment');
 const timezone = hexo.config.timezone || 'Asia/Shanghai';
+const { parseFrontMatter, replaceFrontMatter } = require('./utils')
 
-function parseFrontMatter(raw){
-  const frontMatterMatch = raw.match(/^---\n(.*?)\n---\n/s);
-  if (frontMatterMatch === null) return null;
-  return jsYaml.load(frontMatterMatch[1] || '', { schema: jsYaml.JSON_SCHEMA });
-}
 function shaHash(raw){
   let shasum = crypto.createHash('sha1');
   shasum.update(raw);
@@ -27,7 +22,7 @@ function updatePostHash (data) {
   if(this.theme.config.historyHash === false || data.historyHash === false) return data;
 
   const obj = parseFrontMatter(data.raw);
-  if(obj === null)return;
+  if(obj === null)return data;
 
   const rawContent = data.raw.replace(/^---\n(.*?)\n---\n/s, ''),
     currentTime = moment().tz(timezone),
@@ -49,9 +44,7 @@ function updatePostHash (data) {
     return data;
   }
 
-  const newFrontMatterStr = jsYaml.dump(obj, { indent: 2 });
-  const newRaw = data.raw.replace(/^---\n(.*?)\n---\n/s, () => `---\n${newFrontMatterStr}---\n`);
-
+  const newRaw = replaceFrontMatter(data.raw, obj) 
   fs.writeFileSync(data.full_source, newRaw, { encoding: 'utf8' });
 
   if (data.historyHash) data.historyHash.unshift(shastr);
