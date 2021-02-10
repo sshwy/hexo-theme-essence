@@ -21,7 +21,7 @@ function getCookie (cname) {
   return '';
 }
 
-window.CookieTools = {
-  setCookie: setCookie,
-  getCookie: getCookie
+export {
+  setCookie,
+  getCookie
 };

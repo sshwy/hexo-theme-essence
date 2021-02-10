@@ -2,6 +2,10 @@ import { applyCustomDarkModeSettings, toggleDarkMode } from './module/darkmode';
 import { searchInit, mobileSearchControl } from './module/search';
 
 (function (doc) {
+  document.addEventListener('DOMContentLoaded', function () {
+    window.decryptFromCookie();
+  });
+
   const headerDiv = doc.getElementsByClassName('header-inner')[0],
     oMenuBtn = doc.getElementById('menu-button'),
     oMenuList = doc.getElementById('menu-list'),

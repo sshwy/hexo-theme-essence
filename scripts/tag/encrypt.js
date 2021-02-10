@@ -20,7 +20,7 @@ function encrypt (key, plain) { //加密
 var totid_encrypt = 0;
 
 function encryptTag (args, content) {
-  let key = args[0] || '.';
+  let key = md5str(args[0] || '.');
   let hint = args.slice(1).join(' ') || '';
   let str = hexo.render.renderSync({ text: content, engine: 'markdown' });
   let sid = totid_encrypt.toString();

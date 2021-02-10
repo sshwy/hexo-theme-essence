@@ -1,82 +1,32 @@
-import renderKatex from './module/katex';
 import { md5str } from '../../module/utils';
 import { i2c, c2i, sz } from '../../module/cipherCode';
+import { setCookie, getCookie } from './cookie';
+import updateToc from './module/updateToc';
+import renderKatex from './module/katex';
 
-window.md5 = md5str;
-
-window.renderKatex = () => renderKatex({
+const RenderKatex = () => renderKatex({
   output: 'html',
-  macros: { }, // CANT REMOVE (or it will cause render error)
+  macros: {}, // CANT REMOVE (or it will cause render error)
 });
 
-window.updateToc = function () {
-  const old = document.getElementsByClassName('toc-content')[0];
-  if(!old)return;
+window.renderKatex = RenderKatex;
 
-  const sectionTitles = document.getElementsByClassName('post-content')[0].getElementsByClassName('headerlink');
-
-  let toc = document.createElement('ol');
-  toc.setAttribute('class', 'toc');
-
-  let sectionNumbers = [0, 0, 0, 0, 0, 0], nodes = [toc, 0, 0, 0, 0, 0];
-
-  for (const node of sectionTitles) {
-    const data = {
-      id: node.id || node.parentElement.id || '',
-      level: parseInt(node.parentElement.tagName.charAt(1)) - 1,
-      text: node.parentElement.textContent
-    };
-
-    sectionNumbers[data.level]++;
-    sectionNumbers[data.level + 1] = 0;
-    const tocNumber = sectionNumbers.slice(1, data.level + 1).join('.') + '. ';
-    const tocText = data.text;
-
-    let spanTocNumber = document.createElement('span');
-    spanTocNumber.setAttribute('class', 'toc-number');
-    spanTocNumber.innerHTML = tocNumber;
-
-    let spanTocText = document.createElement('span');
-    spanTocText.setAttribute('class', 'toc-text');
-    spanTocText.innerHTML = tocText;
-
-    let a = document.createElement('a');
-    a.setAttribute('class', 'toc-link');
-    a.setAttribute('href', '#' + data.id);
-    a.appendChild(spanTocNumber);
-    a.appendChild(spanTocText);
-
-    let liItem = document.createElement('li');
-    liItem.setAttribute('class', 'toc-item toc-level-' + (data.level + 1).toString());
-    liItem.appendChild(a);
-
-    nodes[data.level] = liItem;
-
-    if (nodes[data.level - 1].tagName != 'OL') {
-      let olItem = document.createElement('ol');
-      olItem.setAttribute('class', 'toc-child');
-      nodes[data.level - 1].appendChild(olItem);
-      nodes[data.level - 1] = olItem;
-    }
-    nodes[data.level - 1].appendChild(liItem);
-  }
-
-  old.innerHTML = '';
-  old.appendChild(toc);
-};
-
-window.decrypt = function (idx) {
+window.decrypt = function (idx, skey, record) {
   const oPart = document.getElementById('encpart' + idx),
     oContent = document.getElementById('encrypted' + idx),
     oFeedback = oPart.querySelector('.inputfeedback span');
 
   idx = idx.toString();
-  const key = oPart.querySelector('input[type="text"]').value;
-  var keymd5 = window.md5(key);
+  const key = skey || md5str(oPart.querySelector('input[type="text"]').value || '');
+  console.log('key:', key,'id:', idx);
+  var keymd5 = md5str(key);
   if (document.getElementById('enckey' + idx).innerHTML != keymd5) {
     console.log('Your key is not correct!');
     oFeedback.innerHTML = 'Your key is not correct!';
     return;
+  }
+  if(!getCookie(`enckey${idx}`) || getCookie(`enckey${idx}`) !== key){
+    setCookie(`enckey${idx}`, key, 7);
   }
   oContent.style.display = '';
   let cipher = oContent.innerHTML;
@@ -94,9 +44,30 @@ window.decrypt = function (idx) {
   oContent.innerHTML = plain;
   oPart.style.display = 'none';
 
-  visitorRecord(idx);
-  window.renderKatex();
-  window.updateToc();
+  if(record !== false) visitorRecord(idx);
+  RenderKatex();
+  updateToc();
+};
+
+window.decryptFromCookie = function () {
+  console.log('auto decrypt');
+  const arr = document.getElementsByClassName('encrypt-container');
+  let flag = true;
+  while(flag) {
+    flag = false;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].parentElement.style.display === 'none') continue;
+      const id = Number(arr[i].parentElement.id.replace('encpart', ''));
+      if (isNaN(id)) continue;
+      const md5key = arr[i].parentElement.children[1].innerText;
+      const storedKey = getCookie(`enckey${id}`);
+      if (storedKey && md5str(storedKey) === md5key) {
+        window.decrypt(id, storedKey, false);
+        flag = true;
+        break;
+      }
+    }
+  }
 };
 
 function visitorRecord (idx) {
