@@ -6,7 +6,9 @@ Essence is a functional and darkmode featured theme for Hexo.
 
 Visit [Sshwy's Notes](https://notes.sshwy.name) for preview.
 
-## Features :hammer:
+[TOC]
+
+## Features Quick View :hammer:
 
 - :first_quarter_moon: Dark mode.
 - :lock: Encrypt tag for paragraphs of your post.
@@ -39,13 +41,13 @@ It's worth reminding that `hexo-renderer-stylus` and `hexo-renderer-ejs` is hexo
 
 First of all, create a copy of [default configuration](https://github.com/sshwy/hexo-theme-essence/blob/main/_config.yml) under `<YourBlog>/`, renaming it to `_config.essence.yml`. 
 
-After that, you can follow the comments to modify it just as you want :smile:.
+Then you can follow the comments to modify it just as you want :smile:.
 
-If you use traditional way to install, you can also modify `<YourBlog>/themes/essence/_config.yml` directly. However it is not recommended.
+If you use traditional way to install, Modifying `<YourBlog>/themes/essence/_config.yml` directly is also a way, but not recommended.
 
 ## Contributing :fountain_pen:
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome. For major changes and feature requests, please open an issue first to discuss what you would like to change or request.
 
 ## License :page_facing_up:
 

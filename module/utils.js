@@ -59,6 +59,12 @@ function encodeUTF8(s) {
   return r;
 }
 
+/**
+ * 计算文本的 md5，返回十六进制数对应的字符串
+ *
+ * @param {string} str
+ * @return {string} 
+ */
 function md5str (str) {
   let data = new Uint8Array(encodeUTF8(str));
   let result = md5(data);

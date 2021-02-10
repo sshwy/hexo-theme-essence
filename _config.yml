@@ -57,7 +57,7 @@ searchData:
 # Place custom css stylesheet file under base_dir/prism/
 # MAKE SURE to replace the .css suffix with .styl!
 # view theme_dir/prism/ for builtin prism themes
-prismjs: # 只在主题配置中生效
+prismjs:
   theme: # light mode and dark mode theme respectively
     light: prism # name of the style file, no suffix required
     dark: prism-vsc-dark-plus
