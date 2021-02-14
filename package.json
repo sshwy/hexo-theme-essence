@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-essence",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "A Simple Clean Theme for Hexo with user-friendly Navigation System.",
   "scripts": {
     "test": "echo \"No test specified\"",
