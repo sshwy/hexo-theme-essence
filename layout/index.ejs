@@ -1,7 +1,25 @@
+<%
+  let flag = false
+%>
+
 <% if(page.current == 1){ %>
-  <div class="index-title">
-    <span><h1><%=theme.headline%></h1></span>
-  </div>
+  <div class="index-title"><div class="index-banner">
+    <h1><%=theme.headline%></h1>
+    <% if(theme.homePageMeta.enable){ %>
+      <div class="homepage-meta">
+        <% for(const name in theme.homePageMeta.social) { %> 
+          <% if (flag === false){ flag = true } else { %>
+            <span class="homepagemetasep"></span>
+          <% } %>
+          <a href="<%- theme.homePageMeta.social[name].link %>" target="_blank" rel="noreferrer noopener">
+            <span class="<%- theme.homePageMeta.social[name].icon %>"> <%-
+              theme.homePageMeta.social[name].title || ''
+            %></span>
+          </a>
+        <% } %> 
+      </div>
+    <% } %>
+  </div></div>
 <% } %>
 
 <% if(page.current == 1){ %>
