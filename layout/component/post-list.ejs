@@ -28,30 +28,6 @@
         <h2><%= Year ? p.yearText : '' %> <%= Month ? p.MonthText : '' %></h2>
       </div>
     <% } %>
-    <div class="post-list-item">
-      <div class="post-list-title">
-        <a href="<%=p.url%>" target="<%=p.target%>">
-          <%=p.title%>
-        </a>
-      </div>
-      <div class="post-list-meta">
-        <div class="post-list-time">
-          <time datetime="<%= p.datetime %>" title="<%= p.fullDate %>">
-            <span class="month"><%= p.monthText %></span>
-            <span class="day"><%= p.dayText %></span>
-            <span class="time"><%= p.timeText %></span>
-          </time>
-        </div>
-        <% if (p.tags && p.tags.length){ %>
-          <div class="post-list-tags">
-            <% p.tags.forEach((tag, i) => { %>
-              <span class="tag"><a class="tag" href="<%=url_for(tag.path)%>"><%=
-               '#' + tag.name
-              %></a></span>
-            <% }) %>
-          </div>
-        <% } %>
-      </div>
-    </div>
+    <%- partial('./post-meta-card', {data: p}) %>
   <% }); %>
 </div>

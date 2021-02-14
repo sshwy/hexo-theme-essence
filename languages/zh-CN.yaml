@@ -17,6 +17,7 @@ post:
 index:
   recently: 最近更新
   more: 更多文章
+  recommend: 推荐文章
 archive:
   title: 归档
   counter:

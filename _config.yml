@@ -71,6 +71,15 @@ prismjs:
 friends:
   enable: true
 
+# display recently updated posts
+recently:
+  enable: true
+  count: 6 # max count
+
+# display recommended posts
+recommend:
+  enable: true
+
 # display social information in index page
 # set title to false to display icon only
 homePageMeta:

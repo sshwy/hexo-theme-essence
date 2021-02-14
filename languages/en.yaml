@@ -17,6 +17,7 @@ post:
 index:
   recently: Recently Updated
   more: More Articles
+  recommend: Recommended
 archive:
   title: Archive
   counter:

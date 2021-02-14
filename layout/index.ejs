@@ -2,8 +2,8 @@
   let flag = false
 %>
 
-<% if(page.current == 1){ %>
-  <div class="index-title"><div class="index-banner">
+<div class="index-title">
+  <div class="index-banner">
     <h1><%=theme.headline%></h1>
     <% if(theme.homePageMeta.enable){ %>
       <div class="homepage-meta">
@@ -19,33 +19,27 @@
         <% } %> 
       </div>
     <% } %>
-  </div></div>
-<% } %>
+  </div>
+</div>
 
-<% if(page.current == 1){ %>
+<% if (theme.recently.enable) { %>
   <div class="index-section-title">
     <h2><%= __('index.recently') %></h2>
   </div>
+  <section class="recently-updated archive">
+    <%- partial('component/post-list', { listPosts: page.posts.slice(0,theme.recently.count), Year: false, Month: false }) %>
+  </section>
 <% } %>
-<section class="posts">
-  <% page.posts.each(function (post) { %>
-    <div class="index-post">
-      <div class="index-post-title">
-        <span class="post-meta post-time" title="<%= __('post.updateTime') + __('colon') + lctzDate(post.date, 'LLLL (zZ)') %>">
-          <%- lctzDate(post.date, "LL") %>
-        </span>
-        <a class="post-title-link" href="<%- url_for(post.path) %>">
-          <%= post.title %>
-        </a>
-      </div>
-    </div>
-  <% }) %>
-</section>
 
-<% if(theme.index_pagination){ %>
-  <%- partial('component/paginator') %>
-<% } else { %>
-  <div class="more-articles">
-    <a href="/archives"><%= __('index.more') %></a>
+<% if (theme.recommend.enable) { %>
+  <div class="index-section-title">
+    <h2><%= __('index.recommend') %></h2>
   </div>
+  <section class="recommend archive">
+    <%- partial('component/post-list', { listPosts: page.posts.filter(p => p.recommend), Year: false, Month: false }) %>
+  </section>
 <% } %>
+
+<div class="more-articles">
+  <a href="/archives"><%= __('index.more') %></a>
+</div>
