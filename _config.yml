@@ -48,7 +48,6 @@ valine:
   appid:
   appkey:
   placeholder:
-  notify: true
   visitor: true
 
 searchData:
