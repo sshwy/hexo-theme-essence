@@ -1,11 +1,11 @@
 <div class="post-meta">
   <div class="post-info">
-    <span class="post-time iconfont icon-shizhong" title="<%- lctzDate(page.date, "LLLL (zZ)") %>" ><%-
+    <span class="post-time iconfont icon-time" title="<%- lctzDate(page.date, "LLLL (zZ)") %>" ><%-
       __('post.updateAt', lctzDate(page.date, "LL")) 
     %></span>
     <% if (theme.wordcount){ %>
       <span class="icon infosep"></span>
-      <span class="post-wordcount iconfont icon-yuedu"><%= 
+      <span class="post-wordcount iconfont icon-text"><%= 
         __('post.wordCount', wordCount(page.raw)) 
       %></span>
     <% } %>

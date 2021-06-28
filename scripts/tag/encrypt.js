@@ -31,6 +31,9 @@ function encryptTag (args, content) {
   str = htmlTag('div', { id: 'encrypted' + sid, style: 'display: none;' }, encrypt(key, str), false);
   str += htmlTag('div', { id: 'encpart' + sid },
     htmlTag('div', { class: 'encrypt-container' },
+      htmlTag('span', {
+        class: 'iconfont icon-lock encrypt-icon'
+      } , '') +
       htmlTag('input', {
         type: 'text',
         placeholder: hint,
