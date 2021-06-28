@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "15838501",
+      "name": "menu",
+      "font_class": "menu1",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "15838428",
+      "name": "arrow-right-circle",
+      "font_class": "arrow-right-circle",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "15838437",
+      "name": "arrow-left-circle",
+      "font_class": "arrow-left-circle",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "15838462",
+      "name": "discount",
+      "font_class": "discount",
+      "unicode": "e66d",
+      "unicode_decimal": 58989
+    },
+    {
+      "icon_id": "15838486",
+      "name": "history",
+      "font_class": "history",
+      "unicode": "e674",
+      "unicode_decimal": 58996
+    },
+    {
+      "icon_id": "15838497",
+      "name": "lock",
+      "font_class": "lock",
+      "unicode": "e676",
+      "unicode_decimal": 58998
+    },
+    {
+      "icon_id": "15838539",
+      "name": "text",
+      "font_class": "text",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "15838540",
+      "name": "time",
+      "font_class": "time",
+      "unicode": "e681",
+      "unicode_decimal": 59009
+    },
+    {
       "icon_id": "15722706",
       "name": "email",
       "font_class": "email",
@@ -34,20 +90,6 @@
       "unicode_decimal": 58906
     },
     {
-      "icon_id": "15659289",
-      "name": "阅读",
-      "font_class": "yuedu",
-      "unicode": "e6b6",
-      "unicode_decimal": 59062
-    },
-    {
-      "icon_id": "16555067",
-      "name": "时钟",
-      "font_class": "shizhong",
-      "unicode": "e61b",
-      "unicode_decimal": 58907
-    },
-    {
       "icon_id": "7826085",
       "name": "close",
       "font_class": "baseline-close-px",
@@ -60,13 +102,6 @@
       "font_class": "search",
       "unicode": "e73c",
       "unicode_decimal": 59196
-    },
-    {
-      "icon_id": "278288",
-      "name": "menu",
-      "font_class": "menu",
-      "unicode": "e628",
-      "unicode_decimal": 58920
     },
     {
       "icon_id": "1004137",
@@ -95,20 +130,6 @@
       "font_class": "eye",
       "unicode": "e6e0",
       "unicode_decimal": 59104
-    },
-    {
-      "icon_id": "584791",
-      "name": "arrow_right",
-      "font_class": "arrowrightcircle1187580easyiconnet",
-      "unicode": "e631",
-      "unicode_decimal": 58929
-    },
-    {
-      "icon_id": "584802",
-      "name": "arrow_left",
-      "font_class": "arrowleftcircle1187576easyiconnet",
-      "unicode": "e639",
-      "unicode_decimal": 58937
     },
     {
       "icon_id": "401150",
