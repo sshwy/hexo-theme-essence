@@ -24,7 +24,7 @@
     }
   },
   "dependencies": {
-    "hexo-util": "^2.4.0",
+    "hexo-util": "^2.5.0",
     "htmlparser2": "^6.0.0",
     "keyword-extractor": "0.0.19",
     "webpack": "^5.21.2"
