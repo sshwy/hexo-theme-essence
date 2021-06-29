@@ -17,7 +17,6 @@ Visit [Sshwy's Notes](https://notes.sshwy.name) for preview.
 - :cloud: Leancloud storage project for Valine.
 - :iphone: Responsive layout.
 - :mag: Local search.
-- :gear: [prism-themes](https://github.com/PrismJS/prism-themes) supported as well as custom themes.
 
 ## Installation :inbox_tray:
 
