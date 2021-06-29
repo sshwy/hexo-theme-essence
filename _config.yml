@@ -3,13 +3,13 @@ headline: Hi, There!
 
 # navbar menu link
 menu:
-#  Archives: # title of list item
-#    icon: iconfont icon-work # icon is displayed leftside
-#    link: /archives/ # link
-#  Directory:
-#    icon: iconfont icon-folder-close
-#    link: /directory/
-#    icon_only: true # to not display title
+  # Archives: # title of list item
+  #   icon: iconfont icon-work # icon is displayed leftside
+  #   link: /archives/ # link
+  # Directory:
+  #   icon: iconfont icon-folder-close
+  #   link: /directory/
+  #   icon_only: true # to not display title
 
 # displayed on page footer
 copyright:
@@ -86,17 +86,13 @@ recommend:
 # display social information in index page
 # set title to false to display icon only
 homePageMeta:
-  enable: true
-  social:
-    github:
-      icon: iconfont icon-github
-      link: https://github.com/sshwy
-      title: sshwy
-    codeforcesID:
-      icon: iconfont icon-codeforces
-      link: https://codeforces.com/profile/sshwyR
-      title: sshwyR
-    email:
-      icon: iconfont icon-email
-      link: mailto:jy.cat@qq.com
-      title: false
+  enable: false
+  # social:  # if enabled, configure like this
+  #   github:
+  #     icon: iconfont icon-github
+  #     link: https://github.com/sshwy
+  #     title: false # icon only
+  #   codeforcesID:
+  #     icon: iconfont icon-codeforces
+  #     link: https://codeforces.com/profile/sshwyR
+  #     title: sshwyR
