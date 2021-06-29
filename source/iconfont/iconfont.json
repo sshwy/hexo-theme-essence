@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "15838469",
+      "name": "explain",
+      "font_class": "explain",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "15838481",
+      "name": "folder-close",
+      "font_class": "folder-close",
+      "unicode": "e671",
+      "unicode_decimal": 58993
+    },
+    {
+      "icon_id": "15838547",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
+      "icon_id": "15838549",
+      "name": "work",
+      "font_class": "work",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    },
+    {
+      "icon_id": "15838613",
+      "name": "folder-filling",
+      "font_class": "folder-filling",
+      "unicode": "e68b",
+      "unicode_decimal": 59019
+    },
+    {
       "icon_id": "15838501",
       "name": "menu",
       "font_class": "menu1",

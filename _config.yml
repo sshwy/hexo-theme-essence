@@ -24,8 +24,8 @@ katex: true
 # button fixed on the right bottom side
 button:
   back2top: true # back to top
-  darkmode: true # switch light/dark mode
-  comment: true # go to valine comment
+  darkmode: true # light/dark mode toggler
+  comment: true # jump to valine comment
 
 # if false, the index page will only show your first several articles 
 # without paginator.
@@ -76,6 +76,7 @@ recently:
   count: 6 # max count
 
 # display recommended posts
+# write `recommend: true` in frontmatter to make your article recommended
 recommend:
   enable: true
 
