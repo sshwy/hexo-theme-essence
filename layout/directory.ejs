@@ -1,7 +1,7 @@
 <% if(theme.directory.enable){ %>
   <div class="archive directory">
     <header>
-      <h1 class="page-title"><span class="iconfont icon-folder"></span>
+      <h1 class="page-title"><span class="iconfont icon-folder-filling"></span>
         <% if(page.par_path){ %>
           <%=theme.directory.wordmap[page.dir]%>
         <% } else { %>
@@ -21,7 +21,7 @@
       <div class="dir-list">
         <% page.dirs.forEach(function(dir){ %>
           <div class="dir-list-item">
-            <span class="iconfont icon-folder" style="font-size: 1em"></span>
+            <span class="iconfont icon-folder-filling" style="font-size: 1em"></span>
             <a href="<%= url_for(page.dir_path + '/' + dir) %>">
               <span><%= theme.directory.wordmap[dir] || dir %></span>
             </a>

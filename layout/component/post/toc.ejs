@@ -1,6 +1,10 @@
-<% if (page.content && page.toc!=false){ %>
+<% if (page.content && page.toc != false){ %>
   <div class="toc">
-    <h2 class="toc-title"><%= __('post.toc') %></h2>
+    <h2 class="toc-title">
+      <span
+       class="iconfont icon-explain" 
+       style="font-size: 1em;padding-right: 5px;"></span
+      ><%= __('post.toc') %></h2>
     <div class="toc-content">
       <%- anchorToc(page.content) %>
     </div>

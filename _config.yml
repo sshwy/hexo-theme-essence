@@ -3,10 +3,13 @@ headline: Hi, There!
 
 # navbar menu link
 menu:
-  Archives: # title
-    link: /archives/ # link
-  Directory:
-    link: /directory/
+#  Archives: # title of list item
+#    icon: iconfont icon-work # icon is displayed leftside
+#    link: /archives/ # link
+#  Directory:
+#    icon: iconfont icon-folder-close
+#    link: /directory/
+#    icon_only: true # to not display title
 
 # displayed on page footer
 copyright:

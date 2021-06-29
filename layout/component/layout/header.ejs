@@ -19,7 +19,7 @@
               <li class="menu-item">
                 <a href="<%- url_for(theme.menu[name].link) %>" class="menu-item-link">
                   <% if(theme.menu[name].icon){ %>  
-                    <span class="<%= theme.menu[name].icon %>"></span>
+                    <span class="menu-item-icon <%= theme.menu[name].icon %>"></span>
                   <% } if(!(theme.menu[name].icon_only)){ %>  
                     <%= name %>
                   <% } %>
