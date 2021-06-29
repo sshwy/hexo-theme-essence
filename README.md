@@ -45,6 +45,98 @@ Then you can follow the comments to modify it just as you want :smile:.
 
 If you use traditional way to install, Modifying `<YourBlog>/themes/essence/_config.yml` directly is also a way, but not recommended.
 
+## Builtin Tag Plugins
+
+Essence prepared some useful hexo tag plugins for you.
+
+### Codeforces User ID
+
+Inserts a user handle with Codeforces-like color style.
+
+```
+{% codeforces rating_label @ username %}
+{% cf rating_label @ username %}
+```
+
+`rating_label` insensitively can be:
+
+- `lgm` for *legendary grand master*
+- `igm` for *international grand master*
+- `gm` for *grand master*
+- `im` for *international master*
+- `m` for *master*
+- `cm` for *candidate master*
+- `e` for *expert*
+- `s` for *specialist*
+- `p` for *pupil*
+- `unr` for *unrated*
+
+Examples:
+
+```
+{% codeforces im @ sshwyR %}
+{% cf im @ sshwyR %}
+```
+
+### Details Block
+
+Produce a HTML details block:
+
+```
+{% details [open] [@ title] %}
+[content]
+{% enddetails %}
+```
+
+Examples:
+
+```
+{% details open @ Default set to open %}
+
+Details **Content**
+
+{% enddetails %}
+```
+
+```
+{% details @ Default set to close %}
+
+Details **Content**
+
+{% enddetails %}
+```
+
+```
+{% details %}
+
+No title
+
+{% enddetails %}
+```
+
+### Post Content Encrypt
+
+Encrypt part of your post with custom password.
+
+```
+{% enc password [hint] %}
+[content]
+{% endenc %}
+```
+
+Examples:
+
+```
+{% enc 123456 password: 123456 (space is not allowed in password but allowed in hint) %}
+test
+{% enc 123456 123456 %}
+Hi, there!
+{% endenc %}
+{% endenc %}
+```
+
+**known issue**: Can't work with markdown code fence block inside. solution: [hexo code block tag plugin](https://hexo.io/docs/tag-plugins.html#Code-Block)
+
 ## Contributing :fountain_pen:
 
 Pull requests are welcome. For major changes and feature requests, please open an issue first to discuss what you would like to change or request.
