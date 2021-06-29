@@ -1,16 +1,15 @@
 import { postSearch } from './parser';
 import { throttle } from '../../../../module/utils';
 
-const headerDiv = document.getElementsByClassName('header-inner')[0],
-  searchInput = document.querySelector('.header-inner .search input'),
-  searchBox = document.getElementsByClassName('search-box')[0],
-  searchContainer = searchBox.getElementsByClassName('search-container')[0],
-  searchCounter = searchContainer.getElementsByClassName('search-count')[0],
-  searchResult = searchContainer.getElementsByClassName('search-result')[0],
-  searchCloseBtn = document.querySelector('.header-inner .search .search-close-icon'),
-  mobileSearchCloseBtn = document.querySelector('.header-inner .mobile-search .search-close-icon'),
-  searchShadow = document.getElementsByClassName('search-shadow')[0],
-  mobileSearchInput = document.querySelector('.mobile-search input');
+const dq = document.querySelector.bind(document);
+const headerDiv = dq('.header-inner'),
+  searchInput = dq('.header-inner .search input'),
+  searchBox = dq('.search-box'),
+  searchContainer = dq('.search-container'),
+  searchCounter = dq('.search-count'),
+  searchResult = dq('.search-result'),
+  searchShadow = dq('.search-shadow'),
+  mobileSearchInput = dq('.mobile-search input');
 
 function escapeRegExp (s) {
   return s.replace(/[(){}[\]|.*+?^$\\]/g, '\\$&');
@@ -66,7 +65,9 @@ function bindEvent () {
   mobileSearchInput.addEventListener('focus', () => searchOpen('mobile'), false);
   mobileSearchInput.addEventListener('keyup', throttle(mobileSearchSubmit, 500), false);
 
+  const searchCloseBtn = document.querySelector('.header-inner .search .search-close-icon');
   searchCloseBtn.addEventListener('click', () => searchClose('desktop', true), false);
+  const mobileSearchCloseBtn = document.querySelector('.header-inner .mobile-search .search-close-icon');
   mobileSearchCloseBtn.addEventListener('click', () => searchClose('mobile', true), false);
 
   searchBox.addEventListener('click', () => searchClose(false), false);

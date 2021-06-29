@@ -192,8 +192,10 @@ function reduceCategs (posts) {
 
 hexo.extend.generator.register('json-content', function (site) {
   const { config } = this.theme;
+  if(!config.search.enable) return [];
+
   const defs = { meta: true };
-  const opts = config.searchData || {};
+  const opts = config.search || {};
   const options = { ...defs, ...opts };
   const pages = has(options, 'pages') ? options.pages : defaults.pages;
   const posts = has(options, 'posts') ? options.posts : defaults.posts;

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { applyCustomDarkModeSettings, toggleDarkMode } from './module/darkmode';
 import { searchInit, mobileSearchControl } from './module/search';
 
@@ -17,7 +18,9 @@ import { searchInit, mobileSearchControl } from './module/search';
     setFontSize();
     bindEvent();
     applyCustomDarkModeSettings();
-    searchInit();
+    if (HEXO_THEME_CONFIG.search.enable) {
+      searchInit();
+    }
   }
 
   function setFontSize () {
@@ -33,7 +36,9 @@ import { searchInit, mobileSearchControl } from './module/search';
 
     if (cWidth > 768) {
       oMenuList.style.display = '';
-      mobileSearchControl('close');
+      if (HEXO_THEME_CONFIG.search.enable) {
+        mobileSearchControl('close');
+      }
     }
   }
 
@@ -45,7 +50,9 @@ import { searchInit, mobileSearchControl } from './module/search';
     oTop && oTop.addEventListener('click', backToTop, false);
     oCommentBtn && oCommentBtn.addEventListener('click', goToComment, false);
 
-    doc.getElementsByClassName('mobile-search-icon')[0].addEventListener('click', () => mobileSearchControl('open'), false);
+    if (HEXO_THEME_CONFIG.search.enable) {
+      doc.getElementsByClassName('mobile-search-icon')[0].addEventListener('click', () => mobileSearchControl('open'), false);
+    }
   }
 
   function toggleMenu () {

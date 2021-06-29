@@ -7,11 +7,13 @@
           <a href="<%- url_for() %>" class="logo header-title">
             <%= config.title %>
           </a>
-          <div class="mobile-search">
-            <input type="text" />
-            <span class="iconfont icon-search mobile-search-icon"></span>
-            <span class="iconfont icon-baseline-close-px search-close-icon"></span>
-          </div>
+          <% if (theme.search.enable) { %>
+            <div class="mobile-search">
+              <input type="text" />
+              <span class="iconfont icon-search mobile-search-icon"></span>
+              <span class="iconfont icon-baseline-close-px search-close-icon"></span>
+            </div>
+          <% } %>
         </div>
         <div class="navbar" id="menu-list">
           <ul class="menu">
@@ -28,16 +30,20 @@
             <% } %>
           </ul>
         </div>
-        <div class="search">
-          <input type="text" />
-          <span class="iconfont icon-search search-icon"></span>
-          <span class="iconfont icon-baseline-close-px search-close-icon"></span>
-        </div>
+        <% if (theme.search.enable) { %>
+          <div class="search">
+            <input type="text" />
+            <span class="iconfont icon-search search-icon"></span>
+            <span class="iconfont icon-baseline-close-px search-close-icon"></span>
+          </div>
+        <% } %>
       </div>
     </div>
-    <div class="search-shadow"> </div>
-    <div class="search-box">
-      <%- partial('./search-container', null, { cache: true }) %>
-    </div>
+    <% if (theme.search.enable) { %>
+      <div class="search-shadow"> </div>
+      <div class="search-box">
+        <%- partial('./search-container', null, { cache: true }) %>
+      </div>
+    <% } %>
   </div>
 </header>

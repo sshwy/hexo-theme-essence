@@ -53,8 +53,8 @@ valine:
   placeholder:
   visitor: true
 
-searchData:
-  drafts: false
+search:
+  enable: true
 
 # Place custom css stylesheet file under base_dir/prism/
 # MAKE SURE to replace the .css suffix with .styl!
