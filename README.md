@@ -20,10 +20,12 @@ Visit [Sshwy's Notes](https://notes.sshwy.name) for preview.
 
 ## Installation :inbox_tray:
 
-You can install it via npm:
+You can simply install it:
 
 ```bash
 npm install hexo-theme-essence --save
+# or
+yarn install hexo-theme-essence --save
 ```
 
 On another hand, the traditional way is still working, which means you clone this repository under `<YourBlog>/themes/essence/`.
@@ -31,7 +33,9 @@ On another hand, the traditional way is still working, which means you clone thi
 Whatever way you choose, please install these peer dependencies as well:
 
 ```bash
-npm install hexo-renderer-stylus hexo-renderer-ejs hexo-webpack --save
+npm install hexo-renderer-stylus hexo-renderer-ejs hexo-webpack@https://github.com/sshwy/hexo-webpack --save
+# or
+yarn install hexo-renderer-stylus hexo-renderer-ejs hexo-webpack@https://github.com/sshwy/hexo-webpack --save
 ```
 
 It's worth reminding that `hexo-renderer-stylus` and `hexo-renderer-ejs` is hexo's default render engine. `hexo-webpack` is used to package and minify JavaScript scripts.
