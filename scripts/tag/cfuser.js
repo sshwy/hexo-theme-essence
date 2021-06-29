@@ -5,7 +5,7 @@
 const { htmlTag } = require('hexo-util');
 
 function lgm (s) {
-  return htmlTag('strong', { class: 'lgm-head' }, s[0], false) 
+  return htmlTag('strong', { class: 'lgm-head' }, s[0], false)
     + htmlTag('strong', { class: 'lgm-tail' }, s.substring(1), false);
 }
 function com (s) {
@@ -14,7 +14,10 @@ function com (s) {
 function renderer (text, type, link) {
   type = (type || '').trim();
   return htmlTag('a', { href: link, target: '_blank', style: 'text-decoration: none;' },
-    htmlTag('span', { class: 'codeforces ' + type }, type === 'lgm' ? lgm(text) : com(text), false)
+    htmlTag('span', {
+      class: 'codeforces ' + type,
+      title: 'Codeforces ID'
+    }, type === 'lgm' ? lgm(text) : com(text), false)
     , false);
 }
 function codeforcesUser (args) {
