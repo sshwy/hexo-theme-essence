@@ -21,7 +21,7 @@
       <div class="dir-list">
         <% page.dirs.forEach(function(dir){ %>
           <div class="dir-list-item">
-            <span class="iconfont icon-folder-filling" style="font-size: 1em"></span>
+            <span class="iconfont icon-folder-filling dir-icon"></span>
             <a href="<%= url_for(page.dir_path + '/' + dir) %>">
               <span><%= theme.directory.wordmap[dir] || dir %></span>
             </a>
