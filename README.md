@@ -33,12 +33,12 @@ On another hand, the traditional way is still working, which means you clone thi
 Whatever way you choose, please install these peer dependencies as well:
 
 ```bash
-npm install hexo-renderer-stylus hexo-renderer-ejs hexo-webpack@https://github.com/sshwy/hexo-webpack --save
+npm install hexo-renderer-stylus hexo-renderer-ejs --save
 # or
-yarn install hexo-renderer-stylus hexo-renderer-ejs hexo-webpack@https://github.com/sshwy/hexo-webpack --save
+yarn install hexo-renderer-stylus hexo-renderer-ejs --save
 ```
 
-It's worth reminding that `hexo-renderer-stylus` and `hexo-renderer-ejs` is hexo's default render engine. `hexo-webpack` is used to package and minify JavaScript scripts.
+It's worth reminding that `hexo-renderer-stylus` and `hexo-renderer-ejs` is hexo's default render engine.
 
 ## Configuration :gear:
 
