@@ -19,6 +19,7 @@ copyright:
     link: https://creativecommons.org/licenses/by-sa/4.0/
 
 # whether update post hash automatically everytime running hexo
+# to disable post hash for single post, write `historyHash: false` in frontmatter
 historyHash: true
 
 # katex (client side render)
