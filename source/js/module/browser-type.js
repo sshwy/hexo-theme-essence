@@ -1,6 +1,6 @@
 // https://github.com/WuChenDi/Front-End/blob/master/03-JavaScript/01-JavaScript%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/browser-type.js
 // https://juejin.im/post/5d0220a8f265da1bcc193c6c
-window.browserTypeObject = (function BrowserType () {
+export default function getBrowserType () {
   // 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
   const ua = navigator.userAgent.toLowerCase();
   const testUa = regexp => regexp.test(ua);
@@ -148,4 +148,4 @@ window.browserTypeObject = (function BrowserType () {
     shell: shell,
     shellVs: shellVs
   };
-})();
+}

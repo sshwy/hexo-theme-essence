@@ -1,12 +1,13 @@
 /* eslint-disable no-undef */
 import { applyCustomDarkModeSettings, toggleDarkMode } from './module/darkmode';
 import { searchInit, mobileSearchControl } from './module/search';
+import getBrowserType from './module/browser-type';
+import { renderKatexNoConfig } from './module/katex';
+import { decrypt, decryptFromCookie } from './module/crypt';
+import runRTC from './module/rtc';
+
 
 (function (doc) {
-  document.addEventListener('DOMContentLoaded', function () {
-    window.decryptFromCookie();
-  });
-
   const headerDiv = doc.getElementsByClassName('header-inner')[0],
     oMenuBtn = doc.getElementById('menu-button'),
     oMenuList = doc.getElementById('menu-list'),
@@ -14,7 +15,17 @@ import { searchInit, mobileSearchControl } from './module/search';
     oDarkmodeBtn = doc.getElementById('darkmode-button'),
     oTop = doc.getElementById('top');
 
+
+  init();
+
   function init () {
+    window.browserTypeObject = getBrowserType();
+    window.renderKatex = renderKatexNoConfig;
+    window.decrypt = decrypt;
+    window.decryptFromCookie = decryptFromCookie;
+
+    runRTC();
+
     setFontSize();
     bindEvent();
     applyCustomDarkModeSettings();
@@ -43,6 +54,15 @@ import { searchInit, mobileSearchControl } from './module/search';
   }
 
   function bindEvent () {
+    doc.addEventListener('DOMContentLoaded', function () {
+      window.decryptFromCookie();
+    });
+
+    doc.onscroll = function () {
+      if (doc.documentElement.scrollTop < 10) headerDiv.classList.remove('header-shadow');
+      else headerDiv.classList.add('header-shadow');
+    };
+
     window.addEventListener('resize', setFontSize, false);
     oMenuBtn.addEventListener('click', toggleMenu, false);
 
@@ -73,10 +93,4 @@ import { searchInit, mobileSearchControl } from './module/search';
     doc.documentElement.scrollTop = doc.getElementById('vcomments').offsetTop - 70;
   }
 
-  init();
-
-  doc.onscroll = function () {
-    if (doc.documentElement.scrollTop < 10) headerDiv.classList.remove('header-shadow');
-    else headerDiv.classList.add('header-shadow');
-  };
 })(document);

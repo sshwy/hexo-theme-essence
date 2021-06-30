@@ -1,17 +1,10 @@
-import { md5str } from '../../module/utils';
-import { i2c, c2i, sz } from '../../module/cipherCode';
+import { md5str } from '../../../module/utils';
+import { i2c, c2i, sz } from '../../../module/cipherCode';
 import { setCookie, getCookie } from './cookie';
-import updateToc from './module/updateToc';
-import renderKatex from './module/katex';
+import updateToc from './updateToc';
+import { renderKatexNoConfig } from './katex';
 
-const RenderKatex = () => renderKatex({
-  output: 'html',
-  macros: {}, // CANT REMOVE (or it will cause render error)
-});
-
-window.renderKatex = RenderKatex;
-
-window.decrypt = function (idx, skey, record) {
+export function decrypt (idx, skey, record) {
   const oPart = document.getElementById('encpart' + idx),
     oContent = document.getElementById('encrypted' + idx),
     oFeedback = oPart.querySelector('.inputfeedback span');
@@ -45,11 +38,11 @@ window.decrypt = function (idx, skey, record) {
   oPart.style.display = 'none';
 
   if(record !== false) visitorRecord(idx);
-  RenderKatex();
+  renderKatexNoConfig();
   updateToc();
-};
+}
 
-window.decryptFromCookie = function () {
+export function decryptFromCookie () {
   console.log('auto decrypt');
   const arr = document.getElementsByClassName('encrypt-container');
   let flag = true;
@@ -68,7 +61,7 @@ window.decryptFromCookie = function () {
       }
     }
   }
-};
+}
 
 function visitorRecord (idx) {
   const { returnCitySN, rtcIp, AV, browserTypeObject } = window;

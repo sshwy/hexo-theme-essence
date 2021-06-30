@@ -24,3 +24,7 @@ export default function renderKatex (options) {
     }
   }
 }
+export const renderKatexNoConfig = () => renderKatex({
+  output: 'html',
+  macros: {}, // CANT REMOVE (or it will cause render error)
+});

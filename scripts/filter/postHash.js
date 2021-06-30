@@ -11,40 +11,55 @@ const crypto = require('crypto');
 const fs = require('fs');
 const moment = require('moment');
 const timezone = hexo.config.timezone || 'Asia/Shanghai';
-const { parseFrontMatter, replaceFrontMatter } = require('./utils')
+const { parseFrontMatter, replaceFrontMatter } = require('./utils');
 
-function shaHash(raw){
+function shaHash (raw) {
   let shasum = crypto.createHash('sha1');
   shasum.update(raw);
   return shasum.digest('hex');
 }
 function updatePostHash (data) {
-  if(this.theme.config.historyHash === false || data.historyHash === false) return data;
+  const config = this.theme.config,
+    getHash = s => s.replace(/#.*$/, ''),
+    getTime = s => s.replace(/^.*?#/, '');
+
+  if (config.historyHash === false || data.historyHash === false) { // disabled
+    return data;
+  }
 
   const obj = parseFrontMatter(data.raw);
-  if(obj === null)return data;
+
+  if (obj === null) { // frontmatter notfound
+    return data;
+  }
 
   const rawContent = data.raw.replace(/^---\n(.*?)\n---\n/s, ''),
     currentTime = moment().tz(timezone),
     shastr = shaHash(rawContent) + '#' + currentTime.format();
 
   let flag = true;
-  if (!obj.historyHash || obj.historyHash[0].replace(/#.*$/, '') !== shastr.replace(/#.*$/, '')) {
+  if (!Array.isArray(obj.historyHash) || getHash(obj.historyHash[0]) !== getHash(shastr)) {
     flag = false;
-    if (!obj.historyHash) obj.historyHash = [shastr];
-    else obj.historyHash.unshift(shastr);
+    if (Array.isArray(obj.historyHash)) {
+      obj.historyHash.unshift(shastr);
+    } else {
+      obj.historyHash = [shastr];
+    }
   }
-  const latestTime = moment(obj.historyHash[0].replace(/^.*?#/,'')).tz(timezone);
-  if(obj.date !== latestTime.tz(timezone).format()){
+
+  const latestHashTime = moment(getTime(obj.historyHash[0])).tz(timezone);
+  if (obj.date !== latestHashTime.tz(timezone).format()) {
     flag = false;
-    obj.date = latestTime.tz(timezone).format();
+    obj.date = latestHashTime.tz(timezone).format();
   }
-  if(flag) {
-    data.date = latestTime.utc();
+  if (flag) { // update frontmatter:date by hash time
+    data.date = latestHashTime.utc();
     return data;
   }
 
-  const newRaw = replaceFrontMatter(data.raw, obj) 
+  hexo.log.info(`[hexo-theme-essence] Update post hash for "${data.title}"`);
+
+  const newRaw = replaceFrontMatter(data.raw, obj);
   fs.writeFileSync(data.full_source, newRaw, { encoding: 'utf8' });
 
   if (data.historyHash) data.historyHash.unshift(shastr);
