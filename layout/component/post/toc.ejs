@@ -1,4 +1,5 @@
-<% if (page.content && page.toc != false){ %>
+<% const toc_content = anchorToc(page.content) %> 
+<% if (page.content && page.toc != false && toc_content.trim()){ %>
   <div class="toc">
     <h2 class="toc-title">
       <span
@@ -6,7 +7,7 @@
        style="font-size: 1em;padding-right: 5px;"></span
       ><%= __('post.toc') %></h2>
     <div class="toc-content">
-      <%- anchorToc(page.content) %>
+      <%- toc_content %>
     </div>
   </div>
   <hr>

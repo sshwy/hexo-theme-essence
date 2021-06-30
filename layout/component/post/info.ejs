@@ -1,13 +1,14 @@
 <div class="post-meta">
   <div class="post-info">
-    <span class="post-time iconfont icon-time" title="<%- lctzDate(page.date, "LLLL (zZ)") %>" ><%-
-      __('post.updateAt', lctzDate(page.date, "LL")) 
-    %></span>
+    <span class="post-time">
+      <span class="iconfont icon-time" title="<%- lctzDate(page.date, "LLLL (zZ)") %>" ></span><%-
+       __('post.updateAt', lctzDate(page.date, "LL")) %>
+    </span>
     <% if (theme.wordcount){ %>
-      <span class="icon infosep"></span>
-      <span class="post-wordcount iconfont icon-text"><%= 
-        __('post.wordCount', wordCount(page.raw)) 
-      %></span>
+      <span class="icon infosep"></span><span class="post-wordcount">
+        <span class="iconfont icon-text"></span><%= 
+          __('post.wordCount', wordCount(page.raw)) %>
+      </span>
     <% } %>
   </div>
   <div class="post-directory">
@@ -16,6 +17,7 @@
       s[0]="";
       let url="/directory";
     %>
+    <span class="iconfont icon-folder-close"></span>
     <a class="directory" href="<%=url_for(url)%>">Home</a>
     <% s.forEach((dir, i) => { %>
         <% url = url + dir + '\/'; %>
