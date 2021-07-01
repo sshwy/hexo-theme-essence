@@ -1,0 +1,75 @@
+<% 
+  var today = moment().format('YYYY-MM-DD');
+  // console.log(contribution_date, today);
+
+  const obj = {};
+  contribution_date.forEach(e => {
+    if(e in obj) obj[e]++;
+    else obj[e] = 1;
+  });
+  const data = Object.keys(obj).map(s => [s, obj[s]]);
+  data.push(['2021-06-20', 11]);
+  // console.log(data);
+%>
+
+<article class="post">
+  <div class="post-title">
+    <h2 class="title"><%= page.title %></h2>
+  </div>
+  <%- partial('component/post/info') %> <%- partial('component/post/toc') %>
+  <div id="contribution" style="height:300px;"></div>
+  <div class="post-content"><%- page.content %></div>
+  <%- partial('component/post/hash') %> <%- partial('component/post/footer') %>
+</article>
+
+<%- partial('component/post/valine') %>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js"></script>
+
+<script type="text/javascript">
+  var chartDom = document.getElementById('contribution');
+  var myChart = echarts.init(chartDom);
+  var date_from = "<%- moment(today).subtract(1, 'years').format('YYYY-MM-DD') %>";
+  var date_till = "<%- today %>";
+
+  var option = {
+    title: {
+      top: 30,
+      left: "center",
+      text: "文章更新频率",
+      subtext: 'from ' + date_from + ' to ' + date_till,
+    },
+    tooltip: {},
+    visualMap: {
+      show: false,
+      min: 0,
+      max: 10,
+      type: "continuous",
+    },
+    calendar: {
+      top: 120,
+      left: 30,
+      right: 30,
+      cellSize: ["auto", 13],
+      range: [date_from, date_till],
+      itemStyle: {
+        borderWidth: 0.5,
+      },
+      yearLabel: { show: false },
+    },
+    series: {
+      name: '更新数',
+      type: "heatmap",
+      coordinateSystem: "calendar",
+      data: <%- JSON.stringify(data) %>,
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    },
+  };
+
+  option && myChart.setOption(option);
+</script>

@@ -9,7 +9,7 @@
 
 const crypto = require('crypto');
 const fs = require('fs');
-const moment = require('moment');
+const moment = require('moment-timezone');
 const timezone = hexo.config.timezone || 'Asia/Shanghai';
 const { parseFrontMatter, replaceFrontMatter } = require('./utils');
 
