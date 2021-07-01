@@ -7,7 +7,7 @@
   }])
 %>
 
-<% if(theme.valine.enable){ %>
+<% if(theme.valine.enable && page.valine !== false){ %>
   <script type="text/javascript">
     loadComments();
     function loadComments() {

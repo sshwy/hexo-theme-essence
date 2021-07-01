@@ -5,6 +5,7 @@ import getBrowserType from './module/browser-type';
 import { renderKatexNoConfig } from './module/katex';
 import { decrypt, decryptFromCookie } from './module/crypt';
 import runRTC from './module/rtc';
+import { md5str } from '../../module/utils';
 
 
 (function (doc) {
@@ -23,6 +24,10 @@ import runRTC from './module/rtc';
     window.renderKatex = renderKatexNoConfig;
     window.decrypt = decrypt;
     window.decryptFromCookie = decryptFromCookie;
+    window.md5 = md5str;
+
+    const event = new Event('global_function_mounted');
+    document.dispatchEvent(event);
 
     runRTC();
 

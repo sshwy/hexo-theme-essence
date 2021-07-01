@@ -1,0 +1,172 @@
+<style>
+  #comment-record-list p {
+    color: var(--valine-par-color) !important;
+  }
+  #comment-record-list .vhead span {
+    font-size: 0.875em;
+  }
+  #comment-record-list .vhead span.sep {
+    margin-right: 0.2em;
+  }
+  .comment-count {
+    text-align: center;
+    font-size: 1.2em;
+  }
+</style>
+
+<article class="post archive">
+  <h1 class="page-title">评论列表</h1>
+
+  <div class="comment-count">
+    <p>共 <span id="comment-count">0</span> 条评论</p>
+  </div>
+
+  <div class="v" data-class="v">
+    <div id="comment-record-list" class="vcards"><p>Loading...</p></div>
+  </div>
+
+  <div id="vcomments" style="display: none"></div>
+</article>
+
+<div>
+  <nav class="page-nav">
+    <a class="extend next" rel="next" id="cprev-btn">
+      <span class="iconfont icon-arrow-left-circle"></span>
+    </a>
+    <span
+      >第 <span class="page-num"></span> 页，共
+      <span class="page-tot"></span> 页</span
+    >
+    <a class="extend next" rel="next" id="cnext-btn">
+      <span class="iconfont icon-arrow-right-circle"></span>
+    </a>
+  </nav>
+</div>
+
+<script id="comment-record-template" type="text/html">
+  <div class="vcard" id="">
+    <img
+      class="vimg"
+      src="https://gravatar.loli.net/avatar/{{ gravatar_hash }}?d=retro&amp;v=1.4.14"
+    />
+    <div class="vh">
+      <div class="vhead">
+        <span class="vnick">{{ nick }}</span>
+        <span class="sep">评论于</span>
+        <span class="post-url"
+          ><a href="{{ url }}" target="_blank">{{ post_title }}</a></span
+        >
+      </div>
+      <div class="vmeta">
+        <span class="vtime">{{ createdAt }}</span>
+      </div>
+      <div class="vcontent">{{ comment }}</div>
+    </div>
+  </div>
+</script>
+
+<script id="valine-path-data" type="text/json">
+  <%- page.valine_paths %>
+</script>
+
+<script type="text/javascript">
+  var page = 1,
+    per_page = 10;
+
+  const valine_paths = JSON.parse(
+    document.getElementById("valine-path-data").innerHTML
+  );
+  const template = document.getElementById("comment-record-template").innerHTML;
+  const dest = document.getElementById("comment-record-list");
+  const oCount = document.getElementById("comment-count");
+  const oPrev = document.getElementById("cprev-btn");
+  const oNext = document.getElementById("cnext-btn");
+  const oPageNum = document.querySelector(".page-num");
+  const oPageTot = document.querySelector(".page-tot");
+
+  load();
+
+  function load() {
+    document.addEventListener("global_function_mounted", function () {
+      new Valine({ el: "#vcomments" });
+      AV.init({
+        appId: "<%= theme.valine.appid %>",
+        appKey: "<%= theme.valine.appkey %>",
+      });
+      dest.innerHTML += "<p>Leancloud Storage loaded...</p>";
+      const query = new AV.Query("Comment").descending("createdAt");
+      query.count().then((count) => {
+        oCount.innerHTML = count;
+
+        oPrev.addEventListener("click", function () {
+          if (page > 1) {
+            --page;
+            loadList();
+          }
+        });
+        oNext.addEventListener("click", function () {
+          if (page * per_page < count) {
+            ++page;
+            loadList();
+          }
+        });
+        oPageTot.innerHTML = Math.ceil(count / per_page);
+      });
+
+      loadList(page);
+
+      function loadList() {
+        query
+          .skip((page - 1) * per_page)
+          .limit(per_page)
+          .find()
+          .then((list) => {
+            dest.innerHTML += "<p>Parsing data...</p>";
+            return list;
+          })
+          .then((list) => list.map((data) => data.toFullJSON()))
+          .then((list) =>
+            list.map((data) =>
+              Object.assign({}, data, {
+                gravatar_hash: data.mail
+                  ? window.md5(data.mail.trim().toLowerCase())
+                  : undefined,
+                post_title:
+                  (valine_paths.find((e) => e.valine_path === data.url) || {})
+                    .title || "Unknown Post",
+              })
+            )
+          )
+          .then((data) => {
+            console.log(data);
+            renderCommentRecords(data);
+            oPageNum.innerHTML = page;
+          });
+      }
+    });
+  }
+  function renderCommentRecords(data) {
+    console.log(dest);
+    dest.innerHTML = data
+      .map((record) => template_render(template, record))
+      .join("");
+  }
+
+  function template_render(template, config) {
+    return template.replace(/{{(.*?)}}/g, ($, $1) => {
+      const prop = $1.trim();
+      if (prop in config) return config[prop];
+      return "";
+    });
+  }
+
+  function prev_page() {
+    console.log("prev_page");
+  }
+  function next_page() {
+    console.log("next_page");
+  }
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@4.11.1/dist/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine"></script>
