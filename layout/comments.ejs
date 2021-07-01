@@ -54,7 +54,9 @@
         <span class="vnick">{{ nick }}</span>
         <span class="sep">评论于</span>
         <span class="post-url"
-          ><a href="{{ url }}" target="_blank">{{ post_title }}</a></span
+          ><a href="{{ post_meta.path }}" target="_blank"
+            >{{ post_meta.title }}</a
+          ></span
         >
       </div>
       <div class="vmeta">
@@ -131,14 +133,17 @@
                 gravatar_hash: data.mail
                   ? window.md5(data.mail.trim().toLowerCase())
                   : undefined,
-                post_title:
-                  (valine_paths.find((e) => e.valine_path === data.url) || {})
-                    .title || "Unknown Post",
+                post_meta: Object.assign(
+                  {
+                    title: "Unknown Post",
+                    path: "",
+                  },
+                  valine_paths.find((e) => e.valine_path === data.url) || {}
+                ),
               })
             )
           )
           .then((data) => {
-            console.log(data);
             renderCommentRecords(data);
             oPageNum.innerHTML = page;
           });
@@ -146,7 +151,6 @@
     });
   }
   function renderCommentRecords(data) {
-    console.log(dest);
     dest.innerHTML = data
       .map((record) => template_render(template, record))
       .join("");
@@ -154,17 +158,12 @@
 
   function template_render(template, config) {
     return template.replace(/{{(.*?)}}/g, ($, $1) => {
-      const prop = $1.trim();
-      if (prop in config) return config[prop];
-      return "";
+      const chain = $1.trim().split(".");
+      return chain.reduce((obj, key) => {
+        if (obj instanceof Object) return obj[key];
+        return undefined;
+      }, config) || "";
     });
-  }
-
-  function prev_page() {
-    console.log("prev_page");
-  }
-  function next_page() {
-    console.log("next_page");
   }
 </script>
 
