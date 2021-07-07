@@ -15,7 +15,6 @@ hexo.extend.filter.register('before_post_render', function (data) {
 });
 
 hexo.extend.filter.register('before_post_render', function (data) {
-  console.log(data.historyHash);
   if(Array.isArray(data.historyHash)) {
     const list = data.historyHash
       .map(hash => hash.match(/^.*?#(.*?)T.*$/)[1]);

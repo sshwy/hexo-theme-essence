@@ -1,6 +1,8 @@
 export default function () {
   const old = document.getElementsByClassName('toc-content')[0];
   if(!old)return;
+  const oToc = document.querySelector('div.toc');
+  oToc.setAttribute('style', ''); // remove attached style
 
   const sectionTitles = document.getElementsByClassName('post-content')[0].getElementsByClassName('headerlink');
 

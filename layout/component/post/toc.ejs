@@ -1,6 +1,10 @@
 <% const toc_content = anchorToc(page.content) %> 
-<% if (page.content && page.toc != false && toc_content.trim()){ %>
-  <div class="toc">
+<% if (page.content && page.toc != false){ %>
+  <% if (toc_content.trim()){ %>
+    <div class="toc">
+  <% } else { %>
+    <div class="toc" style="display: none;" >
+  <% } %>
     <h2 class="toc-title">
       <span
        class="iconfont icon-explain" 
@@ -9,6 +13,6 @@
     <div class="toc-content">
       <%- toc_content %>
     </div>
+    <hr />
   </div>
-  <hr>
 <% } %>

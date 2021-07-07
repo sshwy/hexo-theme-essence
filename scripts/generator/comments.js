@@ -7,7 +7,7 @@ hexo.extend.generator.register('comments', function () {
     path: e.permalink,
   }));
   hexo.log.info('[hexo-theme-essence] generate comments page');
-  hexo.log.debug(valine_paths);
+  // hexo.log.debug(valine_paths);
   return {
     path: 'comments/',
     data: {
