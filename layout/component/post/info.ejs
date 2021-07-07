@@ -1,13 +1,18 @@
 <div class="post-meta">
   <div class="post-info">
-    <span class="post-time">
-      <span class="iconfont icon-time" title="<%- lctzDate(page.date, "LLLL (zZ)") %>" ></span><%-
+    <span class="post-info-item post-time">
+      <span class="info-icon iconfont icon-time" title="<%- lctzDate(page.date, "LLLL (zZ)") %>" ></span><%-
        __('post.updateAt', lctzDate(page.date, "LL")) %>
     </span>
     <% if (theme.wordcount){ %>
-      <span class="icon infosep"></span><span class="post-wordcount">
-        <span class="iconfont icon-text"></span><%= 
+      <span class="icon infosep"></span><span class="post-info-item post-wordcount">
+        <span class="info-icon iconfont icon-text"></span><%= 
           __('post.wordCount', wordCount(page.raw)) %>
+      </span>
+    <% } %>
+    <% if (page.recommend){ %>
+      <span class="icon infosep"></span><span class="post-info-item post-recommend">
+        <span class="info-icon iconfont icon-favorite"></span><%= '推荐文章' %>
       </span>
     <% } %>
   </div>

@@ -4,8 +4,6 @@
   max-width: 920px;
   line-height: 1.8em;
 
-  .icon-text:before, .icon-time:before
-    margin-right: 0.2em
 
   .post-title
     font-size: 2em;
@@ -25,8 +23,21 @@
       margin .4em
       font-weight bold
     .post-info
-      .post-time, .post-wordcount
-        user-select: none
+      user-select: none
+      .info-icon
+        margin-right: 0.2em
+      .post-info-item
+        &, .info-icon
+          transition: .2s all ease
+          cursor: pointer
+        &:hover
+          color: var(--text-color)
+          &.post-time .info-icon
+            color: #4caf50
+          &.post-wordcount .info-icon
+            color: #2196f3
+          &.post-recommend .info-icon
+            color: #ffc107
 
   .post-content 
     counter-reset: h2
