@@ -1,0 +1,15 @@
+<article class="post tags-page">
+  <div class="post-title">
+    <h2 class="title">所有标签</h2>
+  </div>
+  <div class="post-content">
+    <% page.tags.forEach(function(tag) { %>
+      <span class="tag"><span class="meta-icon iconfont icon-tag"></span
+        ><a class="tag" href="<%= url_for(tag.path) %>"
+        ><%= tag.name %></a
+        ><sup><%= tag.count %></sup
+        ></span
+      >
+    <% }) %>
+  </div>
+</article>

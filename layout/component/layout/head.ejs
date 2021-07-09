@@ -1,14 +1,10 @@
 <% 
   let arr = [];
-  if(page.tags && page.tags.length){
-    page.tags.forEach((tag, idx) => {
-      arr.push(tag.name);
-    });
+  if(Array.isArray(page.tags)) {
+    arr = arr.concat(page.tags);
   }
-  if(page.keywords && page.keywords.length){
-    page.keywords.forEach((tag, idx) => {
-      arr.push(tag);
-    });
+  if(Array.isArray(page.keywords)) {
+    arr = arr.concat(page.keywords);
   }
 %> 
 
