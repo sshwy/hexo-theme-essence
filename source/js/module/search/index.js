@@ -37,26 +37,20 @@ function renderSearchData (keyword, counterNode, resultNode) {
 
 function initializeSearchData () {
   if (window.searchData === undefined) {
-    (new Promise(function (resolve, reject) {
-      fetch('/search.json')
-        .then(res => res.json())
-        .then(function (data) {
-          console.log('Search data initialize succeed!');
-          window.searchData = data;
-          document.getElementsByClassName('search-result')[0].innerHTML = '';
-          resolve(data);
-        })
-        .catch(function (reason) {
-          console.error('Search data initialize failed!');
-          reject(reason);
-        });
-    })).catch(function (err) {
-      console.error('Search data initialize failed!');
-      console.log(err);
-    });
+    fetch('/search.json')
+      .then(res => res.json())
+      .then(function (data) {
+        console.log('Search data initialize succeed!');
+        window.searchData = data;
+        document.getElementsByClassName('search-data-status')[0].innerHTML = '';
+      })
+      .catch(function (reason) {
+        console.error('Search data initialize failed!');
+        console.log(reason);
+        document.getElementsByClassName('search-data-status')[0].innerHTML = '<span>Failed!</span>';
+      });
   }
 }
-
 
 function bindEvent () {
   searchInput.addEventListener('focus', () => searchOpen('desktop'), false);

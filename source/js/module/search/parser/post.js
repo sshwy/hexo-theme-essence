@@ -47,8 +47,9 @@ function render (data, regexp) {
   const occ = lst ? '<ul>' + lst.join('') + '</ul>' : '';
   const tags = data.tags.map(tag =>
     '<span class="tag">'
+    + '<span class="iconfont icon-tag"></span>'
     + `<a class="tag" href="${tag.permalink}" target="_blank" rel="noreferrer noopener">`
-    + '#' + highlight(tag.name, regexp)
+    + highlight(tag.name, regexp)
     + '</a>'
     + '</span>'
   );
