@@ -35,7 +35,14 @@ function renderSearchData (keyword, counterNode, resultNode) {
   }
 }
 
+var initializing_search_data = false;
+var search_status = 'none';
+
 function initializeSearchData () {
+  if (initializing_search_data) return;
+
+  initializing_search_data = true;
+
   if (window.searchData === undefined) {
     fetch('/search.json')
       .then(res => res.json())
@@ -61,6 +68,7 @@ function bindEvent () {
 
   const searchCloseBtn = document.querySelector('.header-inner .search .search-close-icon');
   searchCloseBtn.addEventListener('click', () => searchClose('desktop', true), false);
+
   const mobileSearchCloseBtn = document.querySelector('.header-inner .mobile-search .search-close-icon');
   mobileSearchCloseBtn.addEventListener('click', () => searchClose('mobile', true), false);
 
@@ -70,6 +78,8 @@ function bindEvent () {
   });
 }
 function searchOpen (type) {
+  search_status = type;
+
   if (type === 'mobile') {
     headerDiv.classList.add('mobile-search-active');
     searchBox.classList.add('active', 'mobile');
@@ -81,6 +91,8 @@ function searchOpen (type) {
   if (!window.searchData) initializeSearchData();
 }
 function searchClose (type, clearAll) {
+  search_status = 'none';
+
   if (type === 'mobile') {
     headerDiv.classList.remove('mobile-search-active');
     searchBox.classList.remove('active', 'mobile');
@@ -102,6 +114,8 @@ function searchClose (type, clearAll) {
 }
 
 function searchSubmit (e) {
+  if (search_status === 'none') searchOpen('desktop');
+
   if (e && e.keyCode === 27) {
     searchClose('desktop', false);
     e.target.blur();
@@ -110,11 +124,13 @@ function searchSubmit (e) {
   if (window.searchData) {
     renderSearchData(str, searchCounter, searchResult);
   } else {
-    console.error('searchData not defined!');
+    initializeSearchData();
   }
 }
 
 function mobileSearchSubmit (e) {
+  if (search_status === 'none') searchOpen('mobile');
+
   if (e && e.keyCode === 27) {
     searchClose('mobile', false);
     e.target.blur();
@@ -123,7 +139,7 @@ function mobileSearchSubmit (e) {
   if (window.searchData) {
     renderSearchData(str, searchCounter, searchResult);
   } else {
-    console.error('searchData not defined!');
+    initializeSearchData();
   }
 }
 
