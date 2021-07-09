@@ -1,19 +1,60 @@
 .post-meta-card
-  margin: 0.8em 0.5em
+  margin: 1rem
   min-width: 270px
   width: calc(49% - 1em)
   display: inline-block;
   vertical-align: top;
   .post-meta-title
     font-size: 1.3em;
-    padding-bottom: 0.2em;
-  .post-meta-time, 
+    padding-bottom: 0.1em;
+
+  .post-meta-time
+    color: var(--text-secondary-color)
+    padding-bottom: 0.1em;
+
+    .post-updated-time
+      user-select: none
+      transition: color .2s ease
+      cursor: pointer
+
+      &:hover
+        color: var(--text-color)
+
+        .meta-icon
+          color: #4caf50
+
+  .post-mod
+    color: var(--text-secondary-color)
+    padding-left: .6em
+    user-select: none
+    transition: color .2s ease
+    cursor: pointer
+
+    &:hover
+      color: var(--text-color)
+
+      .meta-icon
+        color: #ff5722
+
+
   .post-meta-tags
     color: var(--text-secondary-color)
 
+    span.tag
+      user-select: none
+
+      .meta-icon
+        transition: color .2s ease
+        padding-right: 1px
+
+      &:hover
+        .meta-icon
+          color: #3f51b5
+
+
 @media only screen and (min-width: 900px) 
   .post-meta-card
-    width: calc(33% - 1em);
+    width: calc(33% - 3rem);
 
 @media only screen and (max-width: 600px) 
   .post-meta-card

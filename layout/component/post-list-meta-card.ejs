@@ -1,0 +1,34 @@
+<div class="post-meta-card">
+  <div class="post-meta-title">
+    <a href="<%=data.url%>" target="<%=data.target%>">
+      <%=data.title%>
+    </a>
+  </div>
+  <div class="post-meta-data">
+    <div class="post-meta-time">
+      <span class="post-updated-time"><span class="meta-icon iconfont icon-time"></span><time datetime="<%=
+          data.datetime
+          %>" title="<%- __('post.updateAt', data.fullDate) %>">
+        <span class="month"><%= data.monthText %></span>
+        <span class="day"><%= data.dayText %></span>
+        <span class="time"><%= data.timeText %></span>
+      </time></span>
+      <% if (data.modification) { %>
+        <span class="post-mod">
+          <span class="meta-icon iconfont icon-history"></span>
+            <span class="post-mod-count"><%= data.modification %> 次修订</span
+          >
+        </span>
+      <% } %>
+    </div>
+    <% if (data.tags && data.tags.length){ %>
+      <div class="post-meta-tags">
+        <% data.tags.forEach((tag, i) => { %>
+          <span class="tag"><span class="meta-icon iconfont icon-tag"></span
+            ><a class="tag" href="<%= url_for(tag.path) %>"
+            ><%= tag.name %></a></span>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</div>

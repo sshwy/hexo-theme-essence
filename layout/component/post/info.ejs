@@ -1,12 +1,12 @@
 <div class="post-meta">
   <div class="post-info">
-    <span class="post-info-item post-time">
-      <span class="info-icon iconfont icon-time" title="<%- lctzDate(page.date, "LLLL (zZ)") %>" ></span><%-
+    <span class="post-info-item post-time" title="<%- lctzDate(page.date, "LLLL (zZ)") %>">
+      <span class="info-icon iconfont icon-time"></span><%-
        __('post.updateAt', lctzDate(page.date, "LL")) %>
     </span>
     <% if (theme.wordcount){ %>
       <span class="icon infosep"></span><span class="post-info-item post-wordcount">
-        <span class="info-icon iconfont icon-text"></span><%= 
+        <span class="info-icon iconfont icon-text"></span><%- 
           __('post.wordCount', wordCount(page.raw)) %>
       </span>
     <% } %>
@@ -34,11 +34,11 @@
     <%- __('post.current') %>
   </div>
   <% if (page.tags && page.tags.length){ %>
-    <div class="post-list-tags">
+    <div class="post-tags">
       <% page.tags.forEach((tag, i) => { %>
-        <a class="tag" href="<%=url_for(tag.path)%>">
-          <%='#'+tag.name%>
-        </a>
+        <span class="tag"><span class="meta-icon iconfont icon-tag"></span
+          ><a class="tag" href="<%= url_for(tag.path) %>"
+          ><%= tag.name %></a></span>
       <% }) %>
     </div>
   <% } %>

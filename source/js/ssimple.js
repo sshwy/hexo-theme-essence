@@ -29,11 +29,12 @@ import { md5str } from '../../module/utils';
     const event = new Event('global_function_mounted');
     document.dispatchEvent(event);
 
+    setNavbarShadow();
     runRTC();
-
     setFontSize();
     bindEvent();
     applyCustomDarkModeSettings();
+
     if (HEXO_THEME_CONFIG.search.enable) {
       searchInit();
     }
@@ -58,15 +59,17 @@ import { md5str } from '../../module/utils';
     }
   }
 
+  function setNavbarShadow () {
+    if (window.scrollY < 10) headerDiv.classList.remove('header-shadow');
+    else headerDiv.classList.add('header-shadow');
+  }
+
   function bindEvent () {
     doc.addEventListener('DOMContentLoaded', function () {
       window.decryptFromCookie();
     });
 
-    doc.onscroll = function () {
-      if (doc.documentElement.scrollTop < 10) headerDiv.classList.remove('header-shadow');
-      else headerDiv.classList.add('header-shadow');
-    };
+    doc.onscroll = setNavbarShadow;
 
     window.addEventListener('resize', setFontSize, false);
     oMenuBtn.addEventListener('click', toggleMenu, false);

@@ -12,16 +12,6 @@
     text-align: center;
 
   .post-meta
-    a.tag
-      margin: 0 3px;
-    span.icon.smallarrow:before
-      vertical-align: .05em;
-      font-size: 1.3em;
-      content: "»"
-    span.icon.infosep:before
-      content "·"
-      margin .4em
-      font-weight bold
     .post-info
       user-select: none
       .info-icon
@@ -38,6 +28,22 @@
             color: #2196f3
           &.post-recommend .info-icon
             color: #ffc107
+    
+    .post-tags
+      span.tag
+        user-select: none
+
+        .meta-icon
+          transition: color .2s ease
+          padding-right: 1px
+
+        &:hover
+          .meta-icon
+            color: #3f51b5
+    
+    .post-directory
+      .directory
+        user-select: none
 
   .post-content 
     counter-reset: h2

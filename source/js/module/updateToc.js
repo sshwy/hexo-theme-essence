@@ -1,10 +1,10 @@
 export default function () {
   const old = document.getElementsByClassName('toc-content')[0];
-  if(!old)return;
-  const oToc = document.querySelector('div.toc');
-  oToc.setAttribute('style', ''); // remove attached style
+  if(!old) return;
 
   const sectionTitles = document.getElementsByClassName('post-content')[0].getElementsByClassName('headerlink');
+
+  if(sectionTitles.length === 0) return;
 
   let toc = document.createElement('ol');
   toc.setAttribute('class', 'toc');
@@ -41,6 +41,9 @@ export default function () {
     }
     nodes[data.level - 1].appendChild(liItem);
   }
+
+  const oToc = document.querySelector('div.toc');
+  oToc.setAttribute('style', ''); // remove attached style
 
   old.innerHTML = '';
   old.appendChild(toc);

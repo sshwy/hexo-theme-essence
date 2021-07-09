@@ -5,9 +5,9 @@
 
 .dir-list
   .dir-list-item
-    margin: 0.7em 0.5em
-    min-width: 300px;
-    width: calc(49% - 1em);
+    margin: 1rem
+    min-width: 270px;
+    width: calc(49% - 2rem);
     display: inline-block;
     font-size: 2rem;
     .dir-icon
@@ -21,10 +21,8 @@
     font-size: 2.4rem;
 
 @media only screen and (min-width: 900px) 
-  .dir-list 
-    padding-left: 45px;
-    .dir-list-item
-      width: calc(33% - 1em);
+  .dir-list .dir-list-item
+    width: calc(33% - 3rem);
   .parent-dir
     padding-left: 45px;
 
@@ -33,6 +31,5 @@
     padding: 0 20px;
   
 @media only screen and (max-width: 600px) 
-  .dir-list
-    .dir-list-item
-      font-size: 2rem;
+  .dir-list .dir-list-item
+    font-size: 2rem;
