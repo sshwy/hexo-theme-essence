@@ -1,7 +1,9 @@
-# headline will be showed on index page
+### Metadata Configuration
+
+# headline will be displayed on index page
 headline: Hi, There!
 
-# navbar menu link
+# menu link list displayed on navbar
 menu:
   # Archives: # title of list item
   #   icon: iconfont icon-work # icon is displayed leftside
@@ -11,33 +13,48 @@ menu:
   #   link: /directory/
   #   icon_only: true # to not display title
 
-# displayed on page footer
+# display social information on index page
+# set title to false to display icon only
+homePageMeta:
+  enable: false
+  # social: # if enabled, configure like this
+  #   github:
+  #     icon: iconfont icon-github
+  #     link: https://github.com/sshwy
+  #     title: false # icon only
+  #   codeforcesID:
+  #     icon: iconfont icon-codeforces
+  #     link: https://codeforces.com/profile/sshwyR
+  #     title: sshwyR
+
+# displayed on footer of every page
 copyright:
   duration: 2019-2021
   license:
     title: Creative Commons Attribution-ShareAlike 4.0 International License
     link: https://creativecommons.org/licenses/by-sa/4.0/
 
-# whether update post hash automatically everytime running hexo
-# to disable post hash for single post, write `historyHash: false` in frontmatter
-historyHash: true
+# display friend links on page footer
+# write information in base_dir/source/_data/_firends.yml with following format:
+#
+# friend:
+#   title: 'A Friend'
+#   link: https://example.com
+#
+# the `title' attribute supports html tag for custom style
+friends:
+  enable: true
+
+### Render & Widgets Configuration
 
 # katex (client side render)
 katex: true
 
-# button fixed on the right bottom side
+# buttons fixed on the right bottom side of your screen
 button:
   back2top: true # back to top
   darkmode: true # light/dark mode toggler
   comment: true # jump to valine comment
-
-# generate a set of directory page under yoursite.com/directory/
-directory:
-  enable: true
-  title: Directory
-  parent_directory: Directory Above
-  wordmap:
-    home_page: 主页
 
 # display the number of characters of the post
 wordcount: true
@@ -50,8 +67,29 @@ valine:
   placeholder:
   visitor: true
 
+# local search on navbar
 search:
   enable: true
+
+# display recently updated posts
+recently:
+  enable: true
+  count: 6 # max count
+
+# display recommended posts on index page
+# write `recommend: true` in frontmatter to make your article recommended
+# to get full support for this feature, PLEASE disable index pagination. 
+# i. e. set index_generator.per_page to 0 in your blog's config.yml
+recommend:
+  enable: true
+
+# generate a set of directory page under <BLOG_BASE_URL>/directory/
+directory:
+  enable: true
+  title: Directory
+  parent_directory: Directory Above
+  wordmap:
+    home_page: 主页
 
 # Place custom css stylesheet file under base_dir/prism/
 # MAKE SURE to replace the .css suffix with .styl!
@@ -61,37 +99,9 @@ prismjs:
     light: prism # name of the style file, no suffix required
     dark: prism-vsc-dark-plus
 
-# display friend links on page footer
-# write information in base_dir/source/_data/_firends.yml with following format:
-# friend:
-#   title: 'A Friend'
-#   link: https://example.com
-# the `title' attribute supports html tag for custom style
-friends:
-  enable: true
+### Automatization Configuration
 
-# display recently updated posts
-recently:
-  enable: true
-  count: 6 # max count
-
-# display recommended posts
-# write `recommend: true` in frontmatter to make your article recommended
-# to get full support for this feature, please disable index pagination. 
-# i. e. set index_generator.per_page to 0 in your blog's config.yml
-recommend:
-  enable: true
-
-# display social information in index page
-# set title to false to display icon only
-homePageMeta:
-  enable: false
-  # social:  # if enabled, configure like this
-  #   github:
-  #     icon: iconfont icon-github
-  #     link: https://github.com/sshwy
-  #     title: false # icon only
-  #   codeforcesID:
-  #     icon: iconfont icon-codeforces
-  #     link: https://codeforces.com/profile/sshwyR
-  #     title: sshwyR
+# whether update post hash automatically everytime running hexo
+# WARNING: it CHANGES frontmatter of source files of your post!
+# to disable post hash for *single* post, write `historyHash: false` in frontmatter
+historyHash: true
