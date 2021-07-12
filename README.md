@@ -20,7 +20,7 @@ Visit [Sshwy's Notes](https://notes.sshwy.name) for preview.
 
 ## Installation :inbox_tray:
 
-You can simply install it:
+You can simply install it as a node module:
 
 ```bash
 npm install hexo-theme-essence --save
@@ -28,7 +28,13 @@ npm install hexo-theme-essence --save
 yarn install hexo-theme-essence --save
 ```
 
-On another hand, the traditional way is still working, which means you clone this repository under `<YourBlog>/themes/essence/`.
+On another hand, the traditional way is still working, which means you clone this repository under `<YourBlog>/themes/essence/`:
+
+```bash
+cd <YourBlog>
+mkdir --parents themes
+git clone --depth 1 https://github.com/sshwy/hexo-theme-essence.git themes/essence
+```
 
 Whatever way you choose, please install these peer dependencies as well:
 
