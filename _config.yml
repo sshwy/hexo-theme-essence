@@ -105,3 +105,12 @@ prismjs:
 # WARNING: it CHANGES frontmatter of source files of your post!
 # to disable post hash for *single* post, write `historyHash: false` in frontmatter
 historyHash: true
+
+### CDN Configuration
+
+cdn:
+  valine: https://cdn.jsdelivr.net/npm/valine
+  katex:
+    js: https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js
+    css: https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css
+  leancloud_storage: https://cdn.jsdelivr.net/npm/leancloud-storage@4.11.1/dist/av-min.js

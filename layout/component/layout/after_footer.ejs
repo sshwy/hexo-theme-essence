@@ -22,7 +22,7 @@
           document.body.appendChild(script);
         };
         getScript({
-          src: 'https://cdn.jsdelivr.net/npm/valine',
+          src: '<%= theme.cdn.valine %>',
           onload: function () {
             newValine();
           }

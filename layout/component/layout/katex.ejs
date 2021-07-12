@@ -1,7 +1,7 @@
 <% if(theme.katex){ %>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" 
-    integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="<%= theme.cdn.katex.css %>">
+  <script defer src="<%= theme.cdn.katex.js %>" 
+    crossorigin="anonymous"></script>
   <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function(){
       window.renderKatex();
