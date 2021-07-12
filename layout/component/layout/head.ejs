@@ -21,7 +21,7 @@
       : ''
     %><%= config.title %></title>
   <link rel="shortcut icon" href="/images/favicon.ico" />
-  <%- css('css/ssimple.css') %>
-  <%- css('iconfont/iconfont.css') %>
+  <%- css('css/ssimple.css' + '?' + date(Date.now(), 'YYYYMMDD')) %>
+  <%- css('iconfont/iconfont.css' + '?' + date(Date.now(), 'YYYYMMDD')) %>
   <%- partial('./katex') %>
 </head>
