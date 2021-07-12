@@ -6,9 +6,8 @@ hexo.extend.generator.register('tags', function () {
     count: e.length,
     path: e.path,
   }));
+  tags.sort((a, b) => b.count - a.count);
   hexo.log.info('[hexo-theme-essence] generate tags page');
-
-  // console.log(tags);
 
   return {
     path: 'tags/',
