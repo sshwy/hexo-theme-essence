@@ -2,18 +2,19 @@ name: 简体中文
 comma: ，
 colon: ：
 post:
-  totalWordCount: 全站约 %s 字
-  wordCount: 约 %s 字
-  current: 当前文章
-  updateTime: 文章更新时间
-  updateAt: 更新于 %s
-  modification: 修订记录
-  createAt: '%s 创建文章'
-  modifiedForKth: '%2$s 第%1$d次修订'
-  hash: 哈希值
-  toc: 文章目录
   copyrightDeclaration: 本站所有文章遵循许可协议
+  createAt: '%s 创建文章'
+  current: 当前文章
   decrypt: 解密
+  hash: 哈希值
+  modification: 修订记录
+  modifiedForKth: '%2$s 第%1$d次修订'
+  toc: 文章目录
+  totalModification: '%d 次修订'
+  totalWordCount: 全站约 %s 字
+  updateAt: 更新于 %s
+  updateTime: 文章更新时间
+  wordCount: 约 %s 字
 index:
   recently: 最近更新
   more: 更多文章
@@ -25,6 +26,7 @@ archive:
     one: 共 %d 篇文章
     other: 共 %d 篇文章
 tag:
+  all: 所有标签
   title: 标签
-  tagged: 标签「%s」下的文章
+  tagged: 标签 <span class="tag-page-icon iconfont icon-tag"></span>%s 下的文章
 friendLink: 友情链接

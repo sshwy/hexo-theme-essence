@@ -16,7 +16,7 @@
       <% if (data.modification) { %>
         <span class="post-mod">
           <span class="meta-icon iconfont icon-history"></span>
-            <span class="post-mod-count"><%= data.modification %> 次修订</span
+            <span class="post-mod-count"><%- __('post.totalModification', data.modification) %></span
           >
         </span>
       <% } %>

@@ -2,18 +2,19 @@ name: English
 comma: ', '
 colon: ': '
 post:
-  totalWordCount: A total of %s words
-  wordCount: About %s words
-  current: Current Page
-  updateTime: Last modified time
-  updateAt: Updated at %s
-  modification: Modification Log
+  copyrightDeclaration: All works here are licensed under the
   createAt: Created on %s
-  modifiedForKth: Modified for the %1$d-th time on %2$s
-  hash: hash
-  toc: Table of Content
-  copyrightDeclaration: All works on this site is licensed under the
+  current: Current Page
   decrypt: decrypt
+  hash: hash
+  modification: Modification Log
+  modifiedForKth: Modified for the %1$d-th time on %2$s
+  toc: Table of Content
+  totalModification: 'Updated %d times'
+  totalWordCount: Totally %s words
+  updateAt: Updated at %s
+  updateTime: Last modified time
+  wordCount: Totally %s words
 index:
   recently: Recently Updated
   more: More Articles
@@ -25,6 +26,7 @@ archive:
     one: One article.
     other: A total of %d articles.
 tag:
+  all: All Tags
   title: Tag
-  tagged: Tagged %s
+  tagged: 'Tagged <span class="tag-page-icon iconfont icon-tag"></span>%s'
 friendLink: Friends
