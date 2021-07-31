@@ -5,7 +5,6 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var moment = _interopDefault(require('moment'));
-var keywordExtractor = require('keyword-extractor');
 var hexoUtil = require('hexo-util');
 
 var defaults = {
@@ -17,7 +16,6 @@ var defaults = {
     link: false,
     permalink: false,
     excerpt: false,
-    keywords: false,
     text: true,
     raw: false,
     content: false,
@@ -36,7 +34,6 @@ var defaults = {
     link: false,
     permalink: false,
     excerpt: false,
-    keywords: false,
     text: true,
     raw: false,
     content: false,
@@ -106,17 +103,6 @@ function catags ({ name, slug, permalink }) {
   return { name, slug, permalink };
 }
 
-function getKeywords (str, language) {
-  const keywords = keywordExtractor.extract(str, {
-    language,
-    remove_digits: true,
-    return_changed_case: true,
-    remove_duplicates: true,
-  });
-
-  return keywords.join(' ');
-}
-
 function setContent (obj, item, ref, cfg) {
   switch (item) {
     case 'excerpt':
@@ -129,13 +115,6 @@ function setContent (obj, item, ref, cfg) {
 
     case 'text':
       obj.text = minify(ref.content);
-      break;
-
-    case 'keywords':
-      if (cfg.keywords) {
-        const excerpt = minify(ref.excerpt);
-        obj.keywords = getKeywords(excerpt, cfg.keywords);
-      }
       break;
 
     case 'categories':

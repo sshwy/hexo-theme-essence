@@ -37,7 +37,6 @@
     "htmlparser2": "^6.0.0",
     "iferr": "^1.0.2",
     "js-yaml": "^4.1.0",
-    "keyword-extractor": "0.0.19",
     "memory-fs": "^0.5.0",
     "webpack": "^5.41.1"
   },
