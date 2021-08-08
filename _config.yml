@@ -78,8 +78,6 @@ recently:
 
 # display recommended posts on index page
 # write `recommend: true` in frontmatter to make your article recommended
-# to get full support for this feature, PLEASE disable index pagination. 
-# i. e. set index_generator.per_page to 0 in your blog's config.yml
 recommend:
   enable: true
 

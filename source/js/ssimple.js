@@ -59,9 +59,15 @@ import { md5str } from '../../module/utils';
     }
   }
 
-  function setNavbarShadow () {
-    if (window.scrollY < 10) headerDiv.classList.remove('header-shadow');
-    else headerDiv.classList.add('header-shadow');
+  function setNavbarShadow (mode = 'auto') {
+    if(mode === 'auto') {
+      if (window.scrollY < 10) headerDiv.classList.remove('header-shadow');
+      else headerDiv.classList.add('header-shadow');
+    } else if(mode === 'open') {
+      headerDiv.classList.add('header-shadow');
+    } else {
+      headerDiv.classList.remove('header-shadow');
+    }
   }
 
   function bindEvent () {
@@ -69,7 +75,7 @@ import { md5str } from '../../module/utils';
       window.decryptFromCookie();
     });
 
-    doc.onscroll = setNavbarShadow;
+    doc.onscroll = () => setNavbarShadow('auto');
 
     window.addEventListener('resize', setFontSize, false);
     oMenuBtn.addEventListener('click', toggleMenu, false);
@@ -86,8 +92,10 @@ import { md5str } from '../../module/utils';
   function toggleMenu () {
     if (oMenuList.style.display == 'block') {
       oMenuList.style.display = 'none';
+      setNavbarShadow('auto');
     } else {
       oMenuList.style.display = 'block';
+      setNavbarShadow('open');
     }
   }
 

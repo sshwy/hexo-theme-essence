@@ -1,23 +1,10 @@
-<%
-  let flag = false
-%>
-
 <div class="index-title">
   <div class="index-banner">
     <h1><%=theme.headline%></h1>
     <% if(theme.homePageMeta.enable){ %>
-      <div class="homepage-meta">
-        <% for(const name in theme.homePageMeta.social) { %> 
-          <% if (flag === false){ flag = true } else { %>
-            <span class="homepagemetasep"></span>
-          <% } %>
-          <a href="<%- theme.homePageMeta.social[name].link %>" target="_blank" rel="noreferrer noopener">
-            <span class="<%- theme.homePageMeta.social[name].icon %> index-social-meta-icon"><%-
-              theme.homePageMeta.social[name].title || ''
-            %></span>
-          </a>
-        <% } %> 
-      </div>
+      <%- partial('component/index-meta', { 
+        data: theme.homePageMeta.social, 
+      }) %>
     <% } %>
   </div>
 </div>
@@ -27,7 +14,11 @@
     <h2><%= __('index.recently') %></h2>
   </div>
   <section class="recently-updated archive">
-    <%- partial('component/post-list', { listPosts: page.posts.slice(0,theme.recently.count), Year: false, Month: false }) %>
+    <%- partial('component/post-list', { 
+      listPosts: site.posts.slice(0,theme.recently.count),
+      Year: false, 
+      Month: false 
+    }) %>
   </section>
 <% } %>
 
@@ -36,7 +27,11 @@
     <h2><%= __('index.recommend') %></h2>
   </div>
   <section class="recommend archive">
-    <%- partial('component/post-list', { listPosts: page.posts.filter(p => p.recommend), Year: false, Month: false }) %>
+    <%- partial('component/post-list', { 
+      listPosts: site.posts.filter(p => p.recommend), 
+      Year: false, 
+      Month: false 
+    }) %>
   </section>
 <% } %>
 

@@ -1,0 +1,27 @@
+<%
+  let flag = false
+%>
+
+<div class="homepage-meta">
+  <div class="meta-inline">
+    <% for(const name in data) { %> 
+      <% if (flag === false){ flag = true } else { %>
+        <span class="icon infosep"></span>
+      <% } %>
+      <a href="<%- data[name].link %>" target="_blank" rel="noreferrer noopener">
+        <span class="<%- data[name].icon %> index-social-meta-icon"></span
+        ><span class="index-social-meta-title"><%- data[name].title || '' %></span>
+      </a>
+    <% } %> 
+  </div>
+  <div class="meta-block">
+    <ul class="meta-block-list">
+      <% for(const name in data) { %> 
+        <li><a href="<%- data[name].link %>" target="_blank" rel="noreferrer noopener">
+          <span class="<%- data[name].icon %> index-social-meta-icon"></span
+          ><span class="index-social-meta-title"><%- data[name].title || '' %></span>
+        </a></li>
+      <% } %> 
+    </ul>
+  </div>
+</div>

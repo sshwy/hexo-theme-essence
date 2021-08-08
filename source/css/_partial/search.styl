@@ -111,7 +111,8 @@
     .mobile-search
       display: inline-block;
       position: relative;
-      line-height: 57px;
+      line-height: 45px;
+      margin-bottom: 5px
       width: 100%;
       input[type="text"]
         display: inline-block;
@@ -151,6 +152,8 @@
       display: none;
 
 @media only screen and (max-width: 769px)
+  .active .search-container 
+    margin: 60px auto 0;
   .header-inner
     .blog-title
       .iconfont.icon-search.mobile-search-icon

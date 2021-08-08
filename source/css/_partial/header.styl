@@ -5,9 +5,10 @@
   box-shadow: 0 -4px 10px var(--header-shadow-color);
 
 .header-inner 
+  padding-top: 2px // fix vertical align
   min-height: 60px;
-  width: 100%;
   line-height: 60px;
+  width: 100%;
   background: var(--background-color);
   transition: box-shadow ease .2s;
   font-size: 2rem;
@@ -48,6 +49,8 @@
 
 @media only screen and (max-width: 769px) 
   .header-inner
+    min-height: 45px;
+    line-height: 45px;
     .blog-title 
       display: block;
       width: 100%
