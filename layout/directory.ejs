@@ -3,9 +3,9 @@
     <header>
       <h1 class="page-title"><span class="iconfont icon-folder-filling"></span>
         <% if(page.par_path){ %>
-          <%=theme.directory.wordmap[page.dir]%>
+          <%= theme.directory.wordmap[page.dir] || page.dir %>
         <% } else { %>
-          <%=theme.directory.title%>
+          <%= theme.directory.title %>
         <% } %>
       </h1>
     </header>
@@ -28,7 +28,11 @@
           </div>
         <% }) %>
       </div>
-      <%- partial('component/post-list', {listPosts: page.posts, Year:false, Month:false}) %>
+      <%- partial('component/post-list', { 
+        listPosts: page.posts,
+        Year: false,
+        Month: false
+      }) %>
     </div>
   </div>
 <% } %>
