@@ -66,6 +66,7 @@ valine:
   appkey:
   placeholder:
   visitor: true
+  serverURLs: # for chinese users
 
 # local search on navbar
 search:
