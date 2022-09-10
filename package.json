@@ -25,7 +25,7 @@
   ],
   "devDependencies": {
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.7.0"
+    "eslint": "^8.23.0"
   },
   "config": {
     "commitizen": {
@@ -33,12 +33,12 @@
     }
   },
   "dependencies": {
-    "hexo-util": "^2.5.0",
-    "htmlparser2": "^7.2.0",
+    "hexo-util": "^2.7.0",
+    "htmlparser2": "^8.0.1",
     "iferr": "^1.0.2",
     "js-yaml": "^4.1.0",
     "memory-fs": "^0.5.0",
-    "webpack": "^5.67.0"
+    "webpack": "^5.74.0"
   },
   "peerDependencies": {
     "hexo": ">= 5.3.0 < 6",
