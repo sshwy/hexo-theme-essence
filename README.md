@@ -2,6 +2,8 @@
 
 [![npm](https://img.shields.io/npm/v/hexo-theme-essence)](https://www.npmjs.com/package/hexo-theme-essence) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsshwy%2Fhexo-theme-essence.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsshwy%2Fhexo-theme-essence?ref=badge_shield)
 
+**NOTICE**: for hexo version >=6 < 7, please use the older `hexo-theme-essence@v1.9.12`.
+
 Essence is a functional and darkmode featured theme for Hexo.
 
 Visit [Sshwy's Notes](https://notes.sshwy.name) for preview.
