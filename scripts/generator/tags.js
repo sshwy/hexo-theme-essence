@@ -1,7 +1,7 @@
 /* global hexo */
 
 hexo.extend.generator.register('tags', function () {
-  const tags = hexo.locals.get('tags').data.map(e => ({
+  const tags = hexo.locals.get('tags').map(e => ({
     name: e.name,
     count: e.length,
     path: e.path,
