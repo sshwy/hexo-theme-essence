@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-essence",
-  "version": "1.9.12",
+  "version": "1.10.0",
   "description": "A Simple Clean Theme for Hexo with user-friendly Navigation System.",
   "scripts": {
     "test": "echo \"No test specified\"",
@@ -34,14 +34,14 @@
   },
   "dependencies": {
     "hexo-util": "^3.0.1",
-    "htmlparser2": "^8.0.1",
+    "htmlparser2": "^9.0.0",
     "iferr": "^1.0.2",
     "js-yaml": "^4.1.0",
     "memory-fs": "^0.5.0",
-    "webpack": "^5.76.3"
+    "webpack": "^5.84.1"
   },
   "peerDependencies": {
-    "hexo": ">= 6 < 7",
+    "hexo": ">= 7",
     "hexo-renderer-ejs": ">= 2 < 3",
     "hexo-renderer-stylus": ">= 2 < 3"
   },
